@@ -10,5 +10,8 @@
 
 @interface RegisterViewController : UIViewController<ServiceAPIDelegate>{
     ServiceAPI *SA;
+    UILabel *CodeLabel;
+    NSTimer *timer;
+    int secondCountDown;
 }
 @end

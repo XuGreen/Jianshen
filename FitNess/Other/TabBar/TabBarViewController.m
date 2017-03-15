@@ -9,8 +9,8 @@
 #import "TabBarViewController.h"
 #import "HomeViewController.h"
 #import "MeViewController.h"
-#import "OtherViewController.h"
-#import "ClassViewController.h"
+#import "NearbyViewController.h"
+#import "JobsViewController.h"
 #import "NavViewController.h"
 @interface TabBarViewController ()
 
@@ -27,19 +27,19 @@
     home.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
     home.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
     home.tabBarItem.title=@"首页";
-    NavViewController *homeNav=[[NavViewController alloc]initWithRootViewController:home];
+//    NavViewController *homeNav=[[NavViewController alloc]initWithRootViewController:home];
     
-    ClassViewController *class=[[ClassViewController alloc]init];
-    class.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
-    class.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
-    class.tabBarItem.title=@"分类";
-    NavViewController *classNav=[[NavViewController alloc]initWithRootViewController:class];
+    NearbyViewController *nearby=[[NearbyViewController alloc]init];
+    nearby.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
+    nearby.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
+    nearby.tabBarItem.title=@"附近";
+    NavViewController *classNav=[[NavViewController alloc]initWithRootViewController:nearby];
     
-    OtherViewController *other=[[OtherViewController alloc]init];
-    other.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
-    other.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
-    other.tabBarItem.title=@"订单";
-    NavViewController *otherNav=[[NavViewController alloc]initWithRootViewController:other];
+    JobsViewController *jobs=[[JobsViewController alloc]init];
+    jobs.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
+    jobs.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
+    jobs.tabBarItem.title=@"招聘";
+    NavViewController *otherNav=[[NavViewController alloc]initWithRootViewController:jobs];
     
     MeViewController *me=[[MeViewController alloc]init];
     me.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
@@ -47,7 +47,7 @@
     me.tabBarItem.title=@"我的";
     NavViewController *meNav=[[NavViewController alloc]initWithRootViewController:me];
     
-    self.viewControllers=@[homeNav,classNav,otherNav,meNav];
+    self.viewControllers=@[home,classNav,otherNav,meNav];
     
 }
 - (void)didReceiveMemoryWarning {

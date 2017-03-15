@@ -22,20 +22,20 @@
         UIView *backView=[[UIView alloc] initWithFrame:CGRectMake(0,0, SCREENWIDTH,SCREENHEIGHT)];
         backView.backgroundColor = [UIColor whiteColor];
         backView.alpha = 0.7;
-        [self addSubview:backView];
+//        [self addSubview:backView];
         
         
         UIImageView  *logoImage=[[UIImageView alloc] initWithFrame:CGRectMake((SCREENWIDTH-60)/2, (SCREENHEIGHT-60)/2, 60, 60)];
-        [logoImage setImage:[UIImage imageNamed:@"load"]];
-        [self addSubview:logoImage];
+        [logoImage setImage:[UIImage imageNamed:@"xc_main_pressed"]];
+//        [self addSubview:logoImage];
         
-        CABasicAnimation* rotationAnimation;
-        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
-        rotationAnimation.duration = 1;
-        rotationAnimation.cumulative = YES;
-        rotationAnimation.repeatCount = 100;
-        [logoImage.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+//        CABasicAnimation* rotationAnimation;
+//        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//        rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+//        rotationAnimation.duration = 1;
+//        rotationAnimation.cumulative = YES;
+//        rotationAnimation.repeatCount = 100;
+//        [logoImage.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
         
     }
     return self;

@@ -9,7 +9,7 @@
 #import "Constants.h"
 NSString const *ApiUrl = @"http://192.168.1.164";//API
 NSString const *ImageUrl = @"http://192.168.1.164";//API
-NSString const *Version = @"/PHP/public/index.php/index/";//API
+NSString const *Version = @"/public/index.php/index";//API
 @implementation Constants
 
 @end

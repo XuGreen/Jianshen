@@ -19,6 +19,6 @@
 }
 
 - (void)action_onBackButton : (UIButton *) sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 @end

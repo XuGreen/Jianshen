@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgetViewController : UIViewController
+@interface ForgetViewController : UIViewController<ServiceAPIDelegate>{
+    ServiceAPI *SA;
+    UILabel *CodeLabel;
+    NSTimer *timer;
+    int secondCountDown;
+}
+
 
 @end

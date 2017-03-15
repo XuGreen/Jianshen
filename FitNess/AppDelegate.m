@@ -23,6 +23,7 @@
     //显示窗口
     [self LoadMainViewController];
     [self.window makeKeyAndVisible];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     return YES;
 }
 

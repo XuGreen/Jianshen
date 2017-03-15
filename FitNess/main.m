@@ -1,5 +1,4 @@
 //
-//  main.m
 //  FitNess
 //
 //  Created by xuqq on 2017/3/14.

@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ClassViewController.h
 //  FitNess
 //
 //  Created by xuqq on 2017/3/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ClassViewController : UIViewController
 
 @end
-

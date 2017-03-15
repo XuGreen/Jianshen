@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TabBarViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,11 +17,21 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    //创建窗口
+    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    self.window.backgroundColor=[UIColor whiteColor];
+    //显示窗口
+    [self LoadMainViewController];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
-
+- (void)LoadMainViewController{
+    //设置跳转界面
+    TabBarViewController *TabBar=[[TabBarViewController alloc]init];
+    TabBar.tabBar.tintColor=[UIColor darkGrayColor];
+    self.window.rootViewController=TabBar;
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

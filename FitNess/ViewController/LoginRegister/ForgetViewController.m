@@ -85,6 +85,14 @@
 -(void)verificationClick:(UIButton *)sender{
     //获取验证码
     NSString *phoneNumber = [TextFiledArray[0] text];
+    NSString *code = [TextFiledArray[1] text];
+    NSString *pwd = [TextFiledArray[2] text];
+    NSString *Repwd = [TextFiledArray[3] text];
+    NSString *string=[NSString stringWithFormat:@"%@%@%@%@JSB365CNHUIJIANKEJI",phoneNumber,code,pwd,Repwd];
+    
+    NSString *stringMD5=[NSString stringWithFormat:@"%@",[string stringToMD5:string]];
+    XQQLog(@"%@",stringMD5);
+    
     NSMutableDictionary *postDic = [[NSMutableDictionary alloc]init];
     [postDic setObject:phoneNumber forKey:@"mobile"];
     NSMutableDictionary *responseDic = [HttpUnits PostJsonToService:[NSString stringWithFormat:@"%@%@/login/send_verify",ApiUrl,Version] RequestJson:postDic];

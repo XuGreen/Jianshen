@@ -15,7 +15,7 @@
 {
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self setTitleColor:[UIColor groupTableViewBackgroundColor] forState:UIControlStateNormal];
-     self.titleLabel.font = [UIFont systemFontOfSize:13];
+     self.titleLabel.font = [UIFont systemFontOfSize:14];
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -35,10 +35,10 @@
     [super layoutSubviews];
     
     // 调整图片
-    self.imageView.xmg_y = self.xmg_height * 0.15;
-    self.imageView.xmg_width = self.xmg_width * 0.45;
-    self.imageView.xmg_height = self.imageView.xmg_width;
-    self.imageView.xmg_centerX = self.xmg_width * 0.5;
+    self.imageView.xmg_y=self.xmg_height*0.15;
+    self.imageView.xmg_width=self.xmg_width*0.7;
+    self.imageView.xmg_height=self.imageView.xmg_width;
+    self.imageView.xmg_centerX=self.xmg_width*0.5;
     
     // 调整文字
     self.titleLabel.xmg_x = 0;

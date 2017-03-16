@@ -24,30 +24,30 @@
 }
 - (void)TabBars{
     HomeViewController *home=[[HomeViewController alloc]init];
-    home.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
-    home.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
+    home.tabBarItem.image = [UIImage imageNamed:@"home"];
+    home.tabBarItem.selectedImage = [UIImage imageNamed:@"click-home"];
     home.tabBarItem.title=@"首页";
-//    NavViewController *homeNav=[[NavViewController alloc]initWithRootViewController:home];
+    NavViewController *homeNav=[[NavViewController alloc]initWithRootViewController:home];
     
     NearbyViewController *nearby=[[NearbyViewController alloc]init];
-    nearby.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
-    nearby.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
+    nearby.tabBarItem.image = [UIImage imageNamed:@"nearby"];
+    nearby.tabBarItem.selectedImage = [UIImage imageNamed:@"click-nearby"];
     nearby.tabBarItem.title=@"附近";
     NavViewController *classNav=[[NavViewController alloc]initWithRootViewController:nearby];
     
     JobsViewController *jobs=[[JobsViewController alloc]init];
-    jobs.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
-    jobs.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
+    jobs.tabBarItem.image = [UIImage imageNamed:@"recruitment"];
+    jobs.tabBarItem.selectedImage = [UIImage imageNamed:@"click-recruitment"];
     jobs.tabBarItem.title=@"招聘";
     NavViewController *otherNav=[[NavViewController alloc]initWithRootViewController:jobs];
     
     MeViewController *me=[[MeViewController alloc]init];
-    me.tabBarItem.image = [UIImage imageNamed:@"xc_main_normal"];
-    me.tabBarItem.selectedImage = [UIImage imageNamed:@"xc_main_pressed"];
+    me.tabBarItem.image = [UIImage imageNamed:@"my"];
+    me.tabBarItem.selectedImage = [UIImage imageNamed:@"click-my"];
     me.tabBarItem.title=@"我的";
     NavViewController *meNav=[[NavViewController alloc]initWithRootViewController:me];
     
-    self.viewControllers=@[home,classNav,otherNav,meNav];
+    self.viewControllers=@[homeNav,classNav,otherNav,meNav];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -55,14 +55,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

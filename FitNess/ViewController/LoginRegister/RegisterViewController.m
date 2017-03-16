@@ -131,17 +131,20 @@
 //注册
 -(void)RegisterClick:(UIButton *)sender{
     NSString *PhoneNumber=[TextFiledArray[0] text];
-    XQQLog(@"%@",PhoneNumber);
     NSString *Password=[TextFiledArray[1] text];
     NSString *Code=[TextFiledArray[2] text];
     
-
+    NSString *string=[NSString stringWithFormat:@"%@%@%@JSB365CNHUIJIANKEJI",PhoneNumber,Password,Code];
+    NSString *stringMD5=[NSString stringWithFormat:@"%@",[string stringToMD5:string]];
+    XQQLog(@"%@",stringMD5);
+    
     if ([tools isValidateMobile:PhoneNumber]) {
             if (Password.length >= 6) {
                 NSMutableDictionary *mutabelDictionary=[[NSMutableDictionary alloc]init];
                 [mutabelDictionary setObject:PhoneNumber forKey:@"mobile"];
                 [mutabelDictionary setObject:Password forKey:@"password"];
                 [mutabelDictionary setObject:Code forKey:@"verify"];
+                
                 SA=[[ServiceAPI alloc]initWithFrame:self.view.frame];
                 SA.url=@"/register/add_user";
                 SA.delegate=self;

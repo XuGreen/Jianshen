@@ -64,7 +64,7 @@
             logoImage.frame=CGRectMake(15, 10, 20, 35);
             UIButton *loginBtn=[[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH -110, 10, 100, 30)];
             [loginBtn setTitle:@"短信快捷登录" forState:UIControlStateNormal];
-            [loginBtn setTitleColor:[UIColor colorWithRed:255/255.0 green:184/255.0 blue:31/255.0 alpha:1.0] forState:UIControlStateNormal];
+            [loginBtn setTitleColor:MAINCOLOR forState:UIControlStateNormal];
             loginBtn.titleLabel.font=[UIFont systemFontOfSize:14];
             [loginBtn addTarget:self action:@selector(loginBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             [view addSubview:loginBtn];
@@ -139,11 +139,15 @@
     
     NSString *phonenumber = [TextFiledArray[0] text];
     NSString *password = [TextFiledArray[1]text];
+    NSString *string=[NSString stringWithFormat:@"%@%@",phonenumber,password];
+    NSString *stringMD5=[NSString stringWithFormat:@"%@",[string stringToMD5:string]];
+    XQQLog(@"%@",stringMD5);
     if (phonenumber.length>0) {
         if (password.length>0) {
             NSMutableDictionary *mutableDictionary=[[NSMutableDictionary alloc]init];
             [mutableDictionary setObject:phonenumber forKey:@"mobile"];
             [mutableDictionary setObject:password forKey:@"password"];
+            [mutableDictionary setObject:stringMD5 forKey:@"key"];
             SA=[[ServiceAPI alloc]init];
             SA.url=@"/login/login";
             SA.delegate=self;

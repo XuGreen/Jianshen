@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SDCycleScrollView.h"
 
-@interface HomeViewController : UIViewController<SDCycleScrollViewDelegate>{
+@interface HomeViewController : UIViewController<SDCycleScrollViewDelegate,UIScrollViewDelegate>{
     SDCycleScrollView *scrollView1;//滚动视图
+    UIScrollView *containerView;//滚动视图
     NSArray *_imageArray;
 }
 

@@ -30,7 +30,7 @@
 - (void)LoadMainViewController{
     //设置跳转界面
     TabBarViewController *TabBar=[[TabBarViewController alloc]init];
-    TabBar.tabBar.tintColor=[UIColor darkGrayColor];
+    TabBar.tabBar.tintColor=MAINCOLOR;
     self.window.rootViewController=TabBar;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

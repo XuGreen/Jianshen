@@ -21,10 +21,19 @@
 #import "MBProgressHUD.h"
 #import "HttpUnits.h"
 #import <Masonry/Masonry.h>
+#import "NSString+MD5.h"
+
+
+
 
 /**获取设备屏幕的宽高***/
 #define SCREENWIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define wight(w) (w / 750.0 * SCREENWIDTH)
+#define hight(h) (h / 1334.0 * SCREENHEIGHT)
+
+
 /*** 日志 ***/
 #ifdef DEBUG
 #define XQQLog(...) NSLog(__VA_ARGS__)
@@ -38,5 +47,6 @@
 #define  NavColor [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]
 #define  COMMONRBGCOLOR [UIColor colorWithRed:0.941 green:0.945 blue:0.945 alpha:1.000]
 #define  LINECOLOR [UIColor colorWithRed:222.0/255 green:223.0/255 blue:224.0/255 alpha:0.5f]
+#define  MAINCOLOR [UIColor colorWithRed:255/255.0 green:184/255.0 blue:31/255.0 alpha:1.0]
 
 #endif /* PrefixHeader_h */

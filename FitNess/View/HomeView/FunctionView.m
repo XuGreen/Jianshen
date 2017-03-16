@@ -19,7 +19,8 @@
 {
     if (self = [super initWithFrame:frame]) {
         // 创建方块
-        self.titleArray=@[@"妇产科",@"皮肤科",@"内科",@"外科",@"耳鼻喉科",@"骨科",@"消化内科",@"全部"];
+        self.titleArray=@[@"极速减脂",@"增肌塑形",@"人马线",@"舞蹈瑜伽",@"产后修复",@"运动康复",@"搏击",@"游泳",@"健身次卡",@"免费领卷"];
+        self.imageArray=[[NSArray alloc]initWithObjects:@"reduced-fat", @"add-muscle",@"mermaid-line",@"yoga",@"postpartum",@"repair",@"fighting",@"dance",@"card",@"lottery",nil];
         [self createSquares:self.titleArray];
     }
     return self;
@@ -30,17 +31,18 @@
 - (void)createSquares :(NSArray *)sqaures
 {
     // 一行最多4列
-    int maxCols = 4;
+    int maxCols = 5;
     // 宽度和高度
     CGFloat buttonW = SCREENWIDTH / maxCols;
-    CGFloat buttonH = buttonW;
+    CGFloat buttonH = buttonW+10;
     for (int i = 0; i<sqaures.count; i++) {
         // 创建按钮
         XMGSqaureButton *button = [XMGSqaureButton buttonWithType:UIButtonTypeCustom];
         // 监听点击
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:sqaures[i] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"publish-video"] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:self.imageArray[i]] forState:UIControlStateNormal];
         [self addSubview:button];
         
         // 计算frame

@@ -7,12 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SDCycleScrollView.h"
 
-@interface HomeViewController : UIViewController<SDCycleScrollViewDelegate,UIScrollViewDelegate>{
-    SDCycleScrollView *scrollView1;//滚动视图
+#import "UINavigationBar+Awesome.h"
+#import "HeadView.h"
+#import "BoutiqueViewCell.h"
+#import "NearbyViewCell.h"
+#import "CouponViewCell.h"
+#import "ShopViewCell.h"
+#import "EveryDayViewCell.h"
+#import "CollectionReusableHeadView.h"
+#import "CollectionBottomViewCell.h"
+
+@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>{
+  
     UIScrollView *containerView;//滚动视图
-    NSArray *_imageArray;
 }
 
 

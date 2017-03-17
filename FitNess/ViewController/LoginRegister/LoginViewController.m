@@ -139,7 +139,7 @@
     
     NSString *phonenumber = [TextFiledArray[0] text];
     NSString *password = [TextFiledArray[1]text];
-    NSString *string=[NSString stringWithFormat:@"%@%@",phonenumber,password];
+    NSString *string=[NSString stringWithFormat:@"%@%@JSB365CNHUIJIANKEJI",phonenumber,password];
     NSString *stringMD5=[NSString stringWithFormat:@"%@",[string stringToMD5:string]];
     XQQLog(@"%@",stringMD5);
     if (phonenumber.length>0) {

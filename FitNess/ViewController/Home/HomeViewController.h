@@ -10,7 +10,7 @@
 
 #import "UINavigationBar+Awesome.h"
 #import "HeadView.h"
-#import "BoutiqueViewCell.h"
+#import "GiftwareViewCell.h"
 #import "NearbyViewCell.h"
 #import "CouponViewCell.h"
 #import "ShopViewCell.h"
@@ -18,7 +18,7 @@
 #import "CollectionReusableHeadView.h"
 #import "CollectionBottomViewCell.h"
 
-@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>{
+@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
   
     UIScrollView *containerView;//滚动视图
 }

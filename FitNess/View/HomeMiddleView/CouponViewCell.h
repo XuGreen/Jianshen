@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CouponViewCell : UITableViewCell
+@property(nonatomic,strong)UIImageView *CouponImageView;
+@property(nonatomic,strong)UILabel          *CouponName;
+@property(nonatomic,strong)UILabel          *CouponZhe;
 + (instancetype)CouponViewCell:(UITableView *)tableView;
 @end

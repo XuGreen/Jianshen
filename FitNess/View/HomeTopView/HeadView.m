@@ -22,13 +22,13 @@
     return self;
 }
 -(void)initUI{
-    _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 450)];
+    _headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, wight(900))];
     _headView.backgroundColor=[UIColor whiteColor];
     [self addSubview:_headView];
     //构建广告视图
     _imageArray=@[@"banner1",@"banner1",@"banner1",@"banner1"];
     //设置顶部轮播器
-    SDCycleScrollView *scrollView=[[SDCycleScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 200)];
+    SDCycleScrollView *scrollView=[[SDCycleScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, wight(400))];
     scrollView.delegate=self;
     scrollView1=  scrollView;
     //设置分页位置
@@ -49,27 +49,29 @@
     bg_tou_ImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     bg_tou_ImageView.image = bgImage;
     [scrollView1 addSubview:bg_tou_ImageView];
-    
     //功能分类模块
-    FunctionView *functionView=[[FunctionView alloc]initWithFrame:CGRectMake(0, scrollView1.xmg_bottom, SCREENWIDTH, 320)];
+    FunctionView *functionView=[[FunctionView alloc]initWithFrame:CGRectMake(0, scrollView1.xmg_bottom, SCREENWIDTH, wight(350))];
     [_headView addSubview:functionView];
     
-    [_headView addSubview:[self addLineView:CGRectMake(10, functionView.xmg_bottom+10, SCREENWIDTH-25, 2) color:LINECOLOR]];
-    
+    [_headView addSubview:[self addLineView:CGRectMake(10, functionView.xmg_bottom+10, SCREENWIDTH-25, 1) color:LINECOLOR]];
     //热门咨询
-    UIImageView *remenImage=[[UIImageView alloc]initWithFrame:CGRectMake(15, functionView.xmg_bottom+20, 50, 50)];
+    UIView *remenView=[[UIView alloc]initWithFrame:CGRectMake(0, functionView.xmg_bottom+20, SCREENWIDTH, wight(120))];
+    remenView.backgroundColor=[UIColor clearColor];
+    [_headView addSubview:remenView];
+    
+    UIImageView *remenImage=[[UIImageView alloc]initWithFrame:CGRectMake(15, 0, 50, 50)];
     remenImage.image=[UIImage imageNamed:@"Information"];
-    [_headView addSubview:remenImage];
-    [_headView addSubview:[self addLineView:CGRectMake(remenImage.xmg_width+40, functionView.xmg_bottom+20, 1, 50) color:LINECOLOR]];
+    [remenView addSubview:remenImage];
+    [remenView addSubview:[self addLineView:CGRectMake(remenImage.xmg_width+35, 0, 1, 50) color:LINECOLOR]];
     //滚动字体
-    _TopLineView = [[ZYJHeadLineView alloc]initWithFrame:CGRectMake(remenImage.xmg_width+50, functionView.xmg_bottom+20, SCREENHEIGHT-300, 50)];
-    _TopLineView.backgroundColor = [UIColor clearColor];
+    _TopLineView = [[ZYJHeadLineView alloc]initWithFrame:CGRectMake(remenImage.xmg_width+50, 0, SCREENHEIGHT-300, wight(100))];
+    _TopLineView.backgroundColor = [UIColor whiteColor];
     __weak __typeof(self)weakSelf = self;
     _TopLineView.clickBlock = ^(NSInteger index){
         ZYJHeadLineModel *model = weakSelf.dataArr[index];
         NSLog(@"%@,%@",model.type,model.title);
     };
-    [_headView addSubview:_TopLineView];
+    [remenView addSubview:_TopLineView];
 }
 - (UIView *)addLineView : (CGRect)frame color : (UIColor *)color{
     UIView *line = [[UIView alloc]initWithFrame:frame];

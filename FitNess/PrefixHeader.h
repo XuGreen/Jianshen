@@ -30,8 +30,8 @@
 #define SCREENWIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
 
-#define wight(w) (w / 750.0 * SCREENWIDTH)
-#define hight(h) (h / 1334.0 * SCREENHEIGHT)
+#define wight(w) ((w *[UIScreen mainScreen].bounds.size.width)/750.0f)
+#define hight(h) ((h* [UIScreen mainScreen].bounds.size.height)/1334.0f)
 
 
 /*** 日志 ***/

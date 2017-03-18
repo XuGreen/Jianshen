@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ShopViewCell : UITableViewCell
+@property(nonatomic,strong)UIImageView *ShopImageView;
+@property(nonatomic,strong)UILabel          *ShopName;
+@property(nonatomic,strong)UILabel          *ShopPriceNum;
+@property(nonatomic,strong)UILabel          *ShopType;
 + (instancetype)ShopViewCell:(UITableView *)tableView;
 @end

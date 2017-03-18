@@ -9,15 +9,13 @@
 #import "HomeViewController.h"
 #define NAVBAR_CHANGE_POINT hight(530.0)
 
-
 @interface HomeViewController ()
 @property(nonatomic,strong)   UIView *HeadView;//首页顶部视图
 @property(nonatomic,strong)   UICollectionView *CollectionView;
-@property (nonatomic, strong) UICollectionViewFlowLayout *CollectionviewLayout;
 @property(nonatomic,strong) UILabel *titleLable;//地区
 @property(nonatomic,strong) UITableView *tableView;
 @end
-
+static NSString *kheaderIdentifier = @"headerIdentifier";
 @implementation HomeViewController{
     UIColor *_navBackGroundColor;
     UIColor *_navLineColor;
@@ -40,8 +38,9 @@
     [self setNav];
     [self CreateHeadView];
     //2.从xib中加载
-    [self.CollectionView registerNib:[UINib nibWithNibName:@"CollectionBottomViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"CollectionCell"];
-    [self.CollectionView registerNib:[UINib nibWithNibName:@"CollectionReusableHeadView" bundle:[NSBundle mainBundle]] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"collectionheadCell"];
+    [self.CollectionView registerClass:[CollectionBottomViewCell class] forCellWithReuseIdentifier:@"BottomCell"];
+    [self.CollectionView registerClass:[CollectionReusableHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kheaderIdentifier];
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
@@ -91,7 +90,7 @@
     self.navigationItem.rightBarButtonItems=@[messageBarButon,sweepBarButon];
     
     //自定义 titleview
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(5.0, 0.0, self.view.bounds.size.width * 0.55 , 40.0)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(5.0, 0.0, self.view.bounds.size.width * 0.55 , 30)];
     titleView.backgroundColor = [UIColor clearColor];
     UITextField *textFiled = [[UITextField alloc] initWithFrame:titleView.bounds];
     textFiled.font = [UIFont systemFontOfSize:13.0];
@@ -104,7 +103,7 @@
     [view addSubview:imageView];
     textFiled.delegate  =self;
     textFiled.layer.masksToBounds = YES;
-    textFiled.layer.cornerRadius = 20.0;
+    textFiled.layer.cornerRadius = 16.0;
     textFiled.layer.borderWidth = 1.0;
     textFiled.layer.borderColor = [UIColor clearColor].CGColor;
     imageView.image = [UIImage imageNamed:@"search"];
@@ -126,15 +125,15 @@
     containerView.delegate = self;
     containerView.showsVerticalScrollIndicator = FALSE;
     containerView.backgroundColor = COMMONRBGCOLOR;
-    containerView.contentSize = CGSizeMake(SCREENWIDTH, SCREENHEIGHT);
+    containerView.contentSize = CGSizeMake(SCREENWIDTH, SCREENHEIGHT+650);
     [self.view addSubview:containerView];
     [containerView addSubview:self.tableView];
-//    [containerView addSubview:self.CollectionView];
-    
+    [containerView addSubview:self.CollectionView];
 }
+
 #pragma mark- 构建顶部视图
 - (void)CreateHeadView{
-    HeadView *headview=[[HeadView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 450)];
+    HeadView *headview=[[HeadView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, wight(900))];
     self.tableView.tableHeaderView=headview;
 }
 #pragma mark UITableViewDatasource
@@ -152,9 +151,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-        BoutiqueViewCell *boutiqueCell=[BoutiqueViewCell BoutiViewCell:tableView];
-        boutiqueCell.selectionStyle =UITableViewCellSelectionStyleNone;
-        return boutiqueCell;
+        GiftwareViewCell *giftwareCell=[GiftwareViewCell GiftViewCell:tableView];
+        giftwareCell.selectionStyle =UITableViewCellSelectionStyleNone;
+        return giftwareCell;
     }else if(indexPath.section==1){
         NearbyViewCell *nearbyCell=[NearbyViewCell NearbyViewCell:tableView];
          nearbyCell.selectionStyle =UITableViewCellSelectionStyleNone;
@@ -176,35 +175,45 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return 200;
+        return wight(378);
     }else if (indexPath.section==1){
-         return 190;
+         return wight(368);
     }else if(indexPath.section==2){
-        return 220;
+        return wight(444);
     }else if(indexPath.section==3){
-        return 250;
+        return wight(580);
     }else{
-        return 150;
+        return wight(250);
     }
 }
-//#pragma mark -collectionviewdelegate  
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-//    static NSString *kheaderIdentifier = @"headerIdentifier";
-//    UICollectionReusableView *reusableView;
-//    
-//    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-//        CollectionReusableHeadView *reusableHeadView=[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kheaderIdentifier forIndexPath:indexPath];
-//          reusableView = reusableHeadView;
-//    }
-//    return reusableView;
-//}
-////返回头headerView的大小
-//
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-//    CGSize size={self.view.bounds.size.width,150};
-//    return size;
-//}
+#pragma mark -collectionviewdelegate  
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 4;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CollectionBottomViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"BottomCell" forIndexPath:indexPath];
+    return cell;
+}
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    
+    return CGSizeMake(SCREENWIDTH, wight(50));
+}
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(15, 0, 0, 0);
+}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    UICollectionReusableView *reusableView;
+    
+    if ([kind isEqualToString: UICollectionElementKindSectionHeader]){
+        CollectionReusableHeadView *reusableHeadView =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:kheaderIdentifier   forIndexPath:indexPath];
+        reusableView = reusableHeadView;
+    }
+    return reusableView;
 
+}
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(hight(374), wight(570));
+}
 - (UIView *)addLineView : (CGRect)frame color : (UIColor *)color{
     UIView *line = [[UIView alloc]initWithFrame:frame];
     line.backgroundColor = color;
@@ -265,27 +274,19 @@
     }
     return _tableView;
 }
-#pragma mark collectionview
-- (UICollectionViewFlowLayout *)CollectionviewLayout{
-    if (!_CollectionviewLayout) {
-        _CollectionviewLayout = [[UICollectionViewFlowLayout alloc] init];
-        _CollectionviewLayout.itemSize = CGSizeMake(0, 0);
-        _CollectionviewLayout.sectionInset = UIEdgeInsetsZero;
-        _CollectionviewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _CollectionviewLayout.minimumLineSpacing = 0;
-        _CollectionviewLayout.minimumInteritemSpacing = 0;
-    }
-    return _CollectionviewLayout;
-}
 -(UICollectionView *)CollectionView{
     if (!_CollectionView) {
-        _CollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.tableView.xmg_bottom, SCREENWIDTH, 600) collectionViewLayout:self.CollectionviewLayout];
+        UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
+        layout.minimumInteritemSpacing=0;
+        layout.minimumLineSpacing=0;
+        _CollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.tableView.xmg_bottom+5, SCREENWIDTH, 650) collectionViewLayout:layout];
         _CollectionView.backgroundColor = [UIColor whiteColor];
         _CollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _CollectionView.delegate = self;
         _CollectionView.dataSource = self;
         [_CollectionView setShowsHorizontalScrollIndicator:NO];
         [_CollectionView setShowsVerticalScrollIndicator:NO];
+
     }
     return _CollectionView;
 }

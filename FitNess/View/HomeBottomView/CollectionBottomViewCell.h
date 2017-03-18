@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface CollectionBottomViewCell : UICollectionViewCell
+@property(nonatomic,strong)UIImageView *ShouImageView;
+@property(nonatomic,strong)UILabel          *ShouName;
+@property(nonatomic,strong)UILabel          *ShouType;
+@property(nonatomic,strong)UILabel          *ShouStar;
+@property(nonatomic,strong)UILabel          *ShouStrong;
+@property(nonatomic,strong)UILabel          *ShouFans;
+@property(nonatomic,strong)UIButton        *YueBtn;
 
 @end

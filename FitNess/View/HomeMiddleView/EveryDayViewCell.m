@@ -10,20 +10,24 @@
 
 @implementation EveryDayViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self initUI];
+    }
+    return self;
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)initUI{
+    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, wight(270))];
+    backView.backgroundColor=COMMONRBGCOLOR;
+    [self addSubview:backView];
+    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 15, SCREENWIDTH, wight(200))];
+    imageView.image=[UIImage imageNamed:@"banner"];
+    [backView addSubview:imageView];
+    
 }
 + (instancetype)EveryDayViewCell:(UITableView *)tableView{
     NSString *identifier=NSStringFromClass([self class]);
-    UINib *nib=[UINib nibWithNibName:identifier bundle:nil];
-    [tableView registerNib:nib forCellReuseIdentifier:identifier];
+    [tableView registerClass:[EveryDayViewCell class] forCellReuseIdentifier:identifier];
     return  [tableView dequeueReusableCellWithIdentifier:identifier];
 }
 @end

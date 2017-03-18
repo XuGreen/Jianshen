@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface NearbyViewCell : UITableViewCell
+@property(nonatomic,strong)UIImageView *NearImageView;
+@property(nonatomic,strong)UILabel          *NearName;
+@property(nonatomic,strong)UILabel          *NearStar;
+@property(nonatomic,strong)UILabel          *NearDetail;
+@property(nonatomic,strong)UILabel          *NearDistance;
+@property(nonatomic,strong)UILabel          *NearPrice;
+
 + (instancetype)NearbyViewCell:(UITableView *)tableView;
 @end

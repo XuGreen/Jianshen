@@ -45,6 +45,7 @@
 - (void)setNav{
     self.interactivePopGestureRecognizer.delegate=self;
     self.view.backgroundColor=COMMONRBGCOLOR;
+    
     //定义全局的导航栏
     UINavigationBar *navBar = [UINavigationBar appearance];
     //改变背景颜色

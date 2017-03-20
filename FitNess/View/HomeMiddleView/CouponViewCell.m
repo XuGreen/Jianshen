@@ -27,7 +27,7 @@
     CouponView= [[UIView alloc]initWithFrame:CGRectMake(0, 15, SCREENWIDTH, backView.xmg_height-15)];
     CouponView.backgroundColor=[UIColor whiteColor];
     [backView addSubview:CouponView];
-    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 12, 20, 18)];
+    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 13, wight(34), hight(34))];
     praiseimageView.image=[UIImage imageNamed:@"promotions"];
     [CouponView addSubview:praiseimageView];
     UILabel *gistLabel=[[UILabel alloc]initWithFrame:CGRectMake(praiseimageView.xmg_width+20, praiseimageView.xmg_x-10, 130, 32)];
@@ -42,7 +42,7 @@
     [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
     [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:14];
-    CGFloat space = 20.0;
+    CGFloat space = 10.0;
     [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight
                              imageTitleSpace:space];
     [CouponView addSubview:moreBtn];
@@ -54,19 +54,19 @@
     scrollview.delegate=self;
     scrollview.showsVerticalScrollIndicator=NO;
     scrollview.showsHorizontalScrollIndicator=NO;
-    scrollview.contentSize=CGSizeMake(hight(271)*imageArray.count+100, 0);
+    scrollview.contentSize=CGSizeMake(hight(271)*imageArray.count+50, 0);
     [scrollview setContentOffset:CGPointMake(0, 0)];
     [CouponView addSubview:scrollview];
 
     for (int i=0; i<imageArray.count; i++) {
-        UIView *ImageView=[[UIView alloc]initWithFrame:CGRectMake(15+((hight(271)+5)*i), 0, hight(271),wight(300))];
+        UIView *ImageView=[[UIView alloc]initWithFrame:CGRectMake(15+((hight(271)+5)*i), 0, wight(271),hight(300))];
         ImageView.backgroundColor=[UIColor clearColor];
                                                                   
         _CouponImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, hight(271),wight(212))];
         _CouponImageView.image=[UIImage imageNamed:imageArray[i]];
         [ImageView addSubview:_CouponImageView];
 
-        _CouponName=[[UILabel alloc]initWithFrame:CGRectMake(0, _CouponImageView.xmg_bottom, hight(270), wight(30))];
+        _CouponName=[[UILabel alloc]initWithFrame:CGRectMake(0, _CouponImageView.xmg_bottom+10, hight(270), wight(30))];
         _CouponName .text=@"健美操大放送";
         _CouponName.textAlignment=NSTextAlignmentLeft;
         _CouponName.textColor=[tools colorWithHex:0x333333];

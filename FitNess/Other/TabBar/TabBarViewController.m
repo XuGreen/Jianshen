@@ -20,7 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self TabBars];
+    //设置 TabBar 的背景颜色为白色
+    CGRect frame = CGRectMake(0.0, 0, SCREENHEIGHT, hight(98));
+    UIView *v = [[UIView alloc] initWithFrame:frame];
+    [v setBackgroundColor:[UIColor whiteColor]];
+    [self.tabBar insertSubview:v atIndex:0];
+    //隐藏 tabbar 黑线
+    UITabBar *tabbar = [UITabBar appearance];
+    [tabbar setBackgroundImage:[UIImage new]];
+    [tabbar setShadowImage:[UIImage new]];
 }
 - (void)TabBars{
     HomeViewController *home=[[HomeViewController alloc]init];

@@ -25,7 +25,7 @@
     GistView= [[UIView alloc]initWithFrame:CGRectMake(0, 15, SCREENWIDTH, backView.xmg_height-15)];
     GistView.backgroundColor=[UIColor whiteColor];
     [backView addSubview:GistView];
-    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 12, 20, 18)];
+    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 13, wight(32), hight(30))];
     praiseimageView.image=[UIImage imageNamed:@"nopraise"];
     [GistView addSubview:praiseimageView];
     UILabel *gistLabel=[[UILabel alloc]initWithFrame:CGRectMake(praiseimageView.xmg_width+20, praiseimageView.xmg_x-10, 130, 32)];
@@ -35,12 +35,12 @@
     [GistView addSubview:gistLabel];
     
     UIButton *moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    moreBtn.frame = CGRectMake(SCREENWIDTH-80, 5, 80, 40);
+    moreBtn.frame = CGRectMake(SCREENWIDTH-78, 5, 80, 40);
     [moreBtn setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
     [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
     [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:14];
-    CGFloat space = 20.0;
+    CGFloat space = 10.0;
     [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight
                                   imageTitleSpace:space];
     [GistView addSubview:moreBtn];

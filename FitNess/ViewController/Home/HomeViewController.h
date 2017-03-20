@@ -15,10 +15,10 @@
 #import "CouponViewCell.h"
 #import "ShopViewCell.h"
 #import "EveryDayViewCell.h"
-#import "CollectionReusableHeadView.h"
-#import "CollectionBottomViewCell.h"
+#import "HomeViewTableFootView.h"
+#import "SearchViewController.h"//搜索
 
-@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
+@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate>{
   
     UIScrollView *containerView;//滚动视图
 }

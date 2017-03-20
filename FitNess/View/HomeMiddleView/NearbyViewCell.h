@@ -14,7 +14,7 @@
 @property(nonatomic,strong)UILabel          *NearStar;
 @property(nonatomic,strong)UILabel          *NearDetail;
 @property(nonatomic,strong)UILabel          *NearDistance;
-@property(nonatomic,strong)UILabel          *NearPrice;
+@property(nonatomic,strong)UIButton          *NearPriceBtn;
 
 + (instancetype)NearbyViewCell:(UITableView *)tableView;
 @end

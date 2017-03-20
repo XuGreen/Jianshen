@@ -116,7 +116,7 @@
         [imageViewBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         imageViewBtn.titleLabel.font=[UIFont systemFontOfSize:15];
         imageViewBtn.tag=i;
-        CGFloat space = 20.0;
+        CGFloat space = 15.0;
         [imageViewBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop
                                       imageTitleSpace:space];
         [self.view addSubview:imageViewBtn];
@@ -136,20 +136,20 @@
     
     NSString *string=[NSString stringWithFormat:@"%@%@%@JSB365CNHUIJIANKEJI",PhoneNumber,Password,Code];
     NSString *stringMD5=[NSString stringWithFormat:@"%@",[string stringToMD5:string]];
-    XQQLog(@"%@",stringMD5);
     
     if ([tools isValidateMobile:PhoneNumber]) {
             if (Password.length >= 6) {
-                NSMutableDictionary *mutabelDictionary=[[NSMutableDictionary alloc]init];
-                [mutabelDictionary setObject:PhoneNumber forKey:@"mobile"];
-                [mutabelDictionary setObject:Password forKey:@"password"];
-                [mutabelDictionary setObject:Code forKey:@"verify"];
-                
-                SA=[[ServiceAPI alloc]initWithFrame:self.view.frame];
-                SA.url=@"/register/add_user";
-                SA.delegate=self;
-                [SA SetPostRequest:mutabelDictionary];
-                [self.view addSubview:SA];
+                [MBProgressHUD showSucessNoImageText:@"正在注册"];
+                [NetWorkManager RegisterWithPhoneNumber:PhoneNumber
+                                                   Code:Code
+                                               PassWord:Password
+                                              StringMD5:stringMD5 success:^(BaseResponse *response){
+                                                  NSDictionary *dict=(NSDictionary *)response;
+                                                   [MBProgressHUD showSucessNoImageText:[dict objectForKey:@"msg"]];
+                                              } failure:^(NSError *error){
+                                                  NSDictionary *dict=(NSDictionary *)error.userInfo;
+                                                  [MBProgressHUD showSucessNoImageText:dict[@"error"]];
+                                              }];
             }else{
                 [MBProgressHUD showSucessNoImageText:@"请输入大于6个字符的密码"];
                 Password=@"";
@@ -162,27 +162,6 @@
         
     }
 
-}
-
-- (void)RequestFaild:(NSString *)url{
-    XQQLog(@"faild");
-    [SA removeFromSuperview];
-    
-}
-- (void)RequestSuccess:(NSMutableDictionary *)ResultString{
-    [SA removeFromSuperview];
-    XQQLog(@"%@",ResultString);
-    NSMutableDictionary *codeDic=[ResultString objectForKey:@"response"];
-    NSNumber *stateCode=[codeDic objectForKey:@"code"];
-    if ([stateCode integerValue]==1000) {
-        
-         [MBProgressHUD showSucessNoImageText:@"注册成功"];
-    }else{
-        NSMutableDictionary *Content = [ResultString objectForKey:@"response"];
-        NSString *result = [Content objectForKey:@"msg"];
-        
-     [MBProgressHUD showSucessNoImageText:result];
-    }
 }
 
 

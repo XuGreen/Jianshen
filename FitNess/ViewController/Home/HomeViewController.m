@@ -7,15 +7,16 @@
 //
 
 #import "HomeViewController.h"
+#import "RealView.h"
 #define NAVBAR_CHANGE_POINT hight(530.0)
 
 @interface HomeViewController ()
 @property(nonatomic,strong)   UIView *HeadView;//首页顶部视图
-@property(nonatomic,strong)   UICollectionView *CollectionView;
 @property(nonatomic,strong) UILabel *titleLable;//地区
 @property(nonatomic,strong) UITableView *tableView;
+@property(nonatomic,strong) UITextField *SearchtextFiled;
+@property(nonatomic,strong) UIImageView *SearchimageView;
 @end
-static NSString *kheaderIdentifier = @"headerIdentifier";
 @implementation HomeViewController{
     UIColor *_navBackGroundColor;
     UIColor *_navLineColor;
@@ -34,13 +35,10 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
     _nav = (NavViewController *)self.navigationController;
     [_nav setLineColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self CreateScrollView];
+    [self.view addSubview:self.tableView];
     [self setNav];
     [self CreateHeadView];
-    //2.从xib中加载
-    [self.CollectionView registerClass:[CollectionBottomViewCell class] forCellWithReuseIdentifier:@"BottomCell"];
-    [self.CollectionView registerClass:[CollectionReusableHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kheaderIdentifier];
-    
+    [self CreateFootView];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
@@ -82,6 +80,7 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
     UIButton *shareBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [shareBtn addTarget:self action:@selector(SweepBar:) forControlEvents:UIControlEventTouchUpInside];//设置按钮点击事件
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"scan"] forState:UIControlStateNormal ];//设置按钮正常状态图片
+    
     UIBarButtonItem *sweepBarButon = [[UIBarButtonItem alloc]initWithCustomView:shareBtn];
     UIButton *messageBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 26, 22)];
     [messageBtn addTarget:self action:@selector(MessageBar:) forControlEvents:UIControlEventTouchUpInside];//设置按钮点击事件
@@ -92,26 +91,25 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
     //自定义 titleview
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(5.0, 0.0, self.view.bounds.size.width * 0.55 , 30)];
     titleView.backgroundColor = [UIColor clearColor];
-    UITextField *textFiled = [[UITextField alloc] initWithFrame:titleView.bounds];
-    textFiled.font = [UIFont systemFontOfSize:13.0];
-    textFiled.textColor = [UIColor whiteColor];
-    textFiled.text=@"输入商家名、 地点、或课程";
-    textFiled.userInteractionEnabled = NO;
-    textFiled.backgroundColor =[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:0.7F];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,30.0 , textFiled.bounds.size.height)];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, view.bounds.size.height / 2.0 - 15.0 / 2.0 , 15.0 , 15.0)];
-    [view addSubview:imageView];
-    textFiled.delegate  =self;
-    textFiled.layer.masksToBounds = YES;
-    textFiled.layer.cornerRadius = 16.0;
-    textFiled.layer.borderWidth = 1.0;
-    textFiled.layer.borderColor = [UIColor clearColor].CGColor;
-    imageView.image = [UIImage imageNamed:@"search"];
-    textFiled.leftView = view;
-    textFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
-    textFiled.leftViewMode = UITextFieldViewModeAlways;
-    
-    [titleView addSubview:textFiled];
+    _SearchtextFiled = [[UITextField alloc] initWithFrame:titleView.bounds];
+    _SearchtextFiled.font = [UIFont systemFontOfSize:13.0];
+    _SearchtextFiled.textColor = [UIColor whiteColor];
+    _SearchtextFiled.text=@"输入商家名、 地点、或课程";
+    _SearchtextFiled.userInteractionEnabled = NO;
+    _SearchtextFiled.backgroundColor =[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:0.7F];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,30.0 , _SearchtextFiled.bounds.size.height)];
+    _SearchimageView= [[UIImageView alloc] initWithFrame:CGRectMake(10.0, view.bounds.size.height / 2.0 - 15.0 / 2.0 , 15.0 , 15.0)];
+    [view addSubview:_SearchimageView];
+    _SearchtextFiled.delegate  =self;
+    _SearchtextFiled.layer.masksToBounds = YES;
+    _SearchtextFiled.layer.cornerRadius = 16.0;
+    _SearchtextFiled.layer.borderWidth = 1.0;
+    _SearchtextFiled.layer.borderColor = [UIColor clearColor].CGColor;
+    _SearchimageView.image = [UIImage imageNamed:@"search"];
+    _SearchtextFiled.leftView = view;
+    _SearchtextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _SearchtextFiled.leftViewMode = UITextFieldViewModeAlways;
+    [titleView addSubview:_SearchtextFiled];
     UIButton *Searchbutton = [[UIButton alloc] initWithFrame:titleView.bounds];
     [Searchbutton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
     [titleView addSubview:Searchbutton];
@@ -119,22 +117,15 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
     
     self.navigationItem.titleView = titleView;
 }
-#pragma mark -构建滚动视图
--(void)CreateScrollView{
-    containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-40)];
-    containerView.delegate = self;
-    containerView.showsVerticalScrollIndicator = FALSE;
-    containerView.backgroundColor = COMMONRBGCOLOR;
-    containerView.contentSize = CGSizeMake(SCREENWIDTH, SCREENHEIGHT+650);
-    [self.view addSubview:containerView];
-    [containerView addSubview:self.tableView];
-    [containerView addSubview:self.CollectionView];
-}
-
 #pragma mark- 构建顶部视图
 - (void)CreateHeadView{
-    HeadView *headview=[[HeadView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, wight(900))];
+    HeadView *headview=[[HeadView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(900))];
     self.tableView.tableHeaderView=headview;
+}
+#pragma mark- 构建底部视图
+- (void)CreateFootView{
+    HomeViewTableFootView *footview=[[HomeViewTableFootView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(1340))];
+    self.tableView.tableFooterView=footview;
 }
 #pragma mark UITableViewDatasource
 
@@ -175,44 +166,16 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return wight(378);
+        return hight(378);
     }else if (indexPath.section==1){
-         return wight(368);
+         return hight(368);
     }else if(indexPath.section==2){
-        return wight(444);
+        return hight(444);
     }else if(indexPath.section==3){
-        return wight(580);
+        return hight(580);
     }else{
-        return wight(250);
+        return hight(270);
     }
-}
-#pragma mark -collectionviewdelegate  
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 4;
-}
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CollectionBottomViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"BottomCell" forIndexPath:indexPath];
-    return cell;
-}
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    
-    return CGSizeMake(SCREENWIDTH, wight(50));
-}
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(15, 0, 0, 0);
-}
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *reusableView;
-    
-    if ([kind isEqualToString: UICollectionElementKindSectionHeader]){
-        CollectionReusableHeadView *reusableHeadView =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:kheaderIdentifier   forIndexPath:indexPath];
-        reusableView = reusableHeadView;
-    }
-    return reusableView;
-
-}
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(hight(374), wight(570));
 }
 - (UIView *)addLineView : (CGRect)frame color : (UIColor *)color{
     UIView *line = [[UIView alloc]initWithFrame:frame];
@@ -226,25 +189,29 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
 }
 //搜索商家
 - (void)search:(UIButton *)sender{
-     XQQLogFunc
+    SearchViewController *searchVC=[[SearchViewController alloc]init];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:searchVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 //扫一扫
 - (void)SweepBar:(UIButton *)sender{
-    XQQLogFunc
+   XQQLogFunc
+    
 }
 //消息
 - (void)MessageBar:(UIButton *)sender{
     XQQLogFunc
 }
 #pragma mark -UIScrollViewDelegate
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat y = -scrollView.contentOffset.y;
     
     if (y <= -hight(530.0)){
         [_nav setLineColor:[UIColor groupTableViewBackgroundColor]];
         _navLineColor = [UIColor groupTableViewBackgroundColor];
+  
     }else{
-        self.title = @"";
         [_nav setLineColor:[UIColor clearColor]];
         _navLineColor = [UIColor clearColor];
     }
@@ -253,9 +220,15 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
         CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT - offsetY) / 64));
         [self.navigationController.navigationBar lt_setBackgroundColor:[MAINCOLOR colorWithAlphaComponent:alpha]];
         _navBackGroundColor = [MAINCOLOR colorWithAlphaComponent:alpha];
+        _SearchtextFiled.textColor=[tools colorWithHex:0x666666];
+        _SearchtextFiled.backgroundColor=[UIColor whiteColor];
+        _SearchimageView.image=[UIImage imageNamed:@"search1"];
     } else {
         [self.navigationController.navigationBar lt_setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0]];
         _navBackGroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
+        _SearchtextFiled.textColor=[UIColor whiteColor];
+        _SearchtextFiled.backgroundColor=[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:0.7F];
+         _SearchimageView.image=[UIImage imageNamed:@"search"];
     }
 }
 
@@ -263,31 +236,16 @@ static NSString *kheaderIdentifier = @"headerIdentifier";
 
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-48) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor=COMMONRBGCOLOR;
-        _tableView.tableFooterView = [[UIView alloc] init];
+        _tableView.tableFooterView = [[UIView alloc]init];
     }
     return _tableView;
 }
--(UICollectionView *)CollectionView{
-    if (!_CollectionView) {
-        UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
-        layout.minimumInteritemSpacing=0;
-        layout.minimumLineSpacing=0;
-        _CollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.tableView.xmg_bottom+5, SCREENWIDTH, 650) collectionViewLayout:layout];
-        _CollectionView.backgroundColor = [UIColor whiteColor];
-        _CollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _CollectionView.delegate = self;
-        _CollectionView.dataSource = self;
-        [_CollectionView setShowsHorizontalScrollIndicator:NO];
-        [_CollectionView setShowsVerticalScrollIndicator:NO];
 
-    }
-    return _CollectionView;
-}
 @end

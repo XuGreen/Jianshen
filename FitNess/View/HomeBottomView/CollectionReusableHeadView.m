@@ -17,10 +17,10 @@
     return self;
 }
 -(void)initUI{
-    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, wight(50))];
+    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(100))];
     backView.backgroundColor=[UIColor whiteColor];
     [self addSubview:backView];
-    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 12, 20, 18)];
+    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 15, wight(31), hight(27))];
     praiseimageView.image=[UIImage imageNamed:@"craftsman"];
     [backView addSubview:praiseimageView];
     UILabel *gistLabel=[[UILabel alloc]initWithFrame:CGRectMake(praiseimageView.xmg_width+20, praiseimageView.xmg_x-10, 130, 32)];
@@ -35,7 +35,7 @@
     [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
     [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:14];
-    CGFloat space = 20.0;
+    CGFloat space = 10.0;
     [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight
                              imageTitleSpace:space];
     [backView addSubview:moreBtn];

@@ -13,7 +13,7 @@
 
 @interface LoginViewController ()<UITextFieldDelegate>{
    NSMutableArray *TextFiledArray;
-    MBProgressHUD *hud;
+ 
 }
 @property(nonatomic,strong)UIButton *LoginButton;
 @property(nonatomic,strong)UIButton *ForgetBtn;
@@ -61,7 +61,7 @@
         
         UIImageView *logoImage=[[UIImageView alloc]init];
         if (i==0) {
-            logoImage.frame=CGRectMake(15, 10, 20, 35);
+            logoImage.frame=CGRectMake(15, 10, 16, 35);
             UIButton *loginBtn=[[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH -110, 10, 100, 30)];
             [loginBtn setTitle:@"短信快捷登录" forState:UIControlStateNormal];
             [loginBtn setTitleColor:MAINCOLOR forState:UIControlStateNormal];
@@ -107,7 +107,7 @@
         [imageViewBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         imageViewBtn.titleLabel.font=[UIFont systemFontOfSize:15];
         imageViewBtn.tag=i;
-        CGFloat space = 20.0;
+        CGFloat space =15.0;
         [imageViewBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop
                                       imageTitleSpace:space];
         [self.view addSubview:imageViewBtn];
@@ -141,19 +141,20 @@
     NSString *password = [TextFiledArray[1]text];
     NSString *string=[NSString stringWithFormat:@"%@%@JSB365CNHUIJIANKEJI",phonenumber,password];
     NSString *stringMD5=[NSString stringWithFormat:@"%@",[string stringToMD5:string]];
-    XQQLog(@"%@",stringMD5);
     if (phonenumber.length>0) {
         if (password.length>0) {
-            NSMutableDictionary *mutableDictionary=[[NSMutableDictionary alloc]init];
-            [mutableDictionary setObject:phonenumber forKey:@"mobile"];
-            [mutableDictionary setObject:password forKey:@"password"];
-            [mutableDictionary setObject:stringMD5 forKey:@"key"];
-            SA=[[ServiceAPI alloc]init];
-            SA.url=@"/login/login";
-            SA.delegate=self;
-            [SA SetPostRequest:mutableDictionary];
-         
-            [self.view addSubview:SA];
+            MBProgressHUD *hud= [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = @"正在登录...";
+            [NetWorkManager LoginWithTel:phonenumber
+                                PassWord:password
+                               StringMD5:stringMD5
+                                 success:^(BaseResponse *resopnse){
+                                     
+            hud.labelText = @"登录成功";
+            [hud hide:YES afterDelay:1.0];
+            }failure:^(NSError *error){
+                 [MBProgressHUD showSucessNoImageText:@"登录出错"];
+            }];
            
         }else{
             [MBProgressHUD showSucessNoImageText:@"请输入密码"];
@@ -161,30 +162,10 @@
     }else{
             [MBProgressHUD showSucessNoImageText:@"请输入手机号"];
     }
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"正在登录...";
+
   
 }
--(void)RequestFaild:(NSString *)url{
-    XQQLog(@"faild");
-    [SA removeFromSuperview];
-}
-- (void)RequestSuccess:(NSMutableDictionary *)ResultString{
-    [SA removeFromSuperview];
-    XQQLog(@"%@",ResultString);
-    NSMutableDictionary *codeDic=[ResultString objectForKey:@"response"];
-    NSNumber *stateCode=[codeDic objectForKey:@"code"];
-    if ([stateCode integerValue] == 1000) {
-        hud.labelText = @"登录成功"; 
-        [hud hide:YES afterDelay:1.0];
-    }else{
-        NSMutableDictionary *Content = [ResultString objectForKey:@"response"];
-        NSString *result = [Content objectForKey:@"msg"];
-        
-        [MBProgressHUD showSucessNoImageText: result];
-    }
-    
-}
+
 -(void)RegisteClick:(UIButton *)sender{
     RegisterViewController *registerVC=[[RegisterViewController alloc]init];
     NavViewController *nav=[[NavViewController alloc]initWithRootViewController:registerVC];

@@ -26,12 +26,12 @@
     shopView= [[UIView alloc]initWithFrame:CGRectMake(0, 15, SCREENWIDTH, backView.xmg_height-15)];
     shopView.backgroundColor=[UIColor whiteColor];
     [backView addSubview:shopView];
-    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 12, 20, 18)];
+    UIImageView *praiseimageView=[[UIImageView alloc]initWithFrame:CGRectMake(15, 13, wight(22), hight(34))];
     praiseimageView.image=[UIImage imageNamed:@"recommend"];
     [shopView addSubview:praiseimageView];
     UILabel *gistLabel=[[UILabel alloc]initWithFrame:CGRectMake(praiseimageView.xmg_width+20, praiseimageView.xmg_x-10, 130, 32)];
     gistLabel.textColor=[tools colorWithHex:0x333333];
-    gistLabel.text=@"优惠活动";
+    gistLabel.text=@"推荐店铺";
     gistLabel.font=[UIFont systemFontOfSize:17];
     [shopView addSubview:gistLabel];
     
@@ -41,7 +41,7 @@
     [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
     [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:14];
-    CGFloat space = 20.0;
+    CGFloat space =10.0;
     [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight
                              imageTitleSpace:space];
     [shopView addSubview:moreBtn];

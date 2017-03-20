@@ -22,7 +22,9 @@
 #import "HttpUnits.h"
 #import <Masonry/Masonry.h>
 #import "NSString+MD5.h"
-
+#import <AFNetworking.h>
+#import "BaseResponse.h"
+#import "NetWorkManager.h"
 
 
 

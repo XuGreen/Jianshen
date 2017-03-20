@@ -60,7 +60,7 @@
         layout.minimumInteritemSpacing=0;
         layout.minimumLineSpacing=0;
         _collectView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
-        _collectView.backgroundColor = [UIColor whiteColor];
+        _collectView.backgroundColor = COMMONRBGCOLOR;
         _collectView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _collectView.delegate = self;
         _collectView.dataSource = self;

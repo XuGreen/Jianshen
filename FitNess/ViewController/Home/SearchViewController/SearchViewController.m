@@ -16,10 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self backVC];
-    self.view.backgroundColor=[UIColor brownColor];
+    [self setNav];
 }
-
+-(void)setNav{
+    self.navigationItem.title=@"搜索";
+    self.view.backgroundColor=COMMONRBGCOLOR;
+    [self backVC];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

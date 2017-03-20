@@ -35,9 +35,13 @@
     [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
     [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    [moreBtn addTarget:self action:@selector(moreGiftClick:) forControlEvents:UIControlEventTouchUpInside];
     CGFloat space = 10.0;
     [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight
                              imageTitleSpace:space];
     [backView addSubview:moreBtn];
+}
+-(void)moreGiftClick:(id)sender{
+    [[NSNotificationCenter defaultCenter]postNotificationName:MOREGISTNOTIFICATION object:self];
 }
 @end

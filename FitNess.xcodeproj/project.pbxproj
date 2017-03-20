@@ -73,9 +73,16 @@
 		DDD47CAA1E7F77CF00110966 /* CraftsmanView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CA91E7F77CF00110966 /* CraftsmanView.m */; };
 		DDD47CAD1E7F7A6600110966 /* CraftsmanFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CAC1E7F7A6600110966 /* CraftsmanFootView.m */; };
 		DDD47CB01E7F7B7700110966 /* HomeViewTableFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CAF1E7F7B7700110966 /* HomeViewTableFootView.m */; };
-		DDD47CB41E7F7E1F00110966 /* RealView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CB21E7F7E1F00110966 /* RealView.m */; };
-		DDD47CB51E7F7E1F00110966 /* RealView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDD47CB31E7F7E1F00110966 /* RealView.xib */; };
 		DDD47CB81E7FB4E700110966 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CB71E7FB4E700110966 /* UserInfoModel.m */; };
+		DDD47CC61E7FD00100110966 /* ChoseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CC51E7FD00100110966 /* ChoseViewController.m */; };
+		DDD47CCA1E7FD6BC00110966 /* ChoseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CC91E7FD6BC00110966 /* ChoseAreaViewController.m */; };
+		DDD47CD21E7FD79200110966 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CD11E7FD79200110966 /* MessageViewController.m */; };
+		DDD47CD61E7FD7FF00110966 /* SaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CD51E7FD7FF00110966 /* SaoViewController.m */; };
+		DDD47CDB1E7FDC4E00110966 /* GistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CDA1E7FDC4E00110966 /* GistViewController.m */; };
+		DDD47CE21E7FDF0300110966 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CE11E7FDF0300110966 /* ShopViewController.m */; };
+		DDD47CE51E7FDF0D00110966 /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CE41E7FDF0D00110966 /* CouponViewController.m */; };
+		DDD47CE81E7FDF1600110966 /* NearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CE71E7FDF1600110966 /* NearViewController.m */; };
+		DDD47CEB1E7FDF2000110966 /* GiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CEA1E7FDF2000110966 /* GiftViewController.m */; };
 		DDFA12501E77955C00CF8771 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA124F1E77955C00CF8771 /* main.m */; };
 		DDFA12531E77955C00CF8771 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA12521E77955C00CF8771 /* AppDelegate.m */; };
 		DDFA12591E77955C00CF8771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFA12571E77955C00CF8771 /* Main.storyboard */; };
@@ -248,11 +255,27 @@
 		DDD47CAC1E7F7A6600110966 /* CraftsmanFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CraftsmanFootView.m; sourceTree = "<group>"; };
 		DDD47CAE1E7F7B7700110966 /* HomeViewTableFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewTableFootView.h; sourceTree = "<group>"; };
 		DDD47CAF1E7F7B7700110966 /* HomeViewTableFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewTableFootView.m; sourceTree = "<group>"; };
-		DDD47CB11E7F7E1F00110966 /* RealView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealView.h; sourceTree = "<group>"; };
-		DDD47CB21E7F7E1F00110966 /* RealView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealView.m; sourceTree = "<group>"; };
-		DDD47CB31E7F7E1F00110966 /* RealView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RealView.xib; sourceTree = "<group>"; };
 		DDD47CB61E7FB4E700110966 /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		DDD47CB71E7FB4E700110966 /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		DDD47CC41E7FD00100110966 /* ChoseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseViewController.h; sourceTree = "<group>"; };
+		DDD47CC51E7FD00100110966 /* ChoseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoseViewController.m; sourceTree = "<group>"; };
+		DDD47CC81E7FD6BC00110966 /* ChoseAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseAreaViewController.h; sourceTree = "<group>"; };
+		DDD47CC91E7FD6BC00110966 /* ChoseAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoseAreaViewController.m; sourceTree = "<group>"; };
+		DDD47CD01E7FD79200110966 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		DDD47CD11E7FD79200110966 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		DDD47CD41E7FD7FF00110966 /* SaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaoViewController.h; sourceTree = "<group>"; };
+		DDD47CD51E7FD7FF00110966 /* SaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaoViewController.m; sourceTree = "<group>"; };
+		DDD47CD71E7FDA1900110966 /* Notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		DDD47CD91E7FDC4E00110966 /* GistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GistViewController.h; sourceTree = "<group>"; };
+		DDD47CDA1E7FDC4E00110966 /* GistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GistViewController.m; sourceTree = "<group>"; };
+		DDD47CE01E7FDF0300110966 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		DDD47CE11E7FDF0300110966 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		DDD47CE31E7FDF0D00110966 /* CouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponViewController.h; sourceTree = "<group>"; };
+		DDD47CE41E7FDF0D00110966 /* CouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponViewController.m; sourceTree = "<group>"; };
+		DDD47CE61E7FDF1600110966 /* NearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearViewController.h; sourceTree = "<group>"; };
+		DDD47CE71E7FDF1600110966 /* NearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearViewController.m; sourceTree = "<group>"; };
+		DDD47CE91E7FDF2000110966 /* GiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftViewController.h; sourceTree = "<group>"; };
+		DDD47CEA1E7FDF2000110966 /* GiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftViewController.m; sourceTree = "<group>"; };
 		DDFA124B1E77955C00CF8771 /* FitNess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDFA124F1E77955C00CF8771 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DDFA12511E77955C00CF8771 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -462,6 +485,14 @@
 		DD3E92051E78F2F4006072A6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DDD47CDF1E7FDE1F00110966 /* ShopViewController */,
+				DDD47CDE1E7FDE1100110966 /* CouponViewController */,
+				DDD47CDD1E7FDE0600110966 /* NearViewController */,
+				DDD47CDC1E7FDDF600110966 /* GiftViewController */,
+				DDD47CD81E7FDC4100110966 /* NearGistViewController */,
+				DDD47CD31E7FD7F500110966 /* SaoViewController */,
+				DDD47CCF1E7FD79200110966 /* MessageViewController */,
+				DDD47CC71E7FD67F00110966 /* ChoseViewController */,
 				DD7A430C1E7E35530042817A /* SearchViewController */,
 				DD3E92091E78F396006072A6 /* HomeViewController.h */,
 				DD3E920A1E78F396006072A6 /* HomeViewController.m */,
@@ -508,9 +539,6 @@
 		DD5C8F3C1E7BE8C900A6E4CB /* HomeBottomView */ = {
 			isa = PBXGroup;
 			children = (
-				DDD47CB11E7F7E1F00110966 /* RealView.h */,
-				DDD47CB21E7F7E1F00110966 /* RealView.m */,
-				DDD47CB31E7F7E1F00110966 /* RealView.xib */,
 				DD5C8F3D1E7BE8F100A6E4CB /* CollectionReusableHeadView.h */,
 				DD5C8F3E1E7BE8F100A6E4CB /* CollectionReusableHeadView.m */,
 				DD5C8F421E7BE99400A6E4CB /* CollectionBottomViewCell.h */,
@@ -579,10 +607,84 @@
 		DD7A430C1E7E35530042817A /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DDD47CC41E7FD00100110966 /* ChoseViewController.h */,
+				DDD47CC51E7FD00100110966 /* ChoseViewController.m */,
 				DD7A430D1E7E35780042817A /* SearchViewController.h */,
 				DD7A430E1E7E35780042817A /* SearchViewController.m */,
 			);
 			path = SearchViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CC71E7FD67F00110966 /* ChoseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CC81E7FD6BC00110966 /* ChoseAreaViewController.h */,
+				DDD47CC91E7FD6BC00110966 /* ChoseAreaViewController.m */,
+			);
+			path = ChoseViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CCF1E7FD79200110966 /* MessageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CD01E7FD79200110966 /* MessageViewController.h */,
+				DDD47CD11E7FD79200110966 /* MessageViewController.m */,
+			);
+			path = MessageViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CD31E7FD7F500110966 /* SaoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CD41E7FD7FF00110966 /* SaoViewController.h */,
+				DDD47CD51E7FD7FF00110966 /* SaoViewController.m */,
+			);
+			path = SaoViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CD81E7FDC4100110966 /* NearGistViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CD91E7FDC4E00110966 /* GistViewController.h */,
+				DDD47CDA1E7FDC4E00110966 /* GistViewController.m */,
+			);
+			path = NearGistViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CDC1E7FDDF600110966 /* GiftViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CE91E7FDF2000110966 /* GiftViewController.h */,
+				DDD47CEA1E7FDF2000110966 /* GiftViewController.m */,
+			);
+			path = GiftViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CDD1E7FDE0600110966 /* NearViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CE61E7FDF1600110966 /* NearViewController.h */,
+				DDD47CE71E7FDF1600110966 /* NearViewController.m */,
+			);
+			path = NearViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CDE1E7FDE1100110966 /* CouponViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CE31E7FDF0D00110966 /* CouponViewController.h */,
+				DDD47CE41E7FDF0D00110966 /* CouponViewController.m */,
+			);
+			path = CouponViewController;
+			sourceTree = "<group>";
+		};
+		DDD47CDF1E7FDE1F00110966 /* ShopViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD47CE01E7FDF0300110966 /* ShopViewController.h */,
+				DDD47CE11E7FDF0300110966 /* ShopViewController.m */,
+			);
+			path = ShopViewController;
 			sourceTree = "<group>";
 		};
 		DDFA12421E77955C00CF8771 = {
@@ -703,6 +805,7 @@
 			children = (
 				DD15242C1E77F8DD00CF7CB9 /* Constants.h */,
 				DD15242D1E77F8DD00CF7CB9 /* Constants.m */,
+				DDD47CD71E7FDA1900110966 /* Notification.h */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -902,7 +1005,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDD47CB51E7F7E1F00110966 /* RealView.xib in Resources */,
 				DDFA12611E77955D00CF8771 /* LaunchScreen.storyboard in Resources */,
 				DD15244E1E77F8FB00CF7CB9 /* instruction.strings in Resources */,
 				DD1C8DDE1E790AF600C98D0A /* MBProgressHUD.bundle in Resources */,
@@ -981,16 +1083,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1524551E77F8FB00CF7CB9 /* SBJsonStreamWriter.m in Sources */,
+				DDD47CC61E7FD00100110966 /* ChoseViewController.m in Sources */,
 				DD7A430A1E7E2A620042817A /* NSObject+Property.m in Sources */,
 				DDD47CB81E7FB4E700110966 /* UserInfoModel.m in Sources */,
 				DD7A430F1E7E35780042817A /* SearchViewController.m in Sources */,
 				DD3E92041E78E6C4006072A6 /* HyperlinksButton.m in Sources */,
+				DDD47CE21E7FDF0300110966 /* ShopViewController.m in Sources */,
+				DDD47CD21E7FD79200110966 /* MessageViewController.m in Sources */,
 				DD4BD9C11E7A59610052A807 /* NSString+MD5.m in Sources */,
 				DD1C8E3D1E794F9600C98D0A /* XMGSqaureButton.m in Sources */,
 				DDFA12A41E77BCEB00CF8771 /* RegisterViewController.m in Sources */,
 				DDFA129C1E779E5200CF8771 /* NavViewController.m in Sources */,
 				DD3632371E7BAE70007D3CFF /* FunctionView.m in Sources */,
-				DDD47CB41E7F7E1F00110966 /* RealView.m in Sources */,
 				DD1524541E77F8FB00CF7CB9 /* SBJsonStreamParserState.m in Sources */,
 				DD4BD9C51E7A71150052A807 /* BaseViewController.m in Sources */,
 				DD3632391E7BAE70007D3CFF /* ZYJHeadLineModel.m in Sources */,
@@ -998,9 +1102,11 @@
 				DDFA128D1E779D0300CF8771 /* TabBarViewController.m in Sources */,
 				DD1C8E2E1E79480500C98D0A /* UIView+SDExtension.m in Sources */,
 				DD15242E1E77F8DD00CF7CB9 /* Constants.m in Sources */,
+				DDD47CD61E7FD7FF00110966 /* SaoViewController.m in Sources */,
 				DD1524511E77F8FB00CF7CB9 /* SBJsonStreamParser.m in Sources */,
 				DD7A430B1E7E2A620042817A /* NSObject+XXOOProperty.m in Sources */,
 				DDFA12AF1E77C69A00CF8771 /* TouchUIView.m in Sources */,
+				DDD47CEB1E7FDF2000110966 /* GiftViewController.m in Sources */,
 				DD1524241E77F71600CF7CB9 /* ServiceAPI.m in Sources */,
 				DD09553A1E7CCD89003344C9 /* GiftwareViewCell.m in Sources */,
 				DD15244F1E77F8FB00CF7CB9 /* NSObject+SBJson.m in Sources */,
@@ -1018,6 +1124,7 @@
 				DD1524571E77F8FB00CF7CB9 /* SBJsonStreamWriterState.m in Sources */,
 				DD5C8F2B1E7BDA6000A6E4CB /* NearbyViewCell.m in Sources */,
 				DDFA12A11E77BCDE00CF8771 /* LoginViewController.m in Sources */,
+				DDD47CE81E7FDF1600110966 /* NearViewController.m in Sources */,
 				DD1524581E77F8FB00CF7CB9 /* SBJsonTokeniser.m in Sources */,
 				DD1524591E77F8FB00CF7CB9 /* SBJsonUTF8Stream.m in Sources */,
 				DD3E92111E78F3C4006072A6 /* JobsViewController.m in Sources */,
@@ -1035,6 +1142,7 @@
 				DD5C8F3A1E7BE68300A6E4CB /* EveryDayViewCell.m in Sources */,
 				DD1524501E77F8FB00CF7CB9 /* SBJsonParser.m in Sources */,
 				DD1C8E3A1E794F7400C98D0A /* UIView+EXTention.m in Sources */,
+				DDD47CDB1E7FDC4E00110966 /* GistViewController.m in Sources */,
 				DDFA12B51E77C6B800CF8771 /* ColorFont.m in Sources */,
 				DD7A43021E7E2A2A0042817A /* ResponseBase.m in Sources */,
 				DD7A42FD1E7E29510042817A /* NetWorkManager+UploadVideo.m in Sources */,
@@ -1044,8 +1152,10 @@
 				DD15242A1E77F8C900CF7CB9 /* XYSpriteHelper.m in Sources */,
 				DD3632381E7BAE70007D3CFF /* HeadView.m in Sources */,
 				DD3E92141E78F3CF006072A6 /* NearbyViewController.m in Sources */,
+				DDD47CE51E7FDF0D00110966 /* CouponViewController.m in Sources */,
 				DDFA12AB1E77BEDB00CF8771 /* UIViewController+BackVC.m in Sources */,
 				DD1C8E291E79480500C98D0A /* TAAnimatedDotView.m in Sources */,
+				DDD47CCA1E7FD6BC00110966 /* ChoseAreaViewController.m in Sources */,
 				DD3E920E1E78F39F006072A6 /* MeViewController.m in Sources */,
 				DD5C8F301E7BDF3800A6E4CB /* CouponViewCell.m in Sources */,
 				DDFA12501E77955C00CF8771 /* main.m in Sources */,
@@ -1210,6 +1320,7 @@
 				DEVELOPMENT_TEAM = Y2548TFM6N;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FitNess/PrefixHeader.h";
 				INFOPLIST_FILE = FitNess/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1224,6 +1335,7 @@
 				DEVELOPMENT_TEAM = Y2548TFM6N;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FitNess/PrefixHeader.h";
 				INFOPLIST_FILE = FitNess/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";

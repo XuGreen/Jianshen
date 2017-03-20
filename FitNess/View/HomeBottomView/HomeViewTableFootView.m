@@ -18,7 +18,8 @@
 }
 - (CraftsmanFootView *)craftsmanFootView{
     if (!_craftsmanFootView) {
-        _craftsmanFootView=[[CraftsmanFootView alloc]initWithFrame:CGRectMake(0.0, 0.0, SCREENWIDTH, hight(1340))];
+        _craftsmanFootView=[[CraftsmanFootView alloc]initWithFrame:CGRectMake(0.0, 0.0, SCREENWIDTH, hight(1380))];
+        _craftsmanFootView.backgroundColor=COMMONRBGCOLOR;
     }
     return _craftsmanFootView;
 }

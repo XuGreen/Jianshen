@@ -40,6 +40,7 @@
     [moreBtn setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
     [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
     [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];
+    [moreBtn addTarget:self action:@selector(moreGiftClick:) forControlEvents:UIControlEventTouchUpInside];
     moreBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     CGFloat space =10.0;
     [moreBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight
@@ -79,6 +80,9 @@
     }
 
     
+}
+-(void)moreGiftClick:(id)sender{
+    [[NSNotificationCenter defaultCenter]postNotificationName:MORESHOPNOTIFICATION object:self];
 }
 + (instancetype)ShopViewCell:(UITableView *)tableView{
     NSString *identifier=NSStringFromClass([self class]);

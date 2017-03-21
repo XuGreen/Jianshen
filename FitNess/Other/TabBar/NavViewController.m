@@ -51,10 +51,10 @@
     //改变背景颜色
     navBar.barTintColor =NavColor;
     //修改导航栏标题颜色,文字大小,文字种类
-    [navBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    [navBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     //修改文字
     UIBarButtonItem *barItem = [UIBarButtonItem appearance];
-    [barItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateNormal];
+    [barItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
 }
 -(void)setLineColor:(UIColor *)color{
     _lineLayer.borderColor = color.CGColor;

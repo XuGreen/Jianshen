@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
-@interface MeViewController : BaseViewController
+#import "UINavigationBar+Awesome.h"
+#import "MeTopView.h"
+#import "MeOrderViewCell.h"//我的订单
+#import "MyMoneyViewCell.h"//我的钱包
+#import "MySortViewCell.h"//我的健身卡等等
+#import "MyJoinViewCell.h"//加入
+#import "MyShopViewCell.h"//我的店铺
+
+@interface MeViewController : UIViewController
 
 @end

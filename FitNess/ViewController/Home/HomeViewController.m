@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 
-#define NAVBAR_CHANGE_POINT hight(530.0)
+#define NAVBAR_CHANGE_POINT hight(150.0)
 
 @interface HomeViewController ()
 @property(nonatomic,strong)  UIView           *HeadView;//首页顶部视图
@@ -269,9 +269,9 @@
     }else{
         [self.clickBtn removeFromSuperview];
     }
-    if (y <= -hight(530.0)){
-        [_nav setLineColor:[UIColor groupTableViewBackgroundColor]];
-        _navLineColor = [UIColor groupTableViewBackgroundColor];
+    if (y <= -hight(230.0)){
+        [_nav setLineColor:[UIColor clearColor]];
+        _navLineColor = [UIColor clearColor];
   
     }else{
         [_nav setLineColor:[UIColor clearColor]];

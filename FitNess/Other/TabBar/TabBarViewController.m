@@ -23,13 +23,12 @@
     
     [self TabBars];
     //设置 TabBar 的背景颜色为白色
-    CGRect frame = CGRectMake(0.0, 0, SCREENHEIGHT, hight(98));
+    CGRect frame = CGRectMake(0.0, 1, SCREENHEIGHT, 48);
     UIView *v = [[UIView alloc] initWithFrame:frame];
     [v setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar insertSubview:v atIndex:0];
     //隐藏 tabbar 黑线
-    UITabBar *tabbar = [UITabBar appearance];
-    tabbar.backgroundColor=[tools colorWithHex:0xcccccc];
+//    UITabBar *tabbar = [UITabBar appearance];
 //    [tabbar setBackgroundImage:[UIImage new]];
 //    [tabbar setShadowImage:[UIImage new]];
 }
@@ -58,7 +57,7 @@
     me.tabBarItem.title=@"我的";
     NavViewController *meNav=[[NavViewController alloc]initWithRootViewController:me];
     
-    self.viewControllers=@[homeNav,classNav,otherNav,meNav];
+    self.viewControllers=@[meNav,homeNav,classNav,otherNav];
     
 }
 - (void)didReceiveMemoryWarning {

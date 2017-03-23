@@ -63,9 +63,7 @@
 }
 - (void)buttonClick:(XMGSqaureButton *)button
 {
-    
-    NSLog(@"---------%@",button.titleLabel);
-    
+  XQQLogFunc
 }
 
 

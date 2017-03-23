@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "ProjectViewController.h"
 
 #define NAVBAR_CHANGE_POINT hight(150.0)
 
@@ -203,8 +204,9 @@
 //选择地区
 
 - (void)chooseCity:(UIButton *)sender{
-    ChoseAreaViewController *choseAreaVC=[[ChoseAreaViewController alloc]init];
-    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:choseAreaVC];
+    ProjectViewController  *project=[[ProjectViewController alloc]init];
+   // ChoseAreaViewController *choseAreaVC=[[ChoseAreaViewController alloc]init];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:project];
     [self presentViewController:nav animated:YES completion:nil];
 
 }
@@ -262,7 +264,6 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat y = -scrollView.contentOffset.y;
-//    NSLog(@"yy:%lf",y);
     if (y <= -1440) {
         [self.view addSubview:self.clickBtn];
     }else{

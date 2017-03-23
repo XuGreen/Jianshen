@@ -9,7 +9,7 @@
 #import "JobsViewCell.h"
 #import "HZPhotoBrowser.h"
 #import "PhotoModel.h"
-@interface JobsViewCell()<HZPhotoBrowserDelegate>{
+@interface JobsViewCell(){
     UIView *backView;
 
 }
@@ -20,8 +20,6 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        // 清除图片缓存，便于测试
-        [[SDWebImageManager sharedManager].imageCache clearDisk];
 
         [self initUI];
     }

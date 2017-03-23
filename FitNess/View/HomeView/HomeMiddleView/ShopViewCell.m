@@ -62,7 +62,7 @@
         _ShopName.font=[UIFont systemFontOfSize:17];
         //消费人数
         _ShopPriceNum=[[UILabel alloc]initWithFrame:CGRectMake(ShopViews.xmg_width-hight(150), _ShopImageView.xmg_bottom+10, hight(150), wight(30))];
-        _ShopPriceNum .text=@"211消费";
+        _ShopPriceNum .text=@"211喜欢";
         _ShopPriceNum.textColor=[tools colorWithHex:0x999999];
         _ShopPriceNum.textAlignment=NSTextAlignmentRight;
         _ShopPriceNum.font=[UIFont systemFontOfSize:15];

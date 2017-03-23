@@ -116,7 +116,7 @@
         moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         moreBtn.frame = CGRectMake(SCREENWIDTH-88, _NearDetail.xmg_bottom, hight(154), wight(32));
         [moreBtn setImage:[UIImage imageNamed:@"praise"] forState:UIControlStateNormal];
-        [moreBtn setTitle:@"861消费" forState:UIControlStateNormal];
+        [moreBtn setTitle:@"861喜欢" forState:UIControlStateNormal];
         [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];
         moreBtn.titleLabel.font=[UIFont systemFontOfSize:14];
         CGFloat space = 5.0;

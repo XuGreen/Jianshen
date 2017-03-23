@@ -52,6 +52,7 @@
 		DD3F6DDD1E82BF00005EE7B1 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DDC1E82BF00005EE7B1 /* PhotoModel.m */; };
 		DD3F6DE01E82C3ED005EE7B1 /* JobsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DDF1E82C3ED005EE7B1 /* JobsModel.m */; };
 		DD3F6DE31E83631E005EE7B1 /* ImageGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DE21E83631E005EE7B1 /* ImageGroupView.m */; };
+		DD423F581E83D620001D6C1C /* ProjectdescriptionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD423F571E83D620001D6C1C /* ProjectdescriptionViewCell.m */; };
 		DD4BD9C11E7A59610052A807 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4BD9C01E7A59610052A807 /* NSString+MD5.m */; };
 		DD4BD9C51E7A71150052A807 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4BD9C41E7A71150052A807 /* BaseViewController.m */; };
 		DD6214D21E80DB14004C2DCB /* CollectionBottomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6214B51E80DB14004C2DCB /* CollectionBottomViewCell.m */; };
@@ -86,6 +87,9 @@
 		DD7A430A1E7E2A620042817A /* NSObject+Property.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7A43071E7E2A620042817A /* NSObject+Property.m */; };
 		DD7A430B1E7E2A620042817A /* NSObject+XXOOProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7A43091E7E2A620042817A /* NSObject+XXOOProperty.m */; };
 		DD7A430F1E7E35780042817A /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7A430E1E7E35780042817A /* SearchViewController.m */; };
+		DDBB4F171E836E6500066630 /* TMMuiLazyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB4F151E836E6500066630 /* TMMuiLazyScrollView.m */; };
+		DDBB4F1C1E837A7700066630 /* ProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB4F1B1E837A7700066630 /* ProjectViewController.m */; };
+		DDBB4F1F1E837B4A00066630 /* ProjectHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB4F1E1E837B4A00066630 /* ProjectHeadView.m */; };
 		DDD47CB81E7FB4E700110966 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CB71E7FB4E700110966 /* UserInfoModel.m */; };
 		DDD47CC61E7FD00100110966 /* ChoseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CC51E7FD00100110966 /* ChoseViewController.m */; };
 		DDD47CCA1E7FD6BC00110966 /* ChoseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CC91E7FD6BC00110966 /* ChoseAreaViewController.m */; };
@@ -96,6 +100,9 @@
 		DDD47CE51E7FDF0D00110966 /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CE41E7FDF0D00110966 /* CouponViewController.m */; };
 		DDD47CE81E7FDF1600110966 /* NearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CE71E7FDF1600110966 /* NearViewController.m */; };
 		DDD47CEB1E7FDF2000110966 /* GiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CEA1E7FDF2000110966 /* GiftViewController.m */; };
+		DDE362D81E83B83E00E70FE2 /* PPNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE362D71E83B83E00E70FE2 /* PPNumberButton.m */; };
+		DDE362DE1E83BCF100E70FE2 /* SaverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE362DD1E83BCF100E70FE2 /* SaverViewCell.m */; };
+		DDE362E11E83CE2200E70FE2 /* DetailDestrptionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE362E01E83CE2200E70FE2 /* DetailDestrptionViewCell.m */; };
 		DDFA12501E77955C00CF8771 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA124F1E77955C00CF8771 /* main.m */; };
 		DDFA12531E77955C00CF8771 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA12521E77955C00CF8771 /* AppDelegate.m */; };
 		DDFA12591E77955C00CF8771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFA12571E77955C00CF8771 /* Main.storyboard */; };
@@ -233,6 +240,8 @@
 		DD3F6DDF1E82C3ED005EE7B1 /* JobsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsModel.m; sourceTree = "<group>"; };
 		DD3F6DE11E83631E005EE7B1 /* ImageGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGroupView.h; sourceTree = "<group>"; };
 		DD3F6DE21E83631E005EE7B1 /* ImageGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGroupView.m; sourceTree = "<group>"; };
+		DD423F561E83D620001D6C1C /* ProjectdescriptionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectdescriptionViewCell.h; sourceTree = "<group>"; };
+		DD423F571E83D620001D6C1C /* ProjectdescriptionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectdescriptionViewCell.m; sourceTree = "<group>"; };
 		DD4BD9BF1E7A59610052A807 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		DD4BD9C01E7A59610052A807 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		DD4BD9C31E7A71150052A807 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -301,6 +310,12 @@
 		DD7A43091E7E2A620042817A /* NSObject+XXOOProperty.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = "NSObject+XXOOProperty.m"; sourceTree = "<group>"; };
 		DD7A430D1E7E35780042817A /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		DD7A430E1E7E35780042817A /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		DDBB4F141E836E6500066630 /* TMMuiLazyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMuiLazyScrollView.h; sourceTree = "<group>"; };
+		DDBB4F151E836E6500066630 /* TMMuiLazyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMuiLazyScrollView.m; sourceTree = "<group>"; };
+		DDBB4F1A1E837A7700066630 /* ProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectViewController.h; sourceTree = "<group>"; };
+		DDBB4F1B1E837A7700066630 /* ProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectViewController.m; sourceTree = "<group>"; };
+		DDBB4F1D1E837B4A00066630 /* ProjectHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectHeadView.h; sourceTree = "<group>"; };
+		DDBB4F1E1E837B4A00066630 /* ProjectHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectHeadView.m; sourceTree = "<group>"; };
 		DDD47CB61E7FB4E700110966 /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		DDD47CB71E7FB4E700110966 /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		DDD47CC41E7FD00100110966 /* ChoseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseViewController.h; sourceTree = "<group>"; };
@@ -322,6 +337,12 @@
 		DDD47CE71E7FDF1600110966 /* NearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearViewController.m; sourceTree = "<group>"; };
 		DDD47CE91E7FDF2000110966 /* GiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftViewController.h; sourceTree = "<group>"; };
 		DDD47CEA1E7FDF2000110966 /* GiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftViewController.m; sourceTree = "<group>"; };
+		DDE362D61E83B83E00E70FE2 /* PPNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPNumberButton.h; sourceTree = "<group>"; };
+		DDE362D71E83B83E00E70FE2 /* PPNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNumberButton.m; sourceTree = "<group>"; };
+		DDE362DC1E83BCF100E70FE2 /* SaverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaverViewCell.h; sourceTree = "<group>"; };
+		DDE362DD1E83BCF100E70FE2 /* SaverViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaverViewCell.m; sourceTree = "<group>"; };
+		DDE362DF1E83CE2200E70FE2 /* DetailDestrptionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDestrptionViewCell.h; sourceTree = "<group>"; };
+		DDE362E01E83CE2200E70FE2 /* DetailDestrptionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDestrptionViewCell.m; sourceTree = "<group>"; };
 		DDFA124B1E77955C00CF8771 /* FitNess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDFA124F1E77955C00CF8771 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DDFA12511E77955C00CF8771 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -513,11 +534,11 @@
 		DD3E92051E78F2F4006072A6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DDBB4F191E837A6B00066630 /* ProjectViewController */,
 				DDD47CDF1E7FDE1F00110966 /* ShopViewController */,
 				DDD47CDE1E7FDE1100110966 /* CouponViewController */,
 				DDD47CDD1E7FDE0600110966 /* NearViewController */,
 				DDD47CDC1E7FDDF600110966 /* GiftViewController */,
-				DDD47CD81E7FDC4100110966 /* NearGistViewController */,
 				DDD47CD31E7FD7F500110966 /* SaoViewController */,
 				DDD47CCF1E7FD79200110966 /* MessageViewController */,
 				DDD47CC71E7FD67F00110966 /* ChoseViewController */,
@@ -582,6 +603,7 @@
 		DD6214B21E80DAEA004C2DCB /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				DDBB4F181E837A4300066630 /* ProjectView */,
 				DD6214B31E80DB14004C2DCB /* HomeBottomView */,
 				DD6214BE1E80DB14004C2DCB /* HomeMiddleView */,
 				DD6214C91E80DB14004C2DCB /* HomeTopView */,
@@ -767,6 +789,39 @@
 			path = SearchViewController;
 			sourceTree = "<group>";
 		};
+		DDBB4F121E836E6500066630 /* LazyScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB4F141E836E6500066630 /* TMMuiLazyScrollView.h */,
+				DDBB4F151E836E6500066630 /* TMMuiLazyScrollView.m */,
+			);
+			path = LazyScrollView;
+			sourceTree = "<group>";
+		};
+		DDBB4F181E837A4300066630 /* ProjectView */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB4F1D1E837B4A00066630 /* ProjectHeadView.h */,
+				DDBB4F1E1E837B4A00066630 /* ProjectHeadView.m */,
+				DDE362DC1E83BCF100E70FE2 /* SaverViewCell.h */,
+				DDE362DD1E83BCF100E70FE2 /* SaverViewCell.m */,
+				DDE362DF1E83CE2200E70FE2 /* DetailDestrptionViewCell.h */,
+				DDE362E01E83CE2200E70FE2 /* DetailDestrptionViewCell.m */,
+				DD423F561E83D620001D6C1C /* ProjectdescriptionViewCell.h */,
+				DD423F571E83D620001D6C1C /* ProjectdescriptionViewCell.m */,
+			);
+			path = ProjectView;
+			sourceTree = "<group>";
+		};
+		DDBB4F191E837A6B00066630 /* ProjectViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB4F1A1E837A7700066630 /* ProjectViewController.h */,
+				DDBB4F1B1E837A7700066630 /* ProjectViewController.m */,
+			);
+			path = ProjectViewController;
+			sourceTree = "<group>";
+		};
 		DDD47CC71E7FD67F00110966 /* ChoseViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,12 +855,14 @@
 				DDD47CD91E7FDC4E00110966 /* GistViewController.h */,
 				DDD47CDA1E7FDC4E00110966 /* GistViewController.m */,
 			);
-			path = NearGistViewController;
+			name = NearGistViewController;
+			path = ../NearGistViewController;
 			sourceTree = "<group>";
 		};
 		DDD47CDC1E7FDDF600110966 /* GiftViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DDD47CD81E7FDC4100110966 /* NearGistViewController */,
 				DDD47CE91E7FDF2000110966 /* GiftViewController.h */,
 				DDD47CEA1E7FDF2000110966 /* GiftViewController.m */,
 			);
@@ -969,6 +1026,7 @@
 		DDFA12891E7799E400CF8771 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				DDBB4F121E836E6500066630 /* LazyScrollView */,
 				DD3F6DCE1E82BB54005EE7B1 /* HZPhotoBrowser */,
 				DDFFEEB21E825C8E008908E2 /* PopoverView */,
 				DD1C8E181E79480500C98D0A /* SDCycleScrollView */,
@@ -1026,6 +1084,8 @@
 		DDFA12AC1E77C68600CF8771 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DDE362D61E83B83E00E70FE2 /* PPNumberButton.h */,
+				DDE362D71E83B83E00E70FE2 /* PPNumberButton.m */,
 				DD1C8E3B1E794F9600C98D0A /* XMGSqaureButton.h */,
 				DD1C8E3C1E794F9600C98D0A /* XMGSqaureButton.m */,
 				DD3E92021E78E6C4006072A6 /* HyperlinksButton.h */,
@@ -1167,7 +1227,7 @@
 				TargetAttributes = {
 					DDFA124A1E77955C00CF8771 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = Y2548TFM6N;
+						DevelopmentTeam = TUUTJWSEQ4;
 						ProvisioningStyle = Automatic;
 					};
 					DDFA12661E77955D00CF8771 = {
@@ -1299,10 +1359,13 @@
 				DDD47CD21E7FD79200110966 /* MessageViewController.m in Sources */,
 				DD6214D51E80DB14004C2DCB /* CraftsmanView.m in Sources */,
 				DD6214D21E80DB14004C2DCB /* CollectionBottomViewCell.m in Sources */,
+				DDE362DE1E83BCF100E70FE2 /* SaverViewCell.m in Sources */,
+				DD423F581E83D620001D6C1C /* ProjectdescriptionViewCell.m in Sources */,
 				DD4BD9C11E7A59610052A807 /* NSString+MD5.m in Sources */,
 				DD6214E41E80DB5C004C2DCB /* MeTopView.m in Sources */,
 				DD1C8E3D1E794F9600C98D0A /* XMGSqaureButton.m in Sources */,
 				DDFA12A41E77BCEB00CF8771 /* RegisterViewController.m in Sources */,
+				DDBB4F1C1E837A7700066630 /* ProjectViewController.m in Sources */,
 				DDFD40051E821F5300C765DD /* JobsViewCell.m in Sources */,
 				DDFA129C1E779E5200CF8771 /* NavViewController.m in Sources */,
 				DD6214F81E8101E9004C2DCB /* MyJoinViewCell.m in Sources */,
@@ -1347,6 +1410,7 @@
 				DD3E92111E78F3C4006072A6 /* JobsViewController.m in Sources */,
 				DD7A42E81E7E25D70042817A /* UIImage+compressIMG.m in Sources */,
 				DD1C8DDF1E790AF600C98D0A /* MBProgressHUD.m in Sources */,
+				DDE362D81E83B83E00E70FE2 /* PPNumberButton.m in Sources */,
 				DD6214D41E80DB14004C2DCB /* CraftsmanFootView.m in Sources */,
 				DD15241D1E77E1F000CF7CB9 /* UIButton+ImageTitleSpacing.m in Sources */,
 				DD6214F51E8101BD004C2DCB /* MySortViewCell.m in Sources */,
@@ -1362,13 +1426,16 @@
 				DDFFEEBE1E827706008908E2 /* LableView.m in Sources */,
 				DDFA12B51E77C6B800CF8771 /* ColorFont.m in Sources */,
 				DD7A43021E7E2A2A0042817A /* ResponseBase.m in Sources */,
+				DDBB4F171E836E6500066630 /* TMMuiLazyScrollView.m in Sources */,
 				DD7A42FD1E7E29510042817A /* NetWorkManager+UploadVideo.m in Sources */,
 				DD6214DF1E80DB14004C2DCB /* ZYJHeadLineView.m in Sources */,
 				DDFD40081E82450600C765DD /* MyView.m in Sources */,
 				DD1C8DF91E79270100C98D0A /* ShortcutViewController.m in Sources */,
 				DD1C8E281E79480500C98D0A /* TAAbstractDotView.m in Sources */,
 				DD3F6DDD1E82BF00005EE7B1 /* PhotoModel.m in Sources */,
+				DDE362E11E83CE2200E70FE2 /* DetailDestrptionViewCell.m in Sources */,
 				DD36321B1E7B8244007D3CFF /* UINavigationBar+Awesome.m in Sources */,
+				DDBB4F1F1E837B4A00066630 /* ProjectHeadView.m in Sources */,
 				DD6214D61E80DB14004C2DCB /* HomeViewTableFootView.m in Sources */,
 				DD15242A1E77F8C900CF7CB9 /* XYSpriteHelper.m in Sources */,
 				DD3E92141E78F3CF006072A6 /* NearbyViewController.m in Sources */,
@@ -1541,12 +1608,12 @@
 			baseConfigurationReference = 2158D8FD2210AF3BB64DB772 /* Pods-FitNess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y2548TFM6N;
+				DEVELOPMENT_TEAM = TUUTJWSEQ4;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FitNess/PrefixHeader.h";
 				INFOPLIST_FILE = FitNess/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FitNess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JianShen.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1556,12 +1623,12 @@
 			baseConfigurationReference = 5C6E77572590A4D8719F248E /* Pods-FitNess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y2548TFM6N;
+				DEVELOPMENT_TEAM = TUUTJWSEQ4;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FitNess/PrefixHeader.h";
 				INFOPLIST_FILE = FitNess/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.FitNess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JianShen.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

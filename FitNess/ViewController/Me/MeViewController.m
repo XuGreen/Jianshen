@@ -69,7 +69,9 @@
 }
 //设置
 - (void)settingClick:(UIButton *)sender{
-    XQQLogFunc
+    LoginViewController *login=[[LoginViewController alloc]init];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:login];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 //消息
 - (void)MsgClick:(UIButton *)sender{

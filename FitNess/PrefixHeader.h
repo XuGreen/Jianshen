@@ -27,6 +27,7 @@
 #import "NetWorkManager.h"
 #import "MyView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "TMMuiLazyScrollView.h"
 
 /**获取设备屏幕的宽高***/
 #define SCREENWIDTH  [UIScreen mainScreen].bounds.size.width
@@ -46,6 +47,7 @@
 #define XQQLogFunc XQQLog(@"%s", __func__);
 /*** 颜色 ***/
 #define XQQColorA(_R, _G, _B) [UIColor colorWithRed:_R/255.0 green:_G/255.0 blue:_B/255.0 alpha:1.0F]
+#define XQQColorRGB(_R, _G, _B,_A) [UIColor colorWithRed:_R/255.0 green:_G/255.0 blue:_B/255.0 alpha:_A]
 #define  NavColor [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]
 #define  COMMONRBGCOLOR [UIColor colorWithRed:0.941 green:0.945 blue:0.945 alpha:1.000]
 #define  LINECOLOR [UIColor colorWithRed:222.0/255 green:223.0/255 blue:224.0/255 alpha:0.5f]

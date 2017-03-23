@@ -47,7 +47,7 @@
         _textField.delegate=self;
         _textField.textAlignment=NSTextAlignmentLeft;
         _textField.font=[UIFont fontWithName:@"Avenir-Book" size:14.0f];
-        //        _textField.clearButtonMode = UITextFieldViewModeWhileEditing; //编辑时会出现个修改X
+        _textField.clearButtonMode = UITextFieldViewModeWhileEditing; //编辑时会出现个修改X
         [view addSubview:_textField];
         
         UIImageView *logoImage=[[UIImageView alloc]init];

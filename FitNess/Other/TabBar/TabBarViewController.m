@@ -42,10 +42,10 @@
     NavViewController *homeNav=[[NavViewController alloc]initWithRootViewController:home];
     
     NearbyViewController *nearby=[[NearbyViewController alloc]init];
-    nearby.tabBarItem.image = [UIImage imageNamed:@"nearby"];
+    nearby.tabBarItem.image = [UIImage imageNamed:@"nearby1"];
     nearby.tabBarItem.selectedImage = [UIImage imageNamed:@"click-nearby"];
     nearby.tabBarItem.title=@"附近";
-    NavViewController *classNav=[[NavViewController alloc]initWithRootViewController:nearby];
+    NavViewController *NearNav=[[NavViewController alloc]initWithRootViewController:nearby];
     
     JobsViewController *jobs=[[JobsViewController alloc]init];
     jobs.tabBarItem.image = [UIImage imageNamed:@"recruitment"];
@@ -59,7 +59,7 @@
     me.tabBarItem.title=@"我的";
     NavViewController *meNav=[[NavViewController alloc]initWithRootViewController:me];
     
-    self.viewControllers=@[jobsNav,homeNav,classNav,meNav];
+    self.viewControllers=@[homeNav,NearNav,jobsNav,meNav];
     
 }
 - (void)didReceiveMemoryWarning {

@@ -68,8 +68,10 @@
 //场馆名称
 -(UILabel *)NearName{
     if (!_NearName) {
-        _NearName=[[UILabel alloc]initWithFrame:CGRectMake(_NearImageView.xmg_right+10, moreBtn.xmg_bottom, hight(333), wight(32))];
-        _NearName.text=@"三百勇士健身会所";
+        NSString * str=@"三百勇士健身会所";
+        CGRect tempRect=[str boundingRectWithSize:CGSizeMake(SCREENWIDTH-40, hight(32)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+        _NearName=[[UILabel alloc]initWithFrame:CGRectMake(_NearImageView.xmg_right+10, moreBtn.xmg_bottom, tempRect.size.width, tempRect.size.height)];
+        _NearName.text=str;
         _NearName.textColor=[tools colorWithHex:0x333333];
         _NearName.font=[UIFont systemFontOfSize:17];
     }
@@ -78,8 +80,10 @@
 //场馆距离
 -(UILabel *)NearDistance{
     if (!_NearDistance) {
-        _NearDistance=[[UILabel alloc]initWithFrame:CGRectMake(_NearName.xmg_right+10, moreBtn.xmg_bottom, hight(140), wight(22))];
-        _NearDistance.text=@"<500m";
+        NSString * str=@"<500m";
+        CGRect tempRect=[str boundingRectWithSize:CGSizeMake(SCREENWIDTH-40, hight(22)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+        _NearDistance=[[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-tempRect.size.width-8, moreBtn.xmg_bottom, tempRect.size.width, tempRect.size.height)];
+        _NearDistance.text=str;
         _NearDistance.textColor=[tools colorWithHex:0x999999];
         _NearDistance.font=[UIFont systemFontOfSize:14];
     }
@@ -98,7 +102,7 @@
 //场馆介绍
 -(UILabel *)NearDetail{
     if (!_NearDetail) {
-        _NearDetail=[[UILabel alloc]initWithFrame:CGRectMake(_NearImageView.xmg_right+10, _NearStar.xmg_bottom, hight(460), wight(103))];
+        _NearDetail=[[UILabel alloc]initWithFrame:CGRectMake(_NearImageView.xmg_right+10, _NearStar.xmg_bottom, wight(455), hight(103))];
         _NearDetail.text=@"本店拥有游泳、普拉提、瑜伽、动感单车等各种项目";
         _NearDetail.numberOfLines=0;
         _NearDetail.textColor=[tools colorWithHex:0x999999];
@@ -110,7 +114,7 @@
 -(UIButton *)NearPriceBtn{
     if (!_NearPriceBtn) {
         moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        moreBtn.frame = CGRectMake(SCREENWIDTH-88, _NearDetail.xmg_bottom+10, hight(154), wight(32));
+        moreBtn.frame = CGRectMake(SCREENWIDTH-88, _NearDetail.xmg_bottom, hight(154), wight(32));
         [moreBtn setImage:[UIImage imageNamed:@"praise"] forState:UIControlStateNormal];
         [moreBtn setTitle:@"861消费" forState:UIControlStateNormal];
         [moreBtn setTitleColor:[tools colorWithHex:0x666666] forState:UIControlStateNormal];

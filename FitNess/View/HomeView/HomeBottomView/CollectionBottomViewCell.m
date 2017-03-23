@@ -44,8 +44,10 @@
 }
 - (UILabel *)ShouName{
     if (!_ShouName) {
-        _ShouName=[[UILabel alloc]initWithFrame:CGRectMake(10, _ShouImageView.xmg_bottom+10, wight(120), hight(28))];
-        _ShouName.text=@"Joker";
+        NSString * str=@"Joker";
+        CGRect tempRect=[str boundingRectWithSize:CGSizeMake(SCREENWIDTH-40, hight(28)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:18]} context:nil];
+        _ShouName=[[UILabel alloc]initWithFrame:CGRectMake(10, _ShouImageView.xmg_bottom+10, tempRect.size.width, tempRect.size.height)];
+        _ShouName.text=str;
         _ShouName.textColor=[tools colorWithHex:0x333333];
         _ShouName.font=[UIFont boldSystemFontOfSize:18];
     }
@@ -53,8 +55,10 @@
 }
 - (UILabel *)ShouType{
     if (!_ShouType) {
-        _ShouType=[[UILabel alloc]initWithFrame:CGRectMake(_ShouName.xmg_right, _ShouImageView.xmg_bottom+10, wight(150), hight(26))];
-        _ShouType.text=@"健身教练";
+        NSString * str=@"健身教练";
+        CGRect tempRect=[str boundingRectWithSize:CGSizeMake(SCREENWIDTH-40, hight(26)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+        _ShouType=[[UILabel alloc]initWithFrame:CGRectMake(_ShouName.xmg_right+8, _ShouImageView.xmg_bottom+13, tempRect.size.width, tempRect.size.height)];
+        _ShouType.text=str;
         _ShouType.textColor=[tools colorWithHex:0x333333];
         _ShouType.font=[UIFont systemFontOfSize:14];
     }
@@ -80,8 +84,10 @@
 }
 - (UILabel *)ShouFans{
     if (!_ShouFans) {
-        _ShouFans=[[UILabel alloc]initWithFrame:CGRectMake(15, _ShouStrong.xmg_bottom+30, hight(154), wight(28))];
-        _ShouFans.text=@"541人关注";
+        NSString * str=@"541人关注";
+        CGRect tempRect=[str boundingRectWithSize:CGSizeMake(SCREENWIDTH-40, hight(28)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+        _ShouFans=[[UILabel alloc]initWithFrame:CGRectMake(15, _ShouStrong.xmg_bottom+30, tempRect.size.width, tempRect.size.height)];
+        _ShouFans.text=str;
         _ShouFans.textColor=[tools colorWithHex:0x999999];
         _ShouFans.font=[UIFont systemFontOfSize:15];
     }

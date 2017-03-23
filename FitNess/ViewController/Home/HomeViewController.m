@@ -188,7 +188,7 @@
     }else if (indexPath.section==1){
          return hight(368);
     }else if(indexPath.section==2){
-        return hight(444);
+        return hight(454);
     }else if(indexPath.section==3){
         return hight(580);
     }else{
@@ -262,8 +262,7 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat y = -scrollView.contentOffset.y;
-    
-    NSLog(@"yy:%lf",y);
+//    NSLog(@"yy:%lf",y);
     if (y <= -1440) {
         [self.view addSubview:self.clickBtn];
     }else{
@@ -280,7 +279,7 @@
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > 0) {
         CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT - offsetY) / 64));
-        [self.navigationController.navigationBar lt_setBackgroundColor:[MAINCOLOR colorWithAlphaComponent:alpha]];
+      [self.navigationController.navigationBar lt_setBackgroundColor:[[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]] colorWithAlphaComponent:alpha]];
         _navBackGroundColor = [MAINCOLOR colorWithAlphaComponent:alpha];
         _SearchtextFiled.textColor=[tools colorWithHex:0x666666];
         _SearchtextFiled.backgroundColor=[UIColor whiteColor];

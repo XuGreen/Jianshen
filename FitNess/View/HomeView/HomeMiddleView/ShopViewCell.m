@@ -54,7 +54,7 @@
         _ShopImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ShopViews.xmg_width,wight(351))];
         _ShopImageView.image=[UIImage imageNamed:imageArray[i]];
         [ShopViews addSubview:_ShopImageView];
-        //店铺图片
+        //店铺名字
         _ShopName=[[UILabel alloc]initWithFrame:CGRectMake(0, _ShopImageView.xmg_bottom+10, hight(300), wight(30))];
         _ShopName .text=@"香蕉健身会馆";
         _ShopName.textColor=[tools colorWithHex:0x333333];

@@ -53,13 +53,13 @@
         UIView *mengView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, _GiftImageView.xmg_width, _GiftImageView.xmg_height)];
         mengView.backgroundColor=[tools colorWithHex:0x000000];
         mengView.alpha=0.6;
-
-        _GiftDetail=[[UILabel alloc]initWithFrame:CGRectMake(10, _GiftImageView.xmg_height/2, hight(200), wight(30))];
+        
+        _GiftDetail=[[UILabel alloc]initWithFrame:CGRectMake(0, _GiftImageView.xmg_height/3+10, _GiftImageView.xmg_width, wight(30))];
         _GiftDetail .text=@"腹部肌肉训练";
         _GiftDetail.textColor=[UIColor whiteColor];
         _GiftDetail.textAlignment=NSTextAlignmentCenter;
         _GiftDetail.font=[UIFont systemFontOfSize:15];
-        _GiftPrice=[[UILabel alloc]initWithFrame:CGRectMake(10, _GiftDetail.xmg_bottom, hight(190), wight(30))];
+        _GiftPrice=[[UILabel alloc]initWithFrame:CGRectMake(0, _GiftDetail.xmg_bottom+5, _GiftImageView.xmg_width, hight(30))];
         _GiftPrice .text=@"￥999.99";
         _GiftPrice.textColor=MAINCOLOR;
         _GiftPrice.textAlignment=NSTextAlignmentCenter;

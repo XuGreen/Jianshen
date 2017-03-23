@@ -18,8 +18,8 @@
     [super viewDidLoad];
     self.navigationItem.title=@"附近";
     self.view.backgroundColor=[UIColor whiteColor];
+   [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg"] forBarMetrics:UIBarMetricsDefault];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

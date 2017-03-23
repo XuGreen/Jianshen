@@ -45,6 +45,13 @@
 		DD3E920E1E78F39F006072A6 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3E920D1E78F39F006072A6 /* MeViewController.m */; };
 		DD3E92111E78F3C4006072A6 /* JobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3E92101E78F3C4006072A6 /* JobsViewController.m */; };
 		DD3E92141E78F3CF006072A6 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3E92131E78F3CF006072A6 /* NearbyViewController.m */; };
+		DD3F6DD71E82BB54005EE7B1 /* HZIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DD01E82BB54005EE7B1 /* HZIndicatorView.m */; };
+		DD3F6DD81E82BB54005EE7B1 /* HZPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DD21E82BB54005EE7B1 /* HZPhotoBrowser.m */; };
+		DD3F6DD91E82BB54005EE7B1 /* HZPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DD51E82BB54005EE7B1 /* HZPhotoBrowserView.m */; };
+		DD3F6DDA1E82BB54005EE7B1 /* whiteplaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3F6DD61E82BB54005EE7B1 /* whiteplaceholder.png */; };
+		DD3F6DDD1E82BF00005EE7B1 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DDC1E82BF00005EE7B1 /* PhotoModel.m */; };
+		DD3F6DE01E82C3ED005EE7B1 /* JobsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DDF1E82C3ED005EE7B1 /* JobsModel.m */; };
+		DD3F6DE31E83631E005EE7B1 /* ImageGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3F6DE21E83631E005EE7B1 /* ImageGroupView.m */; };
 		DD4BD9C11E7A59610052A807 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4BD9C01E7A59610052A807 /* NSString+MD5.m */; };
 		DD4BD9C51E7A71150052A807 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4BD9C41E7A71150052A807 /* BaseViewController.m */; };
 		DD6214D21E80DB14004C2DCB /* CollectionBottomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6214B51E80DB14004C2DCB /* CollectionBottomViewCell.m */; };
@@ -106,6 +113,13 @@
 		DDFA12AF1E77C69A00CF8771 /* TouchUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA12AE1E77C69A00CF8771 /* TouchUIView.m */; };
 		DDFA12B21E77C6A500CF8771 /* tools.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA12B11E77C6A500CF8771 /* tools.m */; };
 		DDFA12B51E77C6B800CF8771 /* ColorFont.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFA12B41E77C6B800CF8771 /* ColorFont.m */; };
+		DDFD40021E821DA000C765DD /* JobsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFD40011E821DA000C765DD /* JobsHeadView.m */; };
+		DDFD40051E821F5300C765DD /* JobsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFD40041E821F5300C765DD /* JobsViewCell.m */; };
+		DDFD40081E82450600C765DD /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFD40071E82450600C765DD /* MyView.m */; };
+		DDFFEEB91E825C8E008908E2 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFFEEB41E825C8E008908E2 /* PopoverAction.m */; };
+		DDFFEEBA1E825C8E008908E2 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFFEEB61E825C8E008908E2 /* PopoverView.m */; };
+		DDFFEEBB1E825C8E008908E2 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFFEEB81E825C8E008908E2 /* PopoverViewCell.m */; };
+		DDFFEEBE1E827706008908E2 /* LableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDFFEEBD1E827706008908E2 /* LableView.m */; };
 		E555DB85657427ED7A2EE6A8 /* libPods-FitNess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EF17B06E4EEC987964979D /* libPods-FitNess.a */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +219,20 @@
 		DD3E92101E78F3C4006072A6 /* JobsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsViewController.m; sourceTree = "<group>"; };
 		DD3E92121E78F3CF006072A6 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		DD3E92131E78F3CF006072A6 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
+		DD3F6DCF1E82BB54005EE7B1 /* HZIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZIndicatorView.h; sourceTree = "<group>"; };
+		DD3F6DD01E82BB54005EE7B1 /* HZIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZIndicatorView.m; sourceTree = "<group>"; };
+		DD3F6DD11E82BB54005EE7B1 /* HZPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZPhotoBrowser.h; sourceTree = "<group>"; };
+		DD3F6DD21E82BB54005EE7B1 /* HZPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZPhotoBrowser.m; sourceTree = "<group>"; };
+		DD3F6DD31E82BB54005EE7B1 /* HZPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		DD3F6DD41E82BB54005EE7B1 /* HZPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZPhotoBrowserView.h; sourceTree = "<group>"; };
+		DD3F6DD51E82BB54005EE7B1 /* HZPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZPhotoBrowserView.m; sourceTree = "<group>"; };
+		DD3F6DD61E82BB54005EE7B1 /* whiteplaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteplaceholder.png; sourceTree = "<group>"; };
+		DD3F6DDB1E82BF00005EE7B1 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		DD3F6DDC1E82BF00005EE7B1 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		DD3F6DDE1E82C3ED005EE7B1 /* JobsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsModel.h; sourceTree = "<group>"; };
+		DD3F6DDF1E82C3ED005EE7B1 /* JobsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsModel.m; sourceTree = "<group>"; };
+		DD3F6DE11E83631E005EE7B1 /* ImageGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGroupView.h; sourceTree = "<group>"; };
+		DD3F6DE21E83631E005EE7B1 /* ImageGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGroupView.m; sourceTree = "<group>"; };
 		DD4BD9BF1E7A59610052A807 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		DD4BD9C01E7A59610052A807 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		DD4BD9C31E7A71150052A807 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -328,6 +356,20 @@
 		DDFA12B11E77C6A500CF8771 /* tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tools.m; sourceTree = "<group>"; };
 		DDFA12B31E77C6B800CF8771 /* ColorFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorFont.h; sourceTree = "<group>"; };
 		DDFA12B41E77C6B800CF8771 /* ColorFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorFont.m; sourceTree = "<group>"; };
+		DDFD40001E821DA000C765DD /* JobsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsHeadView.h; sourceTree = "<group>"; };
+		DDFD40011E821DA000C765DD /* JobsHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsHeadView.m; sourceTree = "<group>"; };
+		DDFD40031E821F5300C765DD /* JobsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsViewCell.h; sourceTree = "<group>"; };
+		DDFD40041E821F5300C765DD /* JobsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsViewCell.m; sourceTree = "<group>"; };
+		DDFD40061E82450600C765DD /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		DDFD40071E82450600C765DD /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
+		DDFFEEB31E825C8E008908E2 /* PopoverAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverAction.h; sourceTree = "<group>"; };
+		DDFFEEB41E825C8E008908E2 /* PopoverAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverAction.m; sourceTree = "<group>"; };
+		DDFFEEB51E825C8E008908E2 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
+		DDFFEEB61E825C8E008908E2 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
+		DDFFEEB71E825C8E008908E2 /* PopoverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewCell.h; sourceTree = "<group>"; };
+		DDFFEEB81E825C8E008908E2 /* PopoverViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewCell.m; sourceTree = "<group>"; };
+		DDFFEEBC1E827706008908E2 /* LableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LableView.h; sourceTree = "<group>"; };
+		DDFFEEBD1E827706008908E2 /* LableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,6 +553,21 @@
 				DD3E920D1E78F39F006072A6 /* MeViewController.m */,
 			);
 			path = Me;
+			sourceTree = "<group>";
+		};
+		DD3F6DCE1E82BB54005EE7B1 /* HZPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				DD3F6DCF1E82BB54005EE7B1 /* HZIndicatorView.h */,
+				DD3F6DD01E82BB54005EE7B1 /* HZIndicatorView.m */,
+				DD3F6DD11E82BB54005EE7B1 /* HZPhotoBrowser.h */,
+				DD3F6DD21E82BB54005EE7B1 /* HZPhotoBrowser.m */,
+				DD3F6DD31E82BB54005EE7B1 /* HZPhotoBrowserConfig.h */,
+				DD3F6DD41E82BB54005EE7B1 /* HZPhotoBrowserView.h */,
+				DD3F6DD51E82BB54005EE7B1 /* HZPhotoBrowserView.m */,
+				DD3F6DD61E82BB54005EE7B1 /* whiteplaceholder.png */,
+			);
+			path = HZPhotoBrowser;
 			sourceTree = "<group>";
 		};
 		DD4BD9C21E7A70FB0052A807 /* ViewController */ = {
@@ -858,6 +915,10 @@
 			children = (
 				DDD47CB61E7FB4E700110966 /* UserInfoModel.h */,
 				DDD47CB71E7FB4E700110966 /* UserInfoModel.m */,
+				DD3F6DDB1E82BF00005EE7B1 /* PhotoModel.h */,
+				DD3F6DDC1E82BF00005EE7B1 /* PhotoModel.m */,
+				DD3F6DDE1E82C3ED005EE7B1 /* JobsModel.h */,
+				DD3F6DDF1E82C3ED005EE7B1 /* JobsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -865,6 +926,7 @@
 		DDFA12851E77994700CF8771 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DDFD3FFD1E821D6A00C765DD /* JobsView */,
 				DD6214E01E80DB2F004C2DCB /* MeView */,
 				DD6214B21E80DAEA004C2DCB /* HomeView */,
 			);
@@ -907,6 +969,8 @@
 		DDFA12891E7799E400CF8771 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				DD3F6DCE1E82BB54005EE7B1 /* HZPhotoBrowser */,
+				DDFFEEB21E825C8E008908E2 /* PopoverView */,
 				DD1C8E181E79480500C98D0A /* SDCycleScrollView */,
 				DD1C8DD71E790AF600C98D0A /* MBprogressHUD */,
 				DD15242F1E77F8FB00CF7CB9 /* HttpUnits */,
@@ -974,8 +1038,54 @@
 				DDFA12B11E77C6A500CF8771 /* tools.m */,
 				DDFA12AD1E77C69A00CF8771 /* TouchUIView.h */,
 				DDFA12AE1E77C69A00CF8771 /* TouchUIView.m */,
+				DDFD40061E82450600C765DD /* MyView.h */,
+				DDFD40071E82450600C765DD /* MyView.m */,
+				DDFFEEBC1E827706008908E2 /* LableView.h */,
+				DDFFEEBD1E827706008908E2 /* LableView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DDFD3FFD1E821D6A00C765DD /* JobsView */ = {
+			isa = PBXGroup;
+			children = (
+				DDFD3FFF1E821D8800C765DD /* JobsCellView */,
+				DDFD3FFE1E821D7A00C765DD /* JobsHeadView */,
+			);
+			path = JobsView;
+			sourceTree = "<group>";
+		};
+		DDFD3FFE1E821D7A00C765DD /* JobsHeadView */ = {
+			isa = PBXGroup;
+			children = (
+				DDFD40001E821DA000C765DD /* JobsHeadView.h */,
+				DDFD40011E821DA000C765DD /* JobsHeadView.m */,
+			);
+			path = JobsHeadView;
+			sourceTree = "<group>";
+		};
+		DDFD3FFF1E821D8800C765DD /* JobsCellView */ = {
+			isa = PBXGroup;
+			children = (
+				DDFD40031E821F5300C765DD /* JobsViewCell.h */,
+				DDFD40041E821F5300C765DD /* JobsViewCell.m */,
+				DD3F6DE11E83631E005EE7B1 /* ImageGroupView.h */,
+				DD3F6DE21E83631E005EE7B1 /* ImageGroupView.m */,
+			);
+			path = JobsCellView;
+			sourceTree = "<group>";
+		};
+		DDFFEEB21E825C8E008908E2 /* PopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				DDFFEEB31E825C8E008908E2 /* PopoverAction.h */,
+				DDFFEEB41E825C8E008908E2 /* PopoverAction.m */,
+				DDFFEEB51E825C8E008908E2 /* PopoverView.h */,
+				DDFFEEB61E825C8E008908E2 /* PopoverView.m */,
+				DDFFEEB71E825C8E008908E2 /* PopoverViewCell.h */,
+				DDFFEEB81E825C8E008908E2 /* PopoverViewCell.m */,
+			);
+			path = PopoverView;
 			sourceTree = "<group>";
 		};
 		E001011E799D35E26118D5DB /* Pods */ = {
@@ -1100,6 +1210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDFA12611E77955D00CF8771 /* LaunchScreen.storyboard in Resources */,
+				DD3F6DDA1E82BB54005EE7B1 /* whiteplaceholder.png in Resources */,
 				DD15244E1E77F8FB00CF7CB9 /* instruction.strings in Resources */,
 				DD1C8DDE1E790AF600C98D0A /* MBProgressHUD.bundle in Resources */,
 				DDFA125E1E77955D00CF8771 /* Assets.xcassets in Resources */,
@@ -1176,10 +1287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDFFEEBA1E825C8E008908E2 /* PopoverView.m in Sources */,
 				DD1524551E77F8FB00CF7CB9 /* SBJsonStreamWriter.m in Sources */,
 				DDD47CC61E7FD00100110966 /* ChoseViewController.m in Sources */,
 				DD7A430A1E7E2A620042817A /* NSObject+Property.m in Sources */,
 				DDD47CB81E7FB4E700110966 /* UserInfoModel.m in Sources */,
+				DD3F6DE01E82C3ED005EE7B1 /* JobsModel.m in Sources */,
 				DD7A430F1E7E35780042817A /* SearchViewController.m in Sources */,
 				DD3E92041E78E6C4006072A6 /* HyperlinksButton.m in Sources */,
 				DDD47CE21E7FDF0300110966 /* ShopViewController.m in Sources */,
@@ -1190,11 +1303,13 @@
 				DD6214E41E80DB5C004C2DCB /* MeTopView.m in Sources */,
 				DD1C8E3D1E794F9600C98D0A /* XMGSqaureButton.m in Sources */,
 				DDFA12A41E77BCEB00CF8771 /* RegisterViewController.m in Sources */,
+				DDFD40051E821F5300C765DD /* JobsViewCell.m in Sources */,
 				DDFA129C1E779E5200CF8771 /* NavViewController.m in Sources */,
 				DD6214F81E8101E9004C2DCB /* MyJoinViewCell.m in Sources */,
 				DD1524541E77F8FB00CF7CB9 /* SBJsonStreamParserState.m in Sources */,
 				DD4BD9C51E7A71150052A807 /* BaseViewController.m in Sources */,
 				DDFA12B21E77C6A500CF8771 /* tools.m in Sources */,
+				DD3F6DE31E83631E005EE7B1 /* ImageGroupView.m in Sources */,
 				DDFA128D1E779D0300CF8771 /* TabBarViewController.m in Sources */,
 				DD1C8E2E1E79480500C98D0A /* UIView+SDExtension.m in Sources */,
 				DD6214DA1E80DB14004C2DCB /* NearbyViewCell.m in Sources */,
@@ -1204,6 +1319,7 @@
 				DD1524511E77F8FB00CF7CB9 /* SBJsonStreamParser.m in Sources */,
 				DD7A430B1E7E2A620042817A /* NSObject+XXOOProperty.m in Sources */,
 				DD6214DB1E80DB14004C2DCB /* ShopViewCell.m in Sources */,
+				DD3F6DD91E82BB54005EE7B1 /* HZPhotoBrowserView.m in Sources */,
 				DDFA12AF1E77C69A00CF8771 /* TouchUIView.m in Sources */,
 				DDD47CEB1E7FDF2000110966 /* GiftViewController.m in Sources */,
 				DD1524241E77F71600CF7CB9 /* ServiceAPI.m in Sources */,
@@ -1226,6 +1342,8 @@
 				DD1524581E77F8FB00CF7CB9 /* SBJsonTokeniser.m in Sources */,
 				DD1524591E77F8FB00CF7CB9 /* SBJsonUTF8Stream.m in Sources */,
 				DD6214F21E810174004C2DCB /* MyMoneyViewCell.m in Sources */,
+				DD3F6DD81E82BB54005EE7B1 /* HZPhotoBrowser.m in Sources */,
+				DDFFEEB91E825C8E008908E2 /* PopoverAction.m in Sources */,
 				DD3E92111E78F3C4006072A6 /* JobsViewController.m in Sources */,
 				DD7A42E81E7E25D70042817A /* UIImage+compressIMG.m in Sources */,
 				DD1C8DDF1E790AF600C98D0A /* MBProgressHUD.m in Sources */,
@@ -1239,19 +1357,24 @@
 				DDFA12A71E77BCF600CF8771 /* ForgetViewController.m in Sources */,
 				DD1524501E77F8FB00CF7CB9 /* SBJsonParser.m in Sources */,
 				DD1C8E3A1E794F7400C98D0A /* UIView+EXTention.m in Sources */,
+				DDFFEEBB1E825C8E008908E2 /* PopoverViewCell.m in Sources */,
 				DDD47CDB1E7FDC4E00110966 /* GistViewController.m in Sources */,
+				DDFFEEBE1E827706008908E2 /* LableView.m in Sources */,
 				DDFA12B51E77C6B800CF8771 /* ColorFont.m in Sources */,
 				DD7A43021E7E2A2A0042817A /* ResponseBase.m in Sources */,
 				DD7A42FD1E7E29510042817A /* NetWorkManager+UploadVideo.m in Sources */,
 				DD6214DF1E80DB14004C2DCB /* ZYJHeadLineView.m in Sources */,
+				DDFD40081E82450600C765DD /* MyView.m in Sources */,
 				DD1C8DF91E79270100C98D0A /* ShortcutViewController.m in Sources */,
 				DD1C8E281E79480500C98D0A /* TAAbstractDotView.m in Sources */,
+				DD3F6DDD1E82BF00005EE7B1 /* PhotoModel.m in Sources */,
 				DD36321B1E7B8244007D3CFF /* UINavigationBar+Awesome.m in Sources */,
 				DD6214D61E80DB14004C2DCB /* HomeViewTableFootView.m in Sources */,
 				DD15242A1E77F8C900CF7CB9 /* XYSpriteHelper.m in Sources */,
 				DD3E92141E78F3CF006072A6 /* NearbyViewController.m in Sources */,
 				DDD47CE51E7FDF0D00110966 /* CouponViewController.m in Sources */,
 				DDFA12AB1E77BEDB00CF8771 /* UIViewController+BackVC.m in Sources */,
+				DDFD40021E821DA000C765DD /* JobsHeadView.m in Sources */,
 				DD1C8E291E79480500C98D0A /* TAAnimatedDotView.m in Sources */,
 				DDD47CCA1E7FD6BC00110966 /* ChoseAreaViewController.m in Sources */,
 				DD6214D81E80DB14004C2DCB /* EveryDayViewCell.m in Sources */,
@@ -1263,6 +1386,7 @@
 				DD7A42FA1E7E29510042817A /* NetWorkManager+DownloadFile.m in Sources */,
 				DD6214D71E80DB14004C2DCB /* CouponViewCell.m in Sources */,
 				DD1524531E77F8FB00CF7CB9 /* SBJsonStreamParserAdapter.m in Sources */,
+				DD3F6DD71E82BB54005EE7B1 /* HZIndicatorView.m in Sources */,
 				DD1C8E2A1E79480500C98D0A /* TADotView.m in Sources */,
 				DD1524521E77F8FB00CF7CB9 /* SBJsonStreamParserAccumulator.m in Sources */,
 				DD1C8E2D1E79480500C98D0A /* SDCycleScrollView.m in Sources */,

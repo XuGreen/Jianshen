@@ -153,7 +153,7 @@
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > 0) {
         CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT - offsetY) / 64));
-        [self.navigationController.navigationBar lt_setBackgroundColor:[MAINCOLOR colorWithAlphaComponent:alpha]];
+       [self.navigationController.navigationBar lt_setBackgroundColor:[[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]] colorWithAlphaComponent:alpha]];
         self.navigationItem.title=@"我的";
         
         _navBackGroundColor = [MAINCOLOR colorWithAlphaComponent:alpha];

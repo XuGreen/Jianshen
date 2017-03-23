@@ -21,7 +21,7 @@
     return self;
 }
 - (void)initUI{
-    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, wight(444))];
+    UIView *backView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(454))];
     backView.backgroundColor=COMMONRBGCOLOR;
     [self addSubview:backView];
     CouponView= [[UIView alloc]initWithFrame:CGRectMake(0, 15, SCREENWIDTH, backView.xmg_height-15)];
@@ -50,7 +50,7 @@
     
     NSArray *imageArray=[NSArray arrayWithObjects:@"background",@"background",@"background",@"background",@"background",@"background",@"background", nil];
     //滚动视图
-    scrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, moreBtn.xmg_bottom, SCREENWIDTH, wight(300))];
+    scrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, moreBtn.xmg_bottom, SCREENWIDTH, hight(310))];
     scrollview.backgroundColor=[UIColor clearColor];
     scrollview.delegate=self;
     scrollview.showsVerticalScrollIndicator=NO;
@@ -66,13 +66,16 @@
         _CouponImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, hight(271),wight(212))];
         _CouponImageView.image=[UIImage imageNamed:imageArray[i]];
         [ImageView addSubview:_CouponImageView];
-
-        _CouponName=[[UILabel alloc]initWithFrame:CGRectMake(0, _CouponImageView.xmg_bottom+10, hight(270), wight(30))];
-        _CouponName .text=@"健美操大放送";
+        
+        NSString * str=@"健美操大放送";
+        CGRect tempRect=[str boundingRectWithSize:CGSizeMake(SCREENWIDTH-40, hight(30)) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
+        _CouponName=[[UILabel alloc]initWithFrame:CGRectMake(0, _CouponImageView.xmg_bottom+10, tempRect.size.width, tempRect.size.height)];
+        _CouponName .text=str;
         _CouponName.textAlignment=NSTextAlignmentLeft;
         _CouponName.textColor=[tools colorWithHex:0x333333];
         _CouponName.font=[UIFont systemFontOfSize:15];
-        _CouponZhe=[[UILabel alloc]initWithFrame:CGRectMake(0, _CouponName.xmg_bottom+5, hight(150), wight(30))];
+        
+        _CouponZhe=[[UILabel alloc]initWithFrame:CGRectMake(0, _CouponName.xmg_bottom+5, wight(150), hight(30))];
         _CouponZhe .text=@"低至6折";
         _CouponZhe.textColor=[UIColor whiteColor];
         _CouponZhe.backgroundColor=MAINCOLOR;

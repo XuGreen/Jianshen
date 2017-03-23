@@ -25,8 +25,8 @@
 #import <AFNetworking.h>
 #import "BaseResponse.h"
 #import "NetWorkManager.h"
-
-
+#import "MyView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 /**获取设备屏幕的宽高***/
 #define SCREENWIDTH  [UIScreen mainScreen].bounds.size.width

@@ -27,6 +27,8 @@
     UIView *v = [[UIView alloc] initWithFrame:frame];
     [v setBackgroundColor:[UIColor whiteColor]];
     [self.tabBar insertSubview:v atIndex:0];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [tools colorWithHex:0x333333],NSFontAttributeName:[UIFont systemFontOfSize:13]} forState:UIControlStateNormal];
     //隐藏 tabbar 黑线
 //    UITabBar *tabbar = [UITabBar appearance];
 //    [tabbar setBackgroundImage:[UIImage new]];
@@ -49,7 +51,7 @@
     jobs.tabBarItem.image = [UIImage imageNamed:@"recruitment"];
     jobs.tabBarItem.selectedImage = [UIImage imageNamed:@"click-recruitment"];
     jobs.tabBarItem.title=@"招聘";
-    NavViewController *otherNav=[[NavViewController alloc]initWithRootViewController:jobs];
+    NavViewController *jobsNav=[[NavViewController alloc]initWithRootViewController:jobs];
     
     MeViewController *me=[[MeViewController alloc]init];
     me.tabBarItem.image = [UIImage imageNamed:@"my"];
@@ -57,7 +59,7 @@
     me.tabBarItem.title=@"我的";
     NavViewController *meNav=[[NavViewController alloc]initWithRootViewController:me];
     
-    self.viewControllers=@[meNav,homeNav,classNav,otherNav];
+    self.viewControllers=@[jobsNav,homeNav,classNav,meNav];
     
 }
 - (void)didReceiveMemoryWarning {

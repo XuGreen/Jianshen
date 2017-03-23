@@ -19,8 +19,9 @@
 - (void)CreateTopView{
     _TopView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(480))];
     [_TopView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"banner-1"]]];
+    _TopView.contentMode=UIViewContentModeScaleToFill;
     [self addSubview:_TopView];
-      
+
     [self.TopView addSubview:self.personImage];
     [self.TopView addSubview:self.personName];
     [self.TopView addSubview:self.starsView];
@@ -58,7 +59,6 @@
     }
     
 }
-
 - (UIImageView *)personImage{
     if (!_personImage) {
         _personImage=[[UIImageView alloc]initWithFrame:CGRectMake(15,80, wight(136), hight(136))];

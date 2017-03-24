@@ -113,5 +113,10 @@
     return tableView;
 }
 
-
+#pragma mark-line
++ (UIView *)addLineView : (CGRect)frame color : (UIColor *)color{
+    UIView *line = [[UIView alloc]initWithFrame:frame];
+    line.backgroundColor = color;
+    return line;
+}
 @end

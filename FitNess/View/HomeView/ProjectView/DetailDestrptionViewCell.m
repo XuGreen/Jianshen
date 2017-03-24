@@ -24,7 +24,7 @@
 - (void)initUI{
     backView=[MyView uiview:0 bColor:COMMONRBGCOLOR rect:CGRectMake(0, 0, SCREENWIDTH, hight(280))];
     [self addSubview:backView];
-    descriptionView=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, 15, SCREENWIDTH, hight(260))];
+    descriptionView=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, 10, SCREENWIDTH, backView.xmg_height-10)];
     [backView addSubview:descriptionView];
     UIView *deView=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, 0, SCREENWIDTH, hight(100))];
     [descriptionView addSubview:deView];

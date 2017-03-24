@@ -33,4 +33,6 @@
 
 #pragma mark -tableVie
 +(UITableView*)table:(UIColor*)bColor x:(double)x y:(double)y w:(double)w h:(double)h;
+#pragma mark-line
++ (UIView *)addLineView : (CGRect)frame color : (UIColor *)color;
 @end

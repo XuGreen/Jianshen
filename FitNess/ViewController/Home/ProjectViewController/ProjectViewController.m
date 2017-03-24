@@ -17,6 +17,7 @@
 @property(nonatomic,strong) UIButton          *ShopBtn;
 @property(nonatomic,strong) UIButton          *PhoneBtn;
 @property(nonatomic,strong) UIButton          *BuyBtn;
+@property(nonatomic ,strong) UIButton       * clickBtn;//回到顶部按钮
 @end
 
 @implementation ProjectViewController{
@@ -42,6 +43,7 @@
     [self setNav];
     [self.view addSubview:self.tableView];
     [self CreateHeadView];
+    [self createFootView];
     [self creataBottomView];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -121,12 +123,17 @@
     ProjectHeadView *headView=[[ProjectHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(1000))];
     self.tableView.tableHeaderView=headView;
 }
+#pragma mark-构建底部视图
+- (void)createFootView{
+    ProjectBottomVIew *footView=[[ProjectBottomVIew alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(564)*2+hight(260))];
+    self.tableView.tableFooterView=footView;
+}
 #pragma mark-构建TableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 7;
+    return 6;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
@@ -138,32 +145,50 @@
         DetailDestrptionCell.selectionStyle=UITableViewCellSelectionStyleNone;
         return DetailDestrptionCell;
     }else if (indexPath.section==2){
+        ReservationViewCell * ReservationCell=[ReservationViewCell ReservationViewCell:tableView];
+        ReservationCell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return ReservationCell;
+     
+    }else if (indexPath.section==3){
         ProjectdescriptionViewCell *ProjectdescriptionCell=[ProjectdescriptionViewCell ProjectdescriptionViewCell:tableView];
         ProjectdescriptionCell.selectionStyle=UITableViewCellSelectionStyleNone;
         return ProjectdescriptionCell;
-    }
-    else{
-        ProjectdescriptionViewCell *ProjectdescriptionCell=[ProjectdescriptionViewCell ProjectdescriptionViewCell:tableView];
-        ProjectdescriptionCell.selectionStyle=UITableViewCellSelectionStyleNone;
-        return ProjectdescriptionCell;
+    }else if (indexPath.section==4){
+        EvaluateViewCell *EvaluateCell=[EvaluateViewCell EvaluateViewCell:tableView];
+        EvaluateCell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return EvaluateCell;
+    }else{
+        PersonDetailViewCell *PersonDetailCell=[PersonDetailViewCell PersonDetailViewCell:tableView];
+        PersonDetailCell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return PersonDetailCell;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    EvaluateViewCell *evaluate=[[EvaluateViewCell alloc]init];
     if (indexPath.section==0) {
         return hight(326);
     }else if (indexPath.section==1){
         return hight(280);
     }else if (indexPath.section==2){
+        return hight(420);
+    }else if (indexPath.section==3){
         return hight(310);
+    }else if (indexPath.section==4){
+        return hight(600)+evaluate.ReplyView.xmg_height;
     }else{
-        return hight(310);
+        return hight(170);
     }
 }
 #pragma mark -UIScrollViewDelegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat y = -scrollView.contentOffset.y;
-    
+    if (y <= -1440) {
+        [self.view addSubview:self.clickBtn];
+    }else{
+        [self.clickBtn removeFromSuperview];
+    }
+
     if (y <= -hight(230.0)){
         [_nav setLineColor:[UIColor clearColor]];
         _navLineColor = [UIColor clearColor];
@@ -200,6 +225,7 @@
 - (void)action_onShareButton : (UIButton *) sender {
   XQQLogFunc
 }
+
 #pragma mark tableview
 
 -(UITableView *)tableView{
@@ -214,5 +240,25 @@
         _tableView.tableFooterView = [[UIView alloc]init];
     }
     return _tableView;
+}
+-(UIButton *)clickBtn{
+    if (!_clickBtn) {
+        _clickBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_clickBtn setImage:[UIImage imageNamed:@"top"] forState:UIControlStateNormal];
+        _clickBtn.frame = CGRectMake(SCREENWIDTH-50,SCREENHEIGHT-99, 40, 40);
+        _clickBtn.layer.cornerRadius = _clickBtn.xmg_width/2;
+        [_clickBtn addTarget:self action:@selector(backToTop) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _clickBtn;
+}
+-(void)backToTop{
+    [UIView animateWithDuration:2.0f animations:^{
+        [self.tableView setContentOffset:CGPointMake(0,0) animated:YES];
+    }];
+}
+-(float)getTableViewHeight
+{
+    [self.tableView layoutIfNeeded];
+    return self.tableView.contentSize.height;
 }
 @end

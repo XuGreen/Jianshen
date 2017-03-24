@@ -22,7 +22,7 @@
 - (void)initUI{
     backView=[MyView uiview:0 bColor:COMMONRBGCOLOR rect:CGRectMake(0, 0, SCREENWIDTH, hight(326))];
     [self addSubview:backView];
-    SaverView=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, 15, SCREENWIDTH, hight(306))];
+    SaverView=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, 10, SCREENWIDTH, backView.xmg_height-10)];
     [backView addSubview:SaverView];
     UIImageView *saverImage=[MyView Image:@"ensure" corner:0 rect:CGRectMake(0, 0, SCREENWIDTH, SaverView.xmg_height/3)];
     [SaverView addSubview:saverImage];
@@ -61,9 +61,6 @@
     arrow2.image = [UIImage imageNamed:@"right"];
     [conponView2 addSubview:arrow2];
 
-
-  
-    
 }
 
 - (UIView *)addLineView : (CGRect)frame color : (UIColor *)color{

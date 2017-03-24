@@ -12,6 +12,10 @@
 #import "SaverViewCell.h"
 #import "DetailDestrptionViewCell.h"//详情描述
 #import "ProjectdescriptionViewCell.h"//项目说明
+#import "PersonDetailViewCell.h"//personView
+#import "ProjectBottomVIew.h"
+#import "ReservationViewCell.h"
+#import "EvaluateViewCell.h"
 
 @interface ProjectViewController : UIViewController
 

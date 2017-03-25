@@ -14,6 +14,8 @@
 #import "MySortViewCell.h"//我的健身卡等等
 #import "MyJoinViewCell.h"//加入
 #import "MyShopViewCell.h"//我的店铺
+#import "SubscribeViewCell.h"//我的预约单
+#import "ProductLanunchViewController.h"
 
 @interface MeViewController : UIViewController
 

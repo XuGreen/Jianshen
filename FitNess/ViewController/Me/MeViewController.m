@@ -35,15 +35,16 @@
     _nav = (NavViewController *)self.navigationController;
     [_nav setLineColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+
     [self setNav];
     [self.view addSubview:self.tableView];
     [self SetTopView];
+    [self SetNotifiCation];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self.navigationController.navigationBar lt_setBackgroundColor:_navBackGroundColor];
     [_nav setLineColor:_navLineColor];
-   
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -53,6 +54,8 @@
  
 }
 - (void)setNav{
+    //修改导航栏标题颜色,文字大小,文字种类
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.view.backgroundColor=COMMONRBGCOLOR;
     UIButton *SettingButton=[UIButton buttonWithType:UIButtonTypeCustom];
     SettingButton.frame=CGRectMake(0, 0, wight(44), hight(44));
@@ -66,6 +69,25 @@
     [MsgButton addTarget:self action:@selector(MsgClick:) forControlEvents:UIControlEventTouchUpInside];
      UIBarButtonItem *msgBarButon = [[UIBarButtonItem alloc]initWithCustomView:MsgButton];
         self.navigationItem.rightBarButtonItems=@[msgBarButon,settingBarButon];
+}
+- (void)SetNotifiCation{
+    
+    //发布产品
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ProductClick)  name:ProductLaunch object:nil];
+    //产品管理
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ProductMangerClick)  name:ProductManger object:nil];
+    //订单管理
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(OrderMangerClick)  name:OrderManger object:nil];
+    //员工
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PersonClick)  name:Personnel object:nil];
+    //卡型管理
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(CardMangerClick)  name: CardManger object:nil];
+    //优惠券管理
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(CouponMangerClick)  name:CouponManger object:nil];
+    //店铺管理
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ShopClick)  name:ShopManger object:nil];
+    //认证管理
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(certifficateClick)  name:CertificateManger object:nil];
 }
 //设置
 - (void)settingClick:(UIButton *)sender{
@@ -91,7 +113,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,6 +134,10 @@
         MyJoinViewCell *joinCell=[MyJoinViewCell MyJoinViewCell:tableView];
         joinCell.selectionStyle =UITableViewCellSelectionStyleNone;
         return joinCell;
+    }else if(indexPath.section==4){
+        SubscribeViewCell *SubscribeCell=[SubscribeViewCell SubscribeViewCell:tableView];
+        SubscribeCell.selectionStyle =UITableViewCellSelectionStyleNone;
+        return SubscribeCell;
     }else{
         MyShopViewCell *shopCell=[MyShopViewCell MyShopViewCell:tableView];
         shopCell.selectionStyle =UITableViewCellSelectionStyleNone;
@@ -122,13 +148,15 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return hight(280);
+        return hight(420);
     }else if(indexPath.section==1){
         return hight(400);
     }else if(indexPath.section==2){
         return hight(396);
     }else if(indexPath.section==3){
         return hight(120);
+    }else if(indexPath.section==4){
+        return hight(300);
     }else{
          return hight(476);
     }
@@ -164,6 +192,40 @@
         [self.navigationController.navigationBar lt_setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0]];
         _navBackGroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
     }
+}
+//发布产品
+- (void)ProductClick{
+    ProductLanunchViewController *product=[[ProductLanunchViewController alloc]init];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:product];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+//产品管理
+- (void)ProductMangerClick{
+    XQQLogFunc
+}
+//订单管理
+- (void)OrderMangerClick{
+    XQQLogFunc
+}
+//员工
+- (void)PersonClick{
+    XQQLogFunc
+}
+//卡型管理
+- (void)CardMangerClick{
+    XQQLogFunc
+}
+//优惠券管理
+- (void)CouponMangerClick{
+    XQQLogFunc
+}
+//店铺管理
+- (void)ShopClick{
+    XQQLogFunc
+}
+//认证管理
+- (void)certifficateClick{
+    XQQLogFunc
 }
 #pragma marl -懒加载
 -(UITableView *)tableView{

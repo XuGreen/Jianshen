@@ -27,20 +27,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    JobsModel *model=[[JobsModel alloc]init];
-    model.PositionName=@"健身教练";
-    model.workingAge=@"1-3年";
-    model.PhotoArray=@[@"https://a-ssl.duitang.com/uploads/item/201601/14/20160114210833_eyNhF.jpeg",
-                       @"https://a-ssl.duitang.com/uploads/item/201511/01/20151101005547_WB3Ar.jpeg",
-                       @"https://a-ssl.duitang.com/uploads/item/201407/14/20140714145226_uGc3r.gif",
-                       @"https://a-ssl.duitang.com/uploads/item/201601/14/20160114210513_Hysej.jpeg"];
-    [self.modelArray addObject:model];
     [self setNav];
     [self.view addSubview:self.tableView];
     [self CreateTopView];
 }
 -(void)setNav{
     self.navigationItem.title=@"招聘";
+    //修改导航栏标题颜色,文字大小,文字种类
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.view.backgroundColor=COMMONRBGCOLOR;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg"] forBarMetrics:UIBarMetricsDefault];
     

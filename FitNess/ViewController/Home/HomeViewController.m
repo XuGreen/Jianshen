@@ -330,5 +330,8 @@
         [self.tableView setContentOffset:CGPointMake(0,0) animated:YES];
     }];
 }
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

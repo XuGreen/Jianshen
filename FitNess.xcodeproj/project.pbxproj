@@ -111,6 +111,8 @@
 		DDD47CE51E7FDF0D00110966 /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CE41E7FDF0D00110966 /* CouponViewController.m */; };
 		DDD47CE81E7FDF1600110966 /* NearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CE71E7FDF1600110966 /* NearViewController.m */; };
 		DDD47CEB1E7FDF2000110966 /* GiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD47CEA1E7FDF2000110966 /* GiftViewController.m */; };
+		DDD842DB1E861A170013FCAF /* SubscribeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD842DA1E861A170013FCAF /* SubscribeViewCell.m */; };
+		DDD842DF1E8636FC0013FCAF /* ProductLanunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD842DE1E8636FC0013FCAF /* ProductLanunchViewController.m */; };
 		DDE362D81E83B83E00E70FE2 /* PPNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE362D71E83B83E00E70FE2 /* PPNumberButton.m */; };
 		DDE362DE1E83BCF100E70FE2 /* SaverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE362DD1E83BCF100E70FE2 /* SaverViewCell.m */; };
 		DDE362E11E83CE2200E70FE2 /* DetailDestrptionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE362E01E83CE2200E70FE2 /* DetailDestrptionViewCell.m */; };
@@ -370,6 +372,10 @@
 		DDD47CE71E7FDF1600110966 /* NearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearViewController.m; sourceTree = "<group>"; };
 		DDD47CE91E7FDF2000110966 /* GiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftViewController.h; sourceTree = "<group>"; };
 		DDD47CEA1E7FDF2000110966 /* GiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftViewController.m; sourceTree = "<group>"; };
+		DDD842D91E861A170013FCAF /* SubscribeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeViewCell.h; sourceTree = "<group>"; };
+		DDD842DA1E861A170013FCAF /* SubscribeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeViewCell.m; sourceTree = "<group>"; };
+		DDD842DD1E8636FC0013FCAF /* ProductLanunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductLanunchViewController.h; sourceTree = "<group>"; };
+		DDD842DE1E8636FC0013FCAF /* ProductLanunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductLanunchViewController.m; sourceTree = "<group>"; };
 		DDE362D61E83B83E00E70FE2 /* PPNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPNumberButton.h; sourceTree = "<group>"; };
 		DDE362D71E83B83E00E70FE2 /* PPNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNumberButton.m; sourceTree = "<group>"; };
 		DDE362DC1E83BCF100E70FE2 /* SaverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaverViewCell.h; sourceTree = "<group>"; };
@@ -616,6 +622,7 @@
 		DD3E92081E78F333006072A6 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				DDD842DC1E8636C40013FCAF /* ProductViewController */,
 				DD3E920C1E78F39F006072A6 /* MeViewController.h */,
 				DD3E920D1E78F39F006072A6 /* MeViewController.m */,
 			);
@@ -709,6 +716,7 @@
 		DD6214E01E80DB2F004C2DCB /* MeView */ = {
 			isa = PBXGroup;
 			children = (
+				DDD842D81E8619F30013FCAF /* SubscribeView */,
 				DD6214EC1E80F404004C2DCB /* MeShopView */,
 				DD6214EB1E80F3F9004C2DCB /* MeJoinView */,
 				DD6214EA1E80F3E3004C2DCB /* MeSortView */,
@@ -956,6 +964,24 @@
 				DDD47CE11E7FDF0300110966 /* ShopViewController.m */,
 			);
 			path = ShopViewController;
+			sourceTree = "<group>";
+		};
+		DDD842D81E8619F30013FCAF /* SubscribeView */ = {
+			isa = PBXGroup;
+			children = (
+				DDD842D91E861A170013FCAF /* SubscribeViewCell.h */,
+				DDD842DA1E861A170013FCAF /* SubscribeViewCell.m */,
+			);
+			path = SubscribeView;
+			sourceTree = "<group>";
+		};
+		DDD842DC1E8636C40013FCAF /* ProductViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDD842DD1E8636FC0013FCAF /* ProductLanunchViewController.h */,
+				DDD842DE1E8636FC0013FCAF /* ProductLanunchViewController.m */,
+			);
+			path = ProductViewController;
 			sourceTree = "<group>";
 		};
 		DDFA12421E77955C00CF8771 = {
@@ -1440,11 +1466,13 @@
 				DDFA12B21E77C6A500CF8771 /* tools.m in Sources */,
 				DD3F6DE31E83631E005EE7B1 /* ImageGroupView.m in Sources */,
 				DDFA128D1E779D0300CF8771 /* TabBarViewController.m in Sources */,
+				DDD842DF1E8636FC0013FCAF /* ProductLanunchViewController.m in Sources */,
 				DD1C8E2E1E79480500C98D0A /* UIView+SDExtension.m in Sources */,
 				DD6214DA1E80DB14004C2DCB /* NearbyViewCell.m in Sources */,
 				DD15242E1E77F8DD00CF7CB9 /* Constants.m in Sources */,
 				DDD47CD61E7FD7FF00110966 /* SaoViewController.m in Sources */,
 				DD6B62A11E84C02E00F16CB1 /* CollectionFootViewReusableView.m in Sources */,
+				DDD842DB1E861A170013FCAF /* SubscribeViewCell.m in Sources */,
 				DD0DAFF61E84F99100A2E2EA /* LXMRulerView.m in Sources */,
 				DD0DAFEC1E84EC5300A2E2EA /* ReservationViewCell.m in Sources */,
 				DD6214DE1E80DB14004C2DCB /* ZYJHeadLineModel.m in Sources */,

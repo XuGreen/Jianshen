@@ -19,4 +19,13 @@
 
 #define MOREGISTNOTIFICATION @"moreGistNotification"
 
+#define ProductLaunch   @"productLaunch"
+#define ProductManger   @"productManger"
+#define OrderManger      @"orderManger"
+#define Personnel           @"personnel"
+#define CardManger   @"cardManger"
+#define CouponManger   @"couponManger"
+#define ShopManger   @"shopManger"
+#define CertificateManger   @"certificateManger"
+
 #endif /* Notification_h */

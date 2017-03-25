@@ -51,10 +51,12 @@
         serverBtn.titleLabel.font=[UIFont systemFontOfSize:14];
         [serverBtn setTitleColor:[tools colorWithHex:0x333333] forState:UIControlStateNormal];
         serverBtn.layer.borderWidth=0.5;
+        serverBtn.tag=1000+i;
         serverBtn.layer.borderColor=[[tools colorWithHex:0xe5e5e5] CGColor];
         CGFloat space = 15.0;
         [serverBtn layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop
                                    imageTitleSpace:space];
+        [serverBtn addTarget:self action:@selector(serverClick:) forControlEvents:UIControlEventTouchUpInside];
         [shopView1 addSubview:serverBtn];
     }
     UIView *shopView2=[[UIView alloc]initWithFrame:CGRectMake(0, shopView1.xmg_bottom, SCREENWIDTH, hight(188))];
@@ -69,6 +71,8 @@
         serverBtn1.titleLabel.font=[UIFont systemFontOfSize:14];
         [serverBtn1 setTitleColor:[tools colorWithHex:0x333333] forState:UIControlStateNormal];
         serverBtn1.layer.borderWidth=0.5;
+        serverBtn1.tag=2000+i;
+        [serverBtn1 addTarget:self action:@selector(server1Click:) forControlEvents:UIControlEventTouchUpInside];
         serverBtn1.layer.borderColor=[[tools colorWithHex:0xe5e5e5] CGColor];
         CGFloat space = 15.0;
         [serverBtn1 layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleTop
@@ -80,6 +84,51 @@
     UIView *line = [[UIView alloc]initWithFrame:frame];
     line.backgroundColor = color;
     return line;
+}
+#pragma mark -发布产品
+- (void)serverClick:(UIButton *)sender{
+    switch (sender.tag) {
+        case 1000:{
+               [[NSNotificationCenter defaultCenter]postNotificationName:ProductLaunch object:self];
+                 }
+            break;
+        case 1001:{
+             [[NSNotificationCenter defaultCenter]postNotificationName:ProductManger object:self];
+        }
+          break;
+        case 1002:{
+            [[NSNotificationCenter defaultCenter]postNotificationName:OrderManger object:self];
+        }
+            break;
+        case 1003:{
+            [[NSNotificationCenter defaultCenter]postNotificationName:Personnel object:self];
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)server1Click:(UIButton *)sender{
+    switch (sender.tag) {
+        case 2000:{
+            [[NSNotificationCenter defaultCenter]postNotificationName:CardManger object:self];
+        }
+            break;
+        case 2001:{
+            [[NSNotificationCenter defaultCenter]postNotificationName:CouponManger object:self];
+        }
+            break;
+        case 2002:{
+            [[NSNotificationCenter defaultCenter]postNotificationName:ShopManger object:self];
+        }
+            break;
+        case 2003:{
+            [[NSNotificationCenter defaultCenter]postNotificationName:CertificateManger object:self];
+        }
+            break;
+        default:
+            break;
+    }
 }
 + (instancetype)MyShopViewCell:(UITableView *)tableView{
     NSString *identifier=NSStringFromClass([self class]);

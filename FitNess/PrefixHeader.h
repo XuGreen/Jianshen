@@ -53,4 +53,6 @@
 #define  LINECOLOR [UIColor colorWithRed:222.0/255 green:223.0/255 blue:224.0/255 alpha:0.5f]
 #define  MAINCOLOR [UIColor colorWithRed:255/255.0 green:184/255.0 blue:31/255.0 alpha:1.0]
 
+#define weakSelf(type) __weak typeof(type) weak##type = self
+
 #endif /* PrefixHeader_h */

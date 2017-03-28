@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductTypeViewController.h"
+#import "ChoosePhotoView.h"
 
-@interface ProductLanunchViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
+
+@interface ProductLanunchViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,SelectTypeDelegate>
 
 @end

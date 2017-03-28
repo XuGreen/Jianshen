@@ -55,7 +55,7 @@
     scrollview.delegate=self;
     scrollview.showsVerticalScrollIndicator=NO;
     scrollview.showsHorizontalScrollIndicator=NO;
-    scrollview.contentSize=CGSizeMake(hight(271)*imageArray.count+50, 0);
+    scrollview.contentSize=CGSizeMake(wight(271)*imageArray.count+50, 0);
     [scrollview setContentOffset:CGPointMake(0, 0)];
     [CouponView addSubview:scrollview];
 

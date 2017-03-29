@@ -78,7 +78,6 @@
  to start an array and then repeatedly call -writeObject: with various objects
  before finishing off with a -writeArrayClose call.
   
- @see @ref json2objc
 
  */
 

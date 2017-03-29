@@ -34,7 +34,6 @@
 
  This uses SBJsonStreamParser internally.
 
- @see @ref objc2json
 
  */
 

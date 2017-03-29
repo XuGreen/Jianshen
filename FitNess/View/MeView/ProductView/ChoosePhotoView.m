@@ -53,7 +53,7 @@
     [_ChoosePhotoBtn addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
     [_backgroundView addSubview:_ChoosePhotoBtn];
     
-    _ChoosrLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, _backgroundView.bounds.size.height / 2.0 + 20.0, _backgroundView.bounds.size.width, 20.0)];
+    _ChoosrLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, _backgroundView.bounds.size.height / 2.0 + 25.0, _backgroundView.bounds.size.width, 20.0)];
     _ChoosrLabel.text = @"(可多张)";
     _ChoosrLabel.hidden=NO;
     _ChoosrLabel.font = [UIFont systemFontOfSize:13.0];
@@ -78,8 +78,9 @@
     addImageBtn.backgroundColor=XQQColorA(237, 237, 237);
     [addImageBtn setImage:[UIImage imageNamed:@"upload1"] forState:UIControlStateNormal];
     [_scrollview addSubview:addImageBtn];
+    UIImageView *imageView;
     for (int i=0; i<photoArray.count; i++) {
-        UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(addImageBtn.xmg_right+wight(14)+wight(194)*i, 10, wight(180), hight(180))];
+        imageView=[[UIImageView alloc]initWithFrame:CGRectMake(addImageBtn.xmg_right+wight(14)+wight(194)*i, 10, wight(180), hight(180))];
         imageView.userInteractionEnabled=YES;
         imageView.tag=i;
         UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singTap:)];
@@ -93,8 +94,15 @@
         UITapGestureRecognizer *tap2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(deleteTap2:)];
         [delete addGestureRecognizer:tap2];
         [imageView addSubview:delete];
+        if (i==0) {
+            UIButton *fengmain=[MyView TextButton:@"封面" bColor:[tools colorWithHex:0xFFb81F] tColor: [UIColor whiteColor] corner:0 rect:CGRectMake(0, imageView.xmg_height-hight(180)/5, wight(180), hight(180)/5)];
+            fengmain.alpha=0.8;
+            [imageView addSubview:fengmain];
+        }
     }
     
+ 
+  
 }
 - (void)singTap:(UITapGestureRecognizer *)sender{
     UITapGestureRecognizer *singleTap=(UITapGestureRecognizer *)sender;

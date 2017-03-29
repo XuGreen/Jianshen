@@ -27,7 +27,7 @@
 +(NSString*)nowDate;// 获取当前时间
 +(NSString*)nowDateInDay;//获得当前日期
 +(BOOL)isValidateMobile:(NSString *)mobile;//判断是不是手机号
-+(void)showMessage:(NSString *)message:(CGRect)frame;// 黑色的消息提醒框
++(void)showMessage:(NSString *)messageString:(CGRect)frame;// 黑色的消息提醒框
 +(NSString *)changeFloat:(NSString *)stringFloat;// 去掉 float后面多余的0
 +(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize; // 等比例缩放
 +(UIColor*) colorWithHex:(NSInteger)hexValue; // 16进制颜色值转换

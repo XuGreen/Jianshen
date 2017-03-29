@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController<ServiceAPIDelegate>{
-    ServiceAPI *SA;
+@interface LoginViewController : UIViewController{
 }
 @end

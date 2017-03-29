@@ -71,7 +71,7 @@
     textfiled.backgroundColor = [UIColor whiteColor];
     textfiled.layer.cornerRadius = 0.0f;
     textfiled.placeholder = hint;
-    textfiled.font = [UIFont fontWithName:@"Avenir-Book" size:14];
+    textfiled.font = [UIFont fontWithName:@"Avenir-Book" size:15];
     textfiled.autocorrectionType = UITextAutocorrectionTypeNo;
     textfiled.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textfiled.returnKeyType = UIReturnKeyDone;

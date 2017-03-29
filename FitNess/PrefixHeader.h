@@ -28,6 +28,14 @@
 #import "MyView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "TMMuiLazyScrollView.h"
+#import "BaseViewController.h"
+
+
+
+
+
+
+
 
 /**获取设备屏幕的宽高***/
 #define SCREENWIDTH  [UIScreen mainScreen].bounds.size.width

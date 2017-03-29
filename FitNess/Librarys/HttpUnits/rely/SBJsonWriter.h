@@ -33,8 +33,6 @@
  @brief The JSON writer class.
  
  This uses SBJsonStreamWriter internally.
- 
- @see @ref json2objc
  */
 
 @interface SBJsonWriter : NSObject

@@ -40,8 +40,6 @@
  Although defined as a category on NSObject it is only defined for NSArray and NSDictionary.
  
  @return the receiver encoded in JSON, or nil on error.
- 
- @see @ref objc2json
  */
 - (NSString *)JSONRepresentation;
 
@@ -58,7 +56,6 @@
  
  @return the NSDictionary or NSArray represented by the receiver, or nil on error.
  
- @see @ref json2objc
  */
 - (id)JSONValue;
 
@@ -72,7 +69,6 @@
  
  @return the NSDictionary or NSArray represented by the receiver, or nil on error.
  
- @see @ref json2objc
  */
 - (id)JSONValue;
 

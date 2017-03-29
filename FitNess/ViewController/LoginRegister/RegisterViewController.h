@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController<ServiceAPIDelegate>{
-    ServiceAPI *SA;
+@interface RegisterViewController : UIViewController{
     UILabel *CodeLabel;
     NSTimer *timer;
     int secondCountDown;

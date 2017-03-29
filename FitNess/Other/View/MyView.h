@@ -31,8 +31,8 @@
 #pragma mark -textView
 +(UITextView*)textView:(NSString*)hint hintColor:(UIColor*)hColor bColor:(UIColor*)bcolor tColor:(UIColor*)tcolor corner:(double)corner rect:(CGRect)rect;
 
-#pragma mark -tableVie
-+(UITableView*)table:(UIColor*)bColor x:(double)x y:(double)y w:(double)w h:(double)h;
+//#pragma mark -tableVie
+//+(UITableView*)table:(UIColor*)bColor x:(double)x y:(double)y w:(double)w h:(double)h;
 #pragma mark-line
 + (UIView *)addLineView : (CGRect)frame color : (UIColor *)color;
 @end

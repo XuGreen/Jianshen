@@ -83,8 +83,8 @@
     int time = 30*(nowMonth - oldmonth) + (nowDay - oldday);
     NSString *countdays = [[NSString alloc]initWithFormat:@"%d",time];
     
-    NSString *savelastday = [[NSString alloc]initWithFormat:@"%d",nowDay];
-    NSString *savelastmonth = [[NSString alloc]initWithFormat:@"%d",nowMonth];
+    NSString *savelastday = [[NSString alloc]initWithFormat:@"%ld",(long)nowDay];
+    NSString *savelastmonth = [[NSString alloc]initWithFormat:@"%ld",(long)nowMonth];
     
     if (time >= 3) {
         // 保存本次刷新的时间
@@ -189,7 +189,7 @@
 }
 
 // 黑色的消息提醒框
-+(void)showMessage:(NSString *)message:(CGRect)frame{
++(void)showMessage:(NSString *)messageString:(CGRect)frame{
     UIWindow * window = [UIApplication sharedApplication].keyWindow;
     UIView *showview =  [[UIView alloc]init];
     showview.backgroundColor = [UIColor blackColor];
@@ -200,9 +200,9 @@
     [window addSubview:showview];
     
     UILabel *label = [[UILabel alloc]init];
-    CGSize LabelSize = [message sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(290, 9000)];
+    CGSize LabelSize = [messageString sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(290, 9000)];
     label.frame = CGRectMake(10, 5, LabelSize.width, LabelSize.height);
-    label.text = message;
+    label.text = messageString;
     label.textColor = [UIColor whiteColor];
     label.textAlignment = 1;
     label.backgroundColor = [UIColor clearColor];

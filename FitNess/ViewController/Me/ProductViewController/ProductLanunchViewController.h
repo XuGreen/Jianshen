@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ProductTypeViewController.h"
 #import "ChoosePhotoView.h"
+#import "ProductDetailViewController.h"
+#import "ServerDescribeViewController.h"
+#import "ApplyPersonViewController.h"
+#import "AttentionStringViewController.h"
+#import "ProtectionViewController.h"
+#import "ReservationViewController.h"
 
 
-@interface ProductLanunchViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,SelectTypeDelegate>
+@interface ProductLanunchViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,SelectTypeDelegate,UITextViewDelegate,InputProductDetailDelegate,ServerDescribeDelegate,ApplyPersonDelegate,AttentionStringDelegate>
 
 @end

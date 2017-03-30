@@ -59,10 +59,10 @@
     pickerView.delegate=self;
     pickerView.dataSource=self;
     [bottomView addSubview:pickerView];
-//    [pickerView selectRow:1 inComponent:1 animated:YES];
-//    [pickerView selectRow:1 inComponent:3 animated:YES];
-//    [pickerView selectRow:1 inComponent:5 animated:YES];
-//    [pickerView selectRow:1 inComponent:7 animated:YES];
+    [pickerView selectRow:8 inComponent:1 animated:YES];
+    [pickerView selectRow:0 inComponent:3 animated:YES];
+    [pickerView selectRow:22 inComponent:5 animated:YES];
+    [pickerView selectRow:0 inComponent:7 animated:YES];
     
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         CGRect frame=bottomView.frame;
@@ -204,13 +204,13 @@
     }else{
         if (self.done) {
             if (!self.seletedhourStr1) {
-                self.seletedhourStr1=[self.hourdatas1 firstObject];
+                self.seletedhourStr1=[self.hourdatas1 objectAtIndex:8];
             }
             if(!self.seletedminStr1){
                 self.seletedminStr1=[self.mindatas1 firstObject];
             }
             if(!self.seletedhourStr2){
-                self.seletedhourStr2=[self.hourdatas2 firstObject];
+                self.seletedhourStr2=[self.hourdatas2 objectAtIndex:22];
             }
             if(!self.seletedminStr2){
                 self.seletedminStr2=[self.mindatas2 firstObject];

@@ -13,17 +13,18 @@
 #import "ChooseTimeView.h"
 #import "UpdateTimeView.h"
 
-@interface ReservationViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface ReservationViewController ()<UITableViewDelegate,UITableViewDataSource,ReservationTimeDelegate>{
     ServerView *header;
     NSString *timeStr;
 }
 @property(nonatomic,strong) UITableView    *tableView;
-@property(nonatomic, strong)NSArray   *hourArray1;
-@property(nonatomic, strong)NSArray   *minArray1;
-@property(nonatomic, strong)NSArray   *hourArray2;
-@property(nonatomic, strong)NSArray   *minArray2;
+@property(nonatomic, strong)NSMutableArray   *hourArray1;
+@property(nonatomic, strong)NSMutableArray   *minArray1;
+@property(nonatomic, strong)NSMutableArray   *hourArray2;
+@property(nonatomic, strong)NSMutableArray   *minArray2;
 @property (strong, nonatomic) NSArray *dataSourceForWeek;
 @property (strong, nonatomic) NSArray *dataSourceForDay;
+@property (strong, nonatomic) NSMutableArray *timeArray;
 
 @end
 
@@ -31,18 +32,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _hourArray1 = [NSArray arrayWithObjects:@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22", nil];
-    _minArray1 = [NSArray arrayWithObjects:@"00",@"30" ,@"00",nil];
-    _hourArray2=  [NSArray arrayWithObjects:@"08",@"09",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22", nil];
-    _minArray2 = [NSArray arrayWithObjects:@"00",@"30" ,@"00",nil];
+    _hourArray1 = [NSMutableArray arrayWithCapacity:24];
+    _minArray1 = [NSMutableArray arrayWithCapacity:60];
+    _hourArray2 = [NSMutableArray arrayWithCapacity:24];
+    _minArray2 = [NSMutableArray arrayWithCapacity:60];
+    for (int i=0; i<24; i++) {
+        if (i<10) {
+            [_hourArray1 addObject:[NSString stringWithFormat:@"0%d",i]];
+            
+        }else{
+            [_hourArray1 addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+        
+    }
+    for (int i=0; i<60; i++) {
+        if (i<10) {
+            [_minArray1 addObject:[NSString stringWithFormat:@"0%d",i]];
+        }else{
+            [_minArray1 addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+        
+    }
+    for (int i=0; i<24; i++) {
+        if (i<10) {
+            [_hourArray2 addObject:[NSString stringWithFormat:@"0%d",i]];
+        }else{
+            [_hourArray2 addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+        
+    }
+    for (int i=0; i<60; i++) {
+        if (i<10) {
+            [_minArray2 addObject:[NSString stringWithFormat:@"0%d",i]];
+        }else{
+            [_minArray2 addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+        
+    }
+    
     _dataSourceForDay=[[NSArray alloc]init];
     _dataSourceForWeek=[[NSArray alloc]init];
+    _timeArray=[NSMutableArray array];
     [self setNav];
     [self.view addSubview:self.tableView];
     [self setHeaderView];
     [self setWeek];
     [self setDate];
-    
     
 }
 -(void)setNav{
@@ -55,7 +90,16 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backItem;
     
+    UIButton *CompleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CompleteButton.frame = CGRectMake(0, 0, 50, 35);
+    [CompleteButton setTitle:@"完成" forState: UIControlStateNormal];
+    [CompleteButton setTitleColor:[tools colorWithHex:0x333333] forState:UIControlStateNormal];
+    [CompleteButton addTarget:self action:@selector(CompleteButton:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *CompleteItem = [[UIBarButtonItem alloc]initWithCustomView:CompleteButton];
+    self.navigationItem.rightBarButtonItem = CompleteItem;
+    
 }
+
 - (void)setWeek{
     NSMutableArray *arr = [NSMutableArray array];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -111,6 +155,9 @@
     [self.navigationController popViewControllerAnimated:YES];
    
 }
+-(void)CompleteButton:(UIButton *)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)updateTimeTap:(UITapGestureRecognizer *)sender{
     [self selectedTimeTypes:_hourArray1 mindata1:_minArray1 hourdata2:_hourArray2 mindata2:_minArray2 hourTitle:@"" mintitle:@"" success:^(NSString *hourstr1,NSString *minstr1,NSString *hourstr2,NSString *minstr2){
         header.TimeLabel.text=[NSString stringWithFormat:@"%@:%@-%@:%@",hourstr1,minstr1,hourstr2,minstr2];
@@ -125,9 +172,11 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         ReservationTimeViewCell * ReservationCell=[ReservationTimeViewCell ReservationTimeViewCell:tableView];
+       ReservationCell.delegate=self;
         ReservationCell.selectionStyle =UITableViewCellSelectionStyleNone;
        ReservationCell.dayLabel.text=[_dataSourceForWeek objectAtIndex:indexPath.row];
        ReservationCell.dateLabel.text=[_dataSourceForDay objectAtIndex:indexPath.row];
+
         return ReservationCell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -147,7 +196,12 @@
        
     };
     [appdelegate.window addSubview:chooseView];
-    
+}
+#pragma mark -ReservationTimeDelegate
+- (void)ReservationTimeWithArray:(NSMutableArray *)timeArray{
+    _timeArray=timeArray;
+
+    [self.tableView reloadData];
 }
 
 #pragma marl -懒加载

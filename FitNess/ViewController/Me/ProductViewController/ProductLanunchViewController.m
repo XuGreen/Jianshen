@@ -24,6 +24,7 @@
 @property(nonatomic,strong) UITableView    *tableView;
 @property(nonatomic,strong) UIButton    *Button1;
 @property(nonatomic,strong) UIButton    *SubmitBtn;
+@property (nonatomic, strong) UILabel  *dateButton;//截止时间选择
 @property(nonatomic,strong) NSString    *ProductType;//产品类型
 @property(nonatomic,strong) NSString    *ProductDetail;//产品详情
 @property(nonatomic,strong) NSString    *ServerDescription;//服务描述
@@ -33,8 +34,10 @@
 @property(nonatomic,strong) NSString    *ReservationTime;//预约时间
 @property(nonatomic,strong) NSString    *ApplyPerson;//适用人群
 @property(nonatomic,strong) NSString    *AttentionString;// 注意事项
+
 @property (nonatomic, strong) UILabel       *showTipsLabel1;
 @property (nonatomic, strong) UILabel       *showTipsLabel2;
+@property (nonatomic, strong) UILabel       *showTipsLabel3;
 @end
 
 @implementation ProductLanunchViewController
@@ -177,6 +180,14 @@
             TitleFuLabel.text=[NSString stringWithFormat:@"%lu/50字",[textView.text length]];
         }
             break;
+        case 300:{
+            if ([textView.text isEqualToString:@""]) {
+                self.showTipsLabel3.hidden=NO;
+            }else{
+                self.showTipsLabel3.hidden=YES;
+            }
+        }
+            break;
         default:
             break;
     }
@@ -312,7 +323,7 @@
             case 6:{
                 field.frame=CGRectMake(cell.contentView.xmg_right-wight(360),hight(28), wight(400), hight(50));
                 field.enabled=NO;
-                field.placeholder=@"默认早8:00-晚24:00";
+                field.placeholder=@"默认早8:00-晚22:00";
                 field.textColor=[tools colorWithHex:0x333333];
                 field.font=[UIFont systemFontOfSize:15];
             }
@@ -349,10 +360,20 @@
                 layerView1.layer.borderColor=[LINECOLOR CGColor];
                 layerView1.layer.borderWidth=1;
                 UILabel  *xiangouNumber=[MyView label:@"限购数量" tColor:     [tools colorWithHex:0x666666] font: [UIFont systemFontOfSize:15] rect: CGRectMake(15, hight(25), wight(150), hight(34))];
-                UIButton *ChoseNumberBtn=[MyView TextButton:@"默认为10份" bColor:[UIColor clearColor] tColor:  [tools colorWithHex:0x999999] corner:0 rect:CGRectMake(xiangouNumber.xmg_right, hight(25), wight(180), hight(34))];
+                UITextView *ChoseNumberText=[MyView textView:@"" hintColor:   [UIColor clearColor] bColor:   [UIColor clearColor] tColor:[tools colorWithHex:0x999999]  corner:0 rect:CGRectMake(xiangouNumber.xmg_right, hight(25), wight(180), hight(34)) ];
+                ChoseNumberText.delegate = self;
+                ChoseNumberText.tag=300;
+                ChoseNumberText.font=[UIFont systemFontOfSize:15];
+                ChoseNumberText.textAlignment=NSTextAlignmentLeft;
+                _showTipsLabel3 = [[UILabel alloc]initWithFrame:CGRectMake(xiangouNumber.xmg_right+20, hight(25), wight(180), hight(34))];
+                _showTipsLabel3.textColor = [tools colorWithHex:0x999999];
+                _showTipsLabel3.font = [UIFont systemFontOfSize:15];
+                _showTipsLabel3.text =@"默认为10份";
+               
                 [layerView1 addSubview:xiangouNumber];
-                [layerView1 addSubview:ChoseNumberBtn];
+                [layerView1 addSubview:ChoseNumberText];
                 [cell.contentView addSubview:layerView1];
+                [cell.contentView addSubview:_showTipsLabel3];
                 lineView.hidden=YES;
                 arrow.hidden=YES;
                 field.enabled=NO;
@@ -363,9 +384,14 @@
                 layerView2.layer.borderColor=[LINECOLOR CGColor];
                 layerView2.layer.borderWidth=1;
                 UILabel  *xiangouTime=[MyView label:@"限购时间" tColor:     [tools colorWithHex:0x666666] font: [UIFont systemFontOfSize:15] rect: CGRectMake(15, hight(25), wight(150), hight(34))];
-                UIButton *ChoseTimeBtn=[MyView TextButton:@"请选择限购截止时间" bColor:[UIColor clearColor] tColor:  [tools colorWithHex:0x999999] corner:0 rect:CGRectMake(xiangouTime.xmg_right, hight(25), wight(300), hight(34))];
+                UILabel *ChoseTimeLabel=[MyView label:@"请选择限购截止时间" tColor:[tools colorWithHex:0x999999] font: [UIFont systemFontOfSize:15] rect:CGRectMake(xiangouTime.xmg_right, hight(25), wight(400), hight(34))];
+                self.dateButton=ChoseTimeLabel;
+                ChoseTimeLabel.textAlignment=NSTextAlignmentLeft;
+                UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPickViewerAction)];
+                [ChoseTimeLabel addGestureRecognizer:labelTapGestureRecognizer];
+                ChoseTimeLabel.userInteractionEnabled = YES; // 可以理解为设置label可被点击
                 [layerView2 addSubview:xiangouTime];
-                [layerView2 addSubview:ChoseTimeBtn];
+                [layerView2 addSubview:ChoseTimeLabel];
                 [cell.contentView addSubview:layerView2];
                 lineView.hidden=YES;
                 arrow.hidden=YES;
@@ -378,6 +404,18 @@
         return cell;
 
 }
+- (void)showPickViewerAction{
+    ZHDatePickerView *pickerView = [[ZHDatePickerView alloc] initDatePickerWithDefaultDate:nil andDatePickerMode:UIDatePickerModeDate];
+    pickerView.delegate = self;
+    [pickerView show];
+
+}
+- (void)pickerView:(ZHDatePickerView *)pickerView didSelectDateString:(NSString *)dateString
+{
+    NSString *dateStr=[NSString stringWithFormat:@"%@ 24:00前截止",dateString];
+    self.dateButton.text=dateStr;
+}
+
 -(void)switchAction:(UISwitch *)swith
 {
     [UIView animateWithDuration:0.3 animations:^{

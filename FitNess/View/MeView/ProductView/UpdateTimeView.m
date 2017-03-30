@@ -74,12 +74,13 @@
     [self addButton:CGRectMake(0.0, 0.0, 60, topView.bounds.size.height) text:@"取消" tag:100 superView:topView];
     [self addButton:CGRectMake(topView.bounds.size.width-60.0, 0.0, 60, topView.bounds.size.height) text:@"确定" tag:200 superView:topView];
     
-    
-    
-    
     UIPickerView *pickerView=[[UIPickerView alloc]initWithFrame:CGRectMake(0.0, xiuxiView.xmg_bottom+hight(20), self.bounds.size.width,hight(320))];
     pickerView.delegate=self;
     pickerView.dataSource=self;
+    [pickerView selectRow:8 inComponent:1 animated:YES];
+    [pickerView selectRow:0 inComponent:3 animated:YES];
+    [pickerView selectRow:22 inComponent:5 animated:YES];
+    [pickerView selectRow:0 inComponent:7 animated:YES];
     [bottomView addSubview:pickerView];
     
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -88,18 +89,18 @@
         bottomView.frame=frame;
     } completion:^(BOOL finished){
     }];
-    
 }
 
 
 -(void)chooseClick:(UIButton *)sender{
+   
     [UIView animateWithDuration:0.3 animations:^{
         sender.selected = !_isChooseClicked ? NO : YES;
         [_Restbutton setImage:[UIImage imageNamed:(!_isChooseClicked ? @"select3" : @"cancel3")]  forState:UIControlStateNormal];
         if (_isChooseClicked==NO) {
-            XQQLogFunc
+           [[NSNotificationCenter defaultCenter]postNotificationName:@"QUANTIANXIUXI" object:self];
         }else{
-            XQQLogFunc
+           [[NSNotificationCenter defaultCenter] removeObserver:self];
         }
     } completion:^(BOOL finished) {
         _isChooseClicked = !_isChooseClicked;
@@ -236,13 +237,13 @@
     }else{
         if (self.done) {
             if (!self.seletedhourStr1) {
-                self.seletedhourStr1=[self.hourdatas1 firstObject];
+                self.seletedhourStr1=[self.hourdatas1 objectAtIndex:8];
             }
             if(!self.seletedminStr1){
                 self.seletedminStr1=[self.mindatas1 firstObject];
             }
             if(!self.seletedhourStr2){
-                self.seletedhourStr2=[self.hourdatas2 firstObject];
+                self.seletedhourStr2=[self.hourdatas2 objectAtIndex:22];
             }
             if(!self.seletedminStr2){
                 self.seletedminStr2=[self.mindatas2 firstObject];

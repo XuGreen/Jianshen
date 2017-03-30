@@ -15,7 +15,10 @@
 #import "MyJoinViewCell.h"//加入
 #import "MyShopViewCell.h"//我的店铺
 #import "SubscribeViewCell.h"//我的预约单
-#import "ProductLanunchViewController.h"
+#import "ProductLanunchViewController.h"//发布产品
+#import "ProductMangerViewController.h"//产品管理
+#import "MeOrderMangerViewController.h"//我的订单管理-普通用户
+#import "OrderMangerViewController.h"//订单管理-手艺人
 
 @interface MeViewController : UIViewController
 

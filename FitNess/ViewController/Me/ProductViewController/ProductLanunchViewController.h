@@ -15,8 +15,9 @@
 #import "AttentionStringViewController.h"
 #import "ProtectionViewController.h"
 #import "ReservationViewController.h"
+#import "ZHDatePickerView.h"
 
 
-@interface ProductLanunchViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,SelectTypeDelegate,UITextViewDelegate,InputProductDetailDelegate,ServerDescribeDelegate,ApplyPersonDelegate,AttentionStringDelegate>
+@interface ProductLanunchViewController : UIViewController<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,SelectTypeDelegate,UITextViewDelegate,InputProductDetailDelegate,ServerDescribeDelegate,ApplyPersonDelegate,AttentionStringDelegate,ZHDatePickerViewDelegate>
 
 @end

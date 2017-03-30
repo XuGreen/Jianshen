@@ -35,7 +35,6 @@
     _nav = (NavViewController *)self.navigationController;
     [_nav setLineColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-
     [self setNav];
     [self.view addSubview:self.tableView];
     [self SetTopView];
@@ -88,6 +87,9 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ShopClick)  name:ShopManger object:nil];
     //认证管理
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(certifficateClick)  name:CertificateManger object:nil];
+    
+    //我的订单  -普通用户
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(MeOrderClick)  name:@"MyOrderManger" object:nil];
 }
 //设置
 - (void)settingClick:(UIButton *)sender{
@@ -201,11 +203,15 @@
 }
 //产品管理
 - (void)ProductMangerClick{
-    XQQLogFunc
+    ProductMangerViewController *productManger=[[ProductMangerViewController alloc]init];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:productManger];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 //订单管理
 - (void)OrderMangerClick{
-    XQQLogFunc
+    OrderMangerViewController *orderManger=[[OrderMangerViewController alloc]init];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:orderManger];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 //员工
 - (void)PersonClick{
@@ -227,6 +233,13 @@
 - (void)certifficateClick{
     XQQLogFunc
 }
+//我的订单管理
+- (void)MeOrderClick{
+    MeOrderMangerViewController *MeorderManger=[[MeOrderMangerViewController alloc]init];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:MeorderManger];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
 #pragma marl -懒加载
 -(UITableView *)tableView{
     if (!_tableView) {

@@ -30,19 +30,21 @@
     //我的订单
     _MyOrderView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(120))];
     _MyOrderView.backgroundColor=[UIColor whiteColor];
+    UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(MyOrderClick:)];
+    [self.MyOrderView addGestureRecognizer:tap1];
     [self.backView addSubview:self.MyOrderView];
-    UILabel *OrderLabel=[[UILabel alloc]initWithFrame:CGRectMake(15, hight(44), wight(220), hight(32))];
+    UILabel *OrderLabel=[[UILabel alloc]initWithFrame:CGRectMake(15, hight(50), wight(220), hight(40))];
     OrderLabel.text=@"我的订单";
     OrderLabel.textColor=[tools colorWithHex:0x333333];
     OrderLabel.font=[UIFont systemFontOfSize:17];
     [self.MyOrderView addSubview:OrderLabel];
-    UILabel *rightNow = [[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-90,hight(24), 80, 30)];
+    UILabel *rightNow = [[UILabel alloc]initWithFrame:CGRectMake(SCREENWIDTH-90,hight(54), 80, hight(40))];
     rightNow.text = @"全部订单";
     rightNow.textAlignment=NSTextAlignmentLeft;
     rightNow.textColor = [tools colorWithHex:0x999999];
     rightNow.font =[UIFont systemFontOfSize:14];
     [self.MyOrderView addSubview:rightNow];
-    UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH - wight(50), hight(38), wight(18), hight(30))];
+    UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH - wight(50), hight(58), wight(18), hight(30))];
     arrow.image = [UIImage imageNamed:@"right"];
     [self.MyOrderView addSubview:arrow];
     
@@ -82,7 +84,9 @@
     [self.OrederDetailView addSubview:self.orderDetail];
     [self.OrederDetailView addSubview:self.startServer];
 }
-
+- (void)MyOrderClick:(UITapGestureRecognizer *)sender{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"MyOrderManger" object:self];
+}
 #pragma mark-我的订单
 #pragma mark -懒加载
 -(UIImageView *)personImage{
@@ -130,7 +134,7 @@
 -(UIButton *)startServer{
     if (!_startServer) {
         _startServer=[[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH-wight(140)-15, _orderDetail.xmg_bottom+hight(18), wight(140), hight(50))];
-        [_startServer setTitleColor:[tools colorWithHex:0x333333] forState:UIControlStateNormal];
+        [_startServer setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_startServer setTitle:@"开始服务" forState: UIControlStateNormal];
         [_startServer setBackgroundImage:[UIImage imageNamed:@"bg"] forState:UIControlStateNormal];
         _startServer.titleLabel.font=[UIFont systemFontOfSize:13];

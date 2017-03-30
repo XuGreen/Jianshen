@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol ReservationTimeDelegate <NSObject>
+
+@optional
+- (void)ReservationTimeWithArray : (NSMutableArray *)timeArray;
+
+@end
 
 @interface ReservationTimeViewCell : UITableViewCell
 @property(nonatomic,strong)UIImageView *AddImageView;
@@ -14,11 +20,15 @@
 @property(nonatomic,strong)UILabel          *dateLabel;
 @property(nonatomic,strong)UIView           *backView;
 @property(nonatomic,strong)UILabel          *timeLabel1;
+@property(nonatomic,strong)UILabel          *restLabel1;
 @property(nonatomic,strong)NSString        *timeStr;
-@property(nonatomic, strong)NSArray   *hourArray1;
-@property(nonatomic, strong)NSArray   *minArray1;
-@property(nonatomic, strong)NSArray   *hourArray2;
-@property(nonatomic, strong)NSArray   *minArray2;
+@property(nonatomic, strong)NSMutableArray   *hourArray1;
+@property(nonatomic, strong)NSMutableArray   *minArray1;
+@property(nonatomic, strong)NSMutableArray   *hourArray2;
+@property(nonatomic, strong)NSMutableArray   *minArray2;
 @property(nonatomic, strong)NSMutableArray *labelarray;
+
+@property(nonatomic,weak)id <ReservationTimeDelegate>delegate;
+
 + (instancetype)ReservationTimeViewCell:(UITableView *)tableView;
 @end

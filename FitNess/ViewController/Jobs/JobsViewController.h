@@ -11,7 +11,6 @@
 #import "JobsViewCell.h"
 #import "PopoverView.h"
 #import "PhotoModel.h"
-#import "JobsModel.h"
 
 @interface JobsViewController : UIViewController
 

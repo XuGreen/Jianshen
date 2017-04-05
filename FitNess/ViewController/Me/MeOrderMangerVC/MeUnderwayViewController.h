@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MeAllTopViewController.h"
-@interface MeUnderwayViewController : MeAllTopViewController
+#import "MeAllBaseViewController.h"
+@interface MeUnderwayViewController : MeAllBaseViewController
 
 @end

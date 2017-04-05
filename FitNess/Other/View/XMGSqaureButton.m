@@ -2,8 +2,8 @@
 //  headView.h
 //  testDemo
 //
-//  Created by 灵创网络 on 16/4/29.
-//  Copyright © 2016年 灵创网络. All rights reserved.
+//  Created by xuqq on 16/4/29.
+//  Copyright © 2016年 xuqq. All rights reserved.
 //
 
 #import "XMGSqaureButton.h"
@@ -37,6 +37,7 @@
     // 调整图片
     self.imageView.xmg_y=self.xmg_height*0.15;
     self.imageView.xmg_width=self.xmg_width*0.7;
+//    self.imageView.xmg_width=self.xmg_width*0.45;
     self.imageView.xmg_height=self.imageView.xmg_width;
     self.imageView.xmg_centerX=self.xmg_width*0.5;
     

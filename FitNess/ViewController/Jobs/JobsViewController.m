@@ -31,6 +31,14 @@
     [self.view addSubview:self.tableView];
     [self CreateTopView];
 }
+-(void)viewWillAppear:(BOOL)animated{
+  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
 -(void)setNav{
     self.navigationItem.title=@"招聘";
     //修改导航栏标题颜色,文字大小,文字种类
@@ -50,6 +58,7 @@
     UIBarButtonItem *addBarButon = [[UIBarButtonItem alloc]initWithCustomView:addBtn];
     self.navigationItem.rightBarButtonItem=addBarButon;
 }
+
 #pragma mark -招聘顶部
 - (void)CreateTopView{
     JobsHeadView *headView=[[JobsHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(100))];

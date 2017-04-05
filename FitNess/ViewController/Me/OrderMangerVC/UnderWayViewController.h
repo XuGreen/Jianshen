@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AllTopViewController.h"
-@interface UnderWayViewController : AllTopViewController
+#import "AllBaseViewController.h"
+@interface UnderWayViewController : AllBaseViewController
 
 @end

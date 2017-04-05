@@ -61,7 +61,7 @@
         
         UIImageView *logoImage=[[UIImageView alloc]init];
         if (i==0) {
-            logoImage.frame=CGRectMake(15, 10, 16, 35);
+            logoImage.frame=CGRectMake(15, 10, 20, 35);
             UIButton *loginBtn=[[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH -110, 10, 100, 30)];
             [loginBtn setTitle:@"短信快捷登录" forState:UIControlStateNormal];
             [loginBtn setTitleColor:MAINCOLOR forState:UIControlStateNormal];

@@ -39,17 +39,20 @@
     [self.view addSubview:self.tableView];
     [self SetTopView];
     [self SetNotifiCation];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self.navigationController.navigationBar lt_setBackgroundColor:_navBackGroundColor];
     [_nav setLineColor:_navLineColor];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     [self.navigationController.navigationBar lt_reset];
     [_nav setLineColor:[UIColor groupTableViewBackgroundColor]];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
  
 }
 - (void)setNav{
@@ -215,7 +218,7 @@
 }
 //员工
 - (void)PersonClick{
-    XQQLogFunc
+XQQLogFunc
 }
 //卡型管理
 - (void)CardMangerClick{

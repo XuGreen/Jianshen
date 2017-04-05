@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MeAllTopViewController.h"
-@interface MeNoPayViewController : MeAllTopViewController
+#import "MeAllBaseViewController.h"
+@interface MeNoPayViewController : MeAllBaseViewController
 
 @end

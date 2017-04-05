@@ -62,12 +62,16 @@
     [super viewWillAppear:YES];
     [self.navigationController.navigationBar lt_setBackgroundColor:_navBackGroundColor];
     [_nav setLineColor:_navLineColor];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     [self.navigationController.navigationBar lt_reset];
     [_nav setLineColor:[UIColor groupTableViewBackgroundColor]];
+
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 -(void)setNav{
     //左边 选择地区
@@ -330,6 +334,7 @@
         [self.tableView setContentOffset:CGPointMake(0,0) animated:YES];
     }];
 }
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

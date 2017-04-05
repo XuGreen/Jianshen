@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ChoosePhotoDelegate <NSObject>
+
+@optional
+- (void)ChoosePhotoDelegateWithName : (NSArray *)DataArray;
+@end
 @interface ChoosePhotoView : UIView
 @property(nonatomic,strong) UIViewController *vc;
-
+@property(nonatomic,weak)id <ChoosePhotoDelegate>delegate;
 @end

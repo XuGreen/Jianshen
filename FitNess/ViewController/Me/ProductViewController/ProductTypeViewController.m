@@ -52,14 +52,16 @@
     cell.textLabel.text=[_productType objectAtIndex:indexPath.row];
     UIButton *ClickBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH-wight(50)-15, hight(25), wight(50), hight(50))];
     [ClickBtn setImage:[UIImage imageNamed:@"select3"] forState:UIControlStateNormal];
+    
     self.selectBtn=ClickBtn;
     [cell.contentView addSubview:ClickBtn];
     if (_selIndex==indexPath) {
         self.selectBtn.hidden=NO;
+       
     }else{
         self.selectBtn.hidden=YES;
     }
-
+  
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -69,18 +71,20 @@
     }
     //之前选中的，取消选择
     UITableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndex];
-    self.selectBtn.hidden=YES;
+    self.selectBtn.hidden=NO;
     [celled.contentView addSubview:self.selectBtn];
     //记录当前选中的位置索引
     _selIndex = indexPath;
     //当前选择的打勾
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    // 记录当前选中的位置索引
+    [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     self.selectBtn.hidden=NO;
     [cell.contentView addSubview:self.selectBtn];
     
     [self.delegate selectTypeWithName:[_productType objectAtIndex:indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
-
+ 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return hight(100);

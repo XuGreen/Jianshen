@@ -13,5 +13,8 @@
 - (void)ServerDescribeWithName : (NSString *)name  hour:(NSString *)hour person:(NSString *)person;
 @end
 @interface ServerDescribeViewController : BaseViewController
+@property(nonatomic,strong)NSString *name;
+@property(nonatomic,strong)NSString *hour;
+@property(nonatomic,strong)NSString *person;
 @property(nonatomic,weak)id <ServerDescribeDelegate>delegate;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AllTopViewController.h"
-@interface StayPayViewController : AllTopViewController
+#import "AllBaseViewController.h"
+@interface StayPayViewController : AllBaseViewController
 
 @end

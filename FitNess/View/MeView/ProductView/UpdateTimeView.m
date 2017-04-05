@@ -18,7 +18,7 @@
 @property(nonatomic,copy) NSString *seletedhourStr2;
 @property(nonatomic,copy) NSString *seletedminStr2;
 @property (nonatomic, assign) BOOL isChooseClicked;
-
+@property (nonatomic, assign) BOOL isSelectClicked;
 @end
 @implementation UpdateTimeView
 
@@ -63,16 +63,15 @@
    [_Restbutton addTarget:self action:@selector(chooseClick:) forControlEvents:UIControlEventTouchUpInside];
     [xiuxiView addSubview:_Restbutton];
     
-    
     UILabel *titleLable = [[UILabel alloc] initWithFrame:CGRectMake(topView.bounds.size.width / 2.0 - 150.0 / 2.0, 0.0, 150.0, topView.bounds.size.height)];
     titleLable.text = hourTitle;
     titleLable.font = [UIFont systemFontOfSize:14.0];
     titleLable.textColor = [UIColor whiteColor];
     titleLable.textAlignment = NSTextAlignmentCenter;
     [topView addSubview:titleLable];
-    
-    [self addButton:CGRectMake(0.0, 0.0, 60, topView.bounds.size.height) text:@"取消" tag:100 superView:topView];
-    [self addButton:CGRectMake(topView.bounds.size.width-60.0, 0.0, 60, topView.bounds.size.height) text:@"确定" tag:200 superView:topView];
+
+    [self addButton:CGRectMake(0.0, 0.0, 60, topView.bounds.size.height)image:@"" text:@"取消" tag:100 superView:topView];
+    [self addButton:CGRectMake(topView.bounds.size.width-60.0, 0.0, 60, topView.bounds.size.height) image:@"" text:@"确定" tag:200 superView:topView];
     
     UIPickerView *pickerView=[[UIPickerView alloc]initWithFrame:CGRectMake(0.0, xiuxiView.xmg_bottom+hight(20), self.bounds.size.width,hight(320))];
     pickerView.delegate=self;
@@ -93,21 +92,22 @@
 
 
 -(void)chooseClick:(UIButton *)sender{
-   
     [UIView animateWithDuration:0.3 animations:^{
         sender.selected = !_isChooseClicked ? NO : YES;
         [_Restbutton setImage:[UIImage imageNamed:(!_isChooseClicked ? @"select3" : @"cancel3")]  forState:UIControlStateNormal];
         if (_isChooseClicked==NO) {
-           [[NSNotificationCenter defaultCenter]postNotificationName:@"QUANTIANXIUXI" object:self];
+        XQQLogFunc
         }else{
-           [[NSNotificationCenter defaultCenter] removeObserver:self];
+      
+            XQQLogFunc
         }
     } completion:^(BOOL finished) {
         _isChooseClicked = !_isChooseClicked;
     }];
 }
--(void)addButton:(CGRect)frame text:(NSString *)text tag:(NSInteger)tag superView:(UIView *)superView{
+-(void)addButton:(CGRect)frame image:(NSString *)imageStr text:(NSString *)text tag:(NSInteger)tag superView:(UIView *)superView{
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    [button setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
     [button setTitle:text forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -235,6 +235,7 @@
     if (sender.tag==100) {
         [self removeFromSuperview];
     }else{
+        
         if (self.done) {
             if (!self.seletedhourStr1) {
                 self.seletedhourStr1=[self.hourdatas1 objectAtIndex:8];
@@ -251,6 +252,7 @@
             self.done(self.seletedhourStr1,self.seletedminStr1,self.seletedhourStr2,self.seletedminStr2);
             [self removeFromSuperview];
         }
+
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AllTopViewController.h"
-@interface StayEvaluateViewController : AllTopViewController
+#import "AllBaseViewController.h"
+@interface StayEvaluateViewController : AllBaseViewController
 
 @end

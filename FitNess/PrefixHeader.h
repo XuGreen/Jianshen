@@ -29,6 +29,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "TMMuiLazyScrollView.h"
 #import "BaseViewController.h"
+#import "UIImage+Extension.h"
 
 
 

@@ -14,12 +14,10 @@
 
 +(void)uploadImageWithOperations:(NSDictionary *)operations withImageArray:(NSArray *)imageArray withtargetWidth:(CGFloat )width withUrlString:(NSString *)urlString withSuccessBlock:(requestSuccess)successBlock withFailurBlock:(requestFailure)failureBlock withUpLoadProgress:(uploadProgress)progress;
 {
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/plain",@"application/json",@"text/json",@"text/javascript",@"text/html",@"application/x-www-form-urlencoded", nil]];
     [[NetWorkManager sharInstance] POST:urlString parameters:operations constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         NSUInteger index = 0 ;
-        const  NSString *IMAGEFILE_KEY = @"imageData";
+        const  NSString *IMAGEFILE_KEY = @"file[]";
         /**出于性能考虑,将上传图片进行压缩*/
         for (UIImage * image in imageArray) {
             //            image的分类方法

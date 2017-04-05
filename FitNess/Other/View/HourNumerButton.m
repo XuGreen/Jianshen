@@ -60,7 +60,7 @@
     self.layer.cornerRadius = 3.f;
     self.clipsToBounds = YES;
     
-    _minValue = 1;
+    _minValue = 5;
     _maxValue = NSIntegerMax;
     _inputFieldFont = 15;
     _buttonTitleFont = 17;
@@ -164,7 +164,7 @@
 - (void)increase
 {
     [_textField.text isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld分钟",_minValue] : nil;
-    NSInteger number = [_textField.text integerValue] + 1;
+    NSInteger number = [_textField.text integerValue] + 5;
     
     if (number <= _maxValue)
     {
@@ -197,7 +197,7 @@
 - (void)decrease
 {
     [_textField.text isNotBlank] == NO ? _textField.text = [NSString stringWithFormat:@"%ld分钟",_minValue] : nil;
-    NSInteger number = [_textField.text integerValue] - 1;
+    NSInteger number = [_textField.text integerValue] - 5;
     
     if (number >= _minValue)
     {

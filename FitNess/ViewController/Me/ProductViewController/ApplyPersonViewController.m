@@ -81,7 +81,7 @@
         _showTipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(13, 13, SCREENWIDTH, 20)];
         _showTipsLabel.textColor = [tools colorWithHex:0x999999];
         _showTipsLabel.font = [UIFont systemFontOfSize:15];
-        _showTipsLabel.text = @"添加文字来对你的产品进行描述吧...";
+        _showTipsLabel.text = @"您的产品适用于什么人群呢？请描述一下吧...";
     }
     return _showTipsLabel;
 }

@@ -12,6 +12,9 @@
 #import "AppDelegate.h"
 #import "ChooseTimeView.h"
 #import "UpdateTimeView.h"
+#import "DateModel.h"
+#import "startModel.h"
+#import "endModel.h"
 
 @interface ReservationViewController ()<UITableViewDelegate,UITableViewDataSource,ReservationTimeDelegate>{
     ServerView *header;
@@ -24,7 +27,15 @@
 @property(nonatomic, strong)NSMutableArray   *minArray2;
 @property (strong, nonatomic) NSArray *dataSourceForWeek;
 @property (strong, nonatomic) NSArray *dataSourceForDay;
-@property (strong, nonatomic) NSMutableArray *timeArray;
+@property (strong, nonatomic) NSArray *dataSourceForDate;
+@property (strong, nonatomic) NSMutableArray *timeArray1;
+@property (strong, nonatomic) NSMutableArray *timeArray2;
+@property (strong, nonatomic) NSMutableArray *timeArray3;
+@property (strong, nonatomic) NSMutableArray *timeArray4;
+@property (strong, nonatomic) NSMutableArray *timeArray5;
+@property (strong, nonatomic) NSMutableArray *timeArray6;
+@property (strong, nonatomic) NSMutableArray *timeArray7;
+
 
 @end
 
@@ -72,12 +83,21 @@
     
     _dataSourceForDay=[[NSArray alloc]init];
     _dataSourceForWeek=[[NSArray alloc]init];
-    _timeArray=[NSMutableArray array];
+     _dataSourceForDate=[[NSArray alloc]init];
+    _timeArray1=[NSMutableArray array];
+    _timeArray2=[NSMutableArray array];
+    _timeArray3=[NSMutableArray array];
+    _timeArray4=[NSMutableArray array];
+    _timeArray5=[NSMutableArray array];
+    _timeArray6=[NSMutableArray array];
+    _timeArray7=[NSMutableArray array];
+    
     [self setNav];
     [self.view addSubview:self.tableView];
     [self setHeaderView];
     [self setWeek];
     [self setDate];
+    [self setDates];
     
 }
 -(void)setNav{
@@ -145,6 +165,22 @@
     }
     _dataSourceForDay = [arr copy];
 }
+- (void)setDates{
+    NSMutableArray *arr = [NSMutableArray array];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_CN"]];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *str = [NSString stringWithFormat:@"%@ 00:00:00",[formatter stringFromDate:[NSDate date]]];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *baseDate = [formatter dateFromString:str];
+    for (NSInteger i = 0; i < 7; i++) {
+        NSDate *date = [NSDate dateWithTimeInterval:24*60*60*i sinceDate:baseDate];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSMutableString *dateStr = [[formatter stringFromDate:date] mutableCopy];
+        [arr addObject:dateStr];
+    }
+    _dataSourceForDate = [arr copy];
+}
 - (void)setHeaderView{
     header=[[ServerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(140))];
     UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(updateTimeTap:)];
@@ -153,9 +189,9 @@
 }
 -(void)action_onBackButton:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
-   
 }
 -(void)CompleteButton:(UIButton *)sender{
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)updateTimeTap:(UITapGestureRecognizer *)sender{
@@ -171,9 +207,10 @@
     return _dataSourceForWeek.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-        ReservationTimeViewCell * ReservationCell=[ReservationTimeViewCell ReservationTimeViewCell:tableView];
+       ReservationTimeViewCell * ReservationCell=[ReservationTimeViewCell ReservationTimeViewCell:tableView];
        ReservationCell.delegate=self;
-        ReservationCell.selectionStyle =UITableViewCellSelectionStyleNone;
+       ReservationCell.AddImageView.tag=indexPath.row;
+       ReservationCell.selectionStyle =UITableViewCellSelectionStyleNone;
        ReservationCell.dayLabel.text=[_dataSourceForWeek objectAtIndex:indexPath.row];
        ReservationCell.dateLabel.text=[_dataSourceForDay objectAtIndex:indexPath.row];
 
@@ -192,18 +229,102 @@
     ChooseTimeView *chooseView=[[ChooseTimeView alloc]initWithFrame:appdelegate.window.bounds hourdatas1:hourdata1 mindatas1:mindata1 hourdatas2:hourdata2 mindatas2:mindata2 hourtitle:hourtitle mintitle:mintitle];
     chooseView.done=^(NSString *selectedhourStr1,NSString *selectedminStr1,NSString *selectedhourStr2,NSString *selectedminStr2){
         success(selectedhourStr1,selectedminStr1,selectedhourStr2,selectedminStr2);
-          XQQLog(@"%@:%@-%@:%@",selectedhourStr1,selectedminStr1,selectedhourStr2,selectedminStr2);
        
     };
     [appdelegate.window addSubview:chooseView];
 }
 #pragma mark -ReservationTimeDelegate
-- (void)ReservationTimeWithArray:(NSMutableArray *)timeArray{
-    _timeArray=timeArray;
-
+- (void)ReservationTimeWithArray1:(NSMutableArray *)starTime1 endTime1:(NSMutableArray *)endTime1{
+        NSMutableArray *date=[NSMutableArray array];
+        for (int i=0; i<starTime1.count; i++) {
+            NSMutableDictionary *timeDic=[[NSMutableDictionary alloc]init];
+            [timeDic setObject:[starTime1 objectAtIndex:i] forKey:@"start_time"];
+            [timeDic setObject:[endTime1 objectAtIndex:i] forKey:@"end_time"];
+            [timeDic setObject:[_dataSourceForDate objectAtIndex:0] forKey:@"date"];
+            [date addObject:timeDic];
+        }
+    _timeArray1=date;
+    XQQLog(@"%@",_timeArray1);
+     [self.tableView reloadData];
+}
+- (void)ReservationTimeWithArray2:(NSMutableArray *)starTime2 endTime1:(NSMutableArray *)endTime2{
+    NSMutableArray *date=[NSMutableArray array];
+    for (int i=0; i<starTime2.count; i++) {
+        NSMutableDictionary *timeDic=[[NSMutableDictionary alloc]init];
+        [timeDic setObject:[starTime2 objectAtIndex:i] forKey:@"start_time"];
+        [timeDic setObject:[endTime2 objectAtIndex:i] forKey:@"end_time"];
+        [timeDic setObject:[_dataSourceForDate objectAtIndex:1] forKey:@"date"];
+        [date addObject:timeDic];
+    }
+    _timeArray2=date;
+    XQQLog(@"%@",_timeArray2);
     [self.tableView reloadData];
 }
-
+- (void)ReservationTimeWithArray3:(NSMutableArray *)starTime3 endTime1:(NSMutableArray *)endTime3{
+    NSMutableArray *date=[NSMutableArray array];
+    for (int i=0; i<starTime3.count; i++) {
+        NSMutableDictionary *timeDic=[[NSMutableDictionary alloc]init];
+        [timeDic setObject:[starTime3 objectAtIndex:i] forKey:@"start_time"];
+        [timeDic setObject:[endTime3 objectAtIndex:i] forKey:@"end_time"];
+        [timeDic setObject:[_dataSourceForDate objectAtIndex:2] forKey:@"date"];
+        [date addObject:timeDic];
+    }
+    _timeArray3=date;
+    XQQLog(@"%@",_timeArray3);
+    [self.tableView reloadData];
+}
+- (void)ReservationTimeWithArray4:(NSMutableArray *)starTime4 endTime1:(NSMutableArray *)endTime4{
+    NSMutableArray *date=[NSMutableArray array];
+    for (int i=0; i<starTime4.count; i++) {
+        NSMutableDictionary *timeDic=[[NSMutableDictionary alloc]init];
+        [timeDic setObject:[starTime4 objectAtIndex:i] forKey:@"start_time"];
+        [timeDic setObject:[endTime4 objectAtIndex:i] forKey:@"end_time"];
+        [timeDic setObject:[_dataSourceForDate objectAtIndex:3] forKey:@"date"];
+        [date addObject:timeDic];
+    }
+    _timeArray4=date;
+    XQQLog(@"%@",_timeArray4);
+    [self.tableView reloadData];
+}
+- (void)ReservationTimeWithArray5:(NSMutableArray *)starTime5 endTime1:(NSMutableArray *)endTime5{
+    NSMutableArray *date=[NSMutableArray array];
+    for (int i=0; i<starTime5.count; i++) {
+        NSMutableDictionary *timeDic=[[NSMutableDictionary alloc]init];
+        [timeDic setObject:[starTime5 objectAtIndex:i] forKey:@"start_time"];
+        [timeDic setObject:[endTime5 objectAtIndex:i] forKey:@"end_time"];
+        [timeDic setObject:[_dataSourceForDate objectAtIndex:4] forKey:@"date"];
+        [date addObject:timeDic];
+    }
+    _timeArray5=date;
+    XQQLog(@"%@",_timeArray5);
+    [self.tableView reloadData];
+}
+- (void)ReservationTimeWithArray6:(NSMutableArray *)starTime6 endTime1:(NSMutableArray *)endTime6{
+    NSMutableArray *date=[NSMutableArray array];
+    for (int i=0; i<starTime6.count; i++) {
+        NSMutableDictionary *timeDic=[[NSMutableDictionary alloc]init];
+        [timeDic setObject:[starTime6 objectAtIndex:i] forKey:@"start_time"];
+        [timeDic setObject:[endTime6 objectAtIndex:i] forKey:@"end_time"];
+        [timeDic setObject:[_dataSourceForDate objectAtIndex:5] forKey:@"date"];
+        [date addObject:timeDic];
+    }
+    _timeArray6=date;
+    XQQLog(@"%@",_timeArray6);
+    [self.tableView reloadData];
+}
+- (void)ReservationTimeWithArray7:(NSMutableArray *)starTime7 endTime1:(NSMutableArray *)endTime7{
+    NSMutableArray *date=[NSMutableArray array];
+    for (int i=0; i<starTime7.count; i++) {
+        NSMutableDictionary *timeDic=[[NSMutableDictionary alloc]init];
+        [timeDic setObject:[starTime7 objectAtIndex:i] forKey:@"start_time"];
+        [timeDic setObject:[endTime7 objectAtIndex:i] forKey:@"end_time"];
+        [timeDic setObject:[_dataSourceForDate objectAtIndex:6] forKey:@"date"];
+        [date addObject:timeDic];
+    }
+    _timeArray7=date;
+    XQQLog(@"%@",_timeArray7);
+    [self.tableView reloadData];
+}
 #pragma marl -懒加载
 -(UITableView *)tableView{
     if (!_tableView) {

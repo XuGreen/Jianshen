@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AllTopViewController.h"
+#import "AllBaseViewController.h"
 
-@interface AllOrderViewController : AllTopViewController
+@interface AllOrderViewController : AllBaseViewController
 
 @end

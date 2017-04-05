@@ -77,7 +77,49 @@ const int  Count = 1;
     [NetWorkManager POST:@"/youlechuan2/controller/resetPassword.php" parameters:param success:success failure:failure];
 
 }
-
+//发布产品
++(void)IssueProduct:(NSInteger)userID
+        productID:(NSInteger)productID
+       productTitle:(NSString *)productTitle
+     productFuTitle:(NSString *)productFuTitle
+       productPrice:(NSString *)productPrice
+      shichangPrice:(NSString *)shichangPrice
+     serverNumber:(NSString *)serverNumber
+      shiyongPerson:(NSString *)shiyongPerson
+        precautions:(NSString *)precautions
+     productContent:(NSString *)productContent
+        productDesc:(NSString *)productDesc
+            ImageID:(NSString *)ImageArrID
+            limited:(NSInteger)limited
+         limit_date:(NSInteger)limit_date
+            success:(requestSuccess)success
+            failure:(requestFailure)failure{
+    NSDictionary *param=@{@"uid":@(userID),
+                           @"class_id":@(productID),
+                          @"title":productTitle,
+                          @"subtitle":productFuTitle,
+                          @"price":productPrice,
+                          @"number":serverNumber,
+                          @"market_price":shichangPrice,
+                          @"intended_for":shiyongPerson,
+                          @"precautions":precautions,
+                          @"content":productContent,
+                          @"desc":productDesc,
+                          @"att_id":ImageArrID,
+                          @"limited":@(limited),
+                          @"limit_date":@(limit_date)};
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
+    NSArray *keys = [dict allKeys];
+    for (NSString  *key in keys) {
+        id value = dict[key];
+        if ([value isKindOfClass:[NSString class]]) {
+            if ([value isEqualToString:@""]) {
+                [dict removeObjectForKey:key];
+            }
+        }
+    }
+    [NetWorkManager POST:@"http://192.168.1.187/product" parameters:param success:success failure:failure];
+}
 +(instancetype)sharInstance
 {
     

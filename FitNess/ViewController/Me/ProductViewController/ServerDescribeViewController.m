@@ -58,7 +58,9 @@
     _inputView=[MyView Textfile:@"自定义" corner:0 rect:CGRectMake(addImage.xmg_right+5, hight(34), wight(400), hight(34))];
     _inputView.font=[UIFont systemFontOfSize:15];
     _inputView.textColor=[tools colorWithHex:0x999999];
+    _inputView.text=_name;
     [self.customView addSubview:self.inputView];
+    
     
     _customView1=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, _customView.xmg_bottom+10, SCREENWIDTH, hight(100))];
     [containerView addSubview:self.customView1];
@@ -73,7 +75,10 @@
     _numberButton.borderColor=[UIColor whiteColor];
     _numberButton.increaseImage=[UIImage imageNamed:@"plus4"];
     _numberButton.decreaseImage=[UIImage imageNamed:@"less4"];
-    [self.customView1 addSubview:self.numberButton];
+    if (_hour) {
+        _numberButton.currentNumber=_hour;
+    }
+   [self.customView1 addSubview:self.numberButton];
     _numberButton.numberBlock=^(NSString *num){
         number=num;
     };
@@ -118,17 +123,16 @@
         if (button==sender) {
             button.selected=YES;
             [button setImage:[UIImage imageNamed:@"select3"] forState:UIControlStateNormal];
-            if (button.tag==10) {
+            if (button.tag==10 ) {
                 personType=@"女士";
             } else if (button.tag==11){
                 personType=@"男士";
             } else{
                   personType=@"不限";
             }
-            
         }else
         {
-            button.selected  = NO;
+             button.selected  = NO;
              [button setImage:[UIImage imageNamed:@"cancel3"] forState:UIControlStateNormal];
         }
     }

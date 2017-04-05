@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AllTopViewController.h"
-@interface StayServerViewController : AllTopViewController
+#import "AllBaseViewController.h"
+@interface StayServerViewController : AllBaseViewController
 
 @end

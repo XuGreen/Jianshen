@@ -7,6 +7,7 @@
 //
 
 #import "ProductLanunchViewController.h"
+#import "SBJson.h"
 
 
 @interface ProductLanunchViewController (){
@@ -27,13 +28,19 @@
 @property (nonatomic, strong) UILabel  *dateButton;//截止时间选择
 @property(nonatomic,strong) NSString    *ProductType;//产品类型
 @property(nonatomic,strong) NSString    *ProductDetail;//产品详情
+@property(nonatomic,strong) NSString    *ProductPrice;//产品价格
+@property(nonatomic,strong) NSString    *ProductshichangPrice;//产品市场价
+@property(nonatomic,strong) NSString    * serverNumber;//服务次数
 @property(nonatomic,strong) NSString    *ServerDescription;//服务描述
-@property(nonatomic,strong) NSString    *ServerHour;//服务描述
+@property(nonatomic,strong) NSString    *ServerHour;//耗时时间
 @property(nonatomic,strong) NSString    *ServerPerson;//服务描述
-@property(nonatomic,strong) NSString    *ServerEnsure;//服务保障
 @property(nonatomic,strong) NSString    *ReservationTime;//预约时间
 @property(nonatomic,strong) NSString    *ApplyPerson;//适用人群
 @property(nonatomic,strong) NSString    *AttentionString;// 注意事项
+@property(nonatomic,strong) NSArray     *ImageArrayID;//适用人群
+@property(nonatomic,strong) NSString    *DescriptionArray;// 注意事项
+@property(nonatomic,strong)NSMutableArray *fileArray;
+@property(nonatomic,strong) NSMutableString      *ImageString;
 
 @property (nonatomic, strong) UILabel       *showTipsLabel1;
 @property (nonatomic, strong) UILabel       *showTipsLabel2;
@@ -48,12 +55,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _Datasouce=[NSArray arrayWithObjects:@"产品类型",@"价格",@"市场价",@"服务次数", @"服务描述",@"服务保障",@"可预约时间段",@"适用人群",@"注意事项",@"是否限购",@"",@"",nil];
+    _ImageString=[[NSMutableString alloc]init];
     numberRow = 10;
     [self setNav];
     [self.view addSubview:self.tableView];
     [self CreateTopView];
     [self creataBottomView];
-
 }
 - (void)setNav{
     self.navigationItem.title=@"发布产品";
@@ -64,6 +71,7 @@
     _TopView=[MyView uiview:0 bColor:COMMONRBGCOLOR rect:CGRectMake(0, 64, SCREENWIDTH, hight(580)+10)];
     [self.view addSubview:_TopView];
     ChoosePhotoView *choosePhoto=[[ChoosePhotoView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(210))];
+    choosePhoto.delegate=self;
     choosePhoto.vc=self;
     [_TopView addSubview:choosePhoto];
     NSArray *titleArray=[NSArray arrayWithObjects:@"输入产品标题",@"输入产品副标题", @"产品详情",nil];
@@ -200,6 +208,7 @@
     [_SubmitBtn setTitle:@"提交" forState:UIControlStateNormal];
     _SubmitBtn.titleLabel.font=[UIFont systemFontOfSize:19];
     [_SubmitBtn setTitleColor:[tools colorWithHex:0xFFFFFF] forState:UIControlStateNormal];
+    [_SubmitBtn addTarget:self action:@selector(SubmitClick:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:self.SubmitBtn];
 
 }
@@ -230,8 +239,8 @@
        arrow.image = [UIImage imageNamed:@"right"];
        [cell.contentView addSubview:arrow];
         UITextField *field = [[UITextField alloc]initWithFrame:CGRectMake(cell.contentView.xmg_right-wight(320),hight(30), wight(400), hight(50))];
-        field.delegate=self;
-        field.font = [UIFont systemFontOfSize:15];
+       field.delegate=self;
+       field.font = [UIFont systemFontOfSize:15];
        field.textColor=[tools colorWithHex:0x333333];
         field.enabled = YES;
         field.textAlignment = NSTextAlignmentRight;
@@ -257,11 +266,14 @@
                 field.font=[UIFont boldSystemFontOfSize:15];
                 field.tag=20;
                 arrow.hidden=YES;
+                
             }
                 break;
             case 3:{
                 field.placeholder=@"默认次数为1";
+                field.tag=30;
                 arrow.hidden=YES;
+               
             }
                 break;
             case 4:{
@@ -401,7 +413,10 @@
             default:
                 break;
         }
-        return cell;
+    _fileArray=[NSMutableArray array];
+    [_fileArray addObject:field];
+    
+    return cell;
 
 }
 - (void)showPickViewerAction{
@@ -410,29 +425,7 @@
     [pickerView show];
 
 }
-- (void)pickerView:(ZHDatePickerView *)pickerView didSelectDateString:(NSString *)dateString
-{
-    NSString *dateStr=[NSString stringWithFormat:@"%@ 24:00前截止",dateString];
-    self.dateButton.text=dateStr;
-}
 
--(void)switchAction:(UISwitch *)swith
-{
-    [UIView animateWithDuration:0.3 animations:^{
-        if([swith isOn])
-        {
-            numberRow = 12;
-        }else{
-            numberRow = 10;
-        }
-       
-    } completion:^(BOOL finished) {
-        [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
-        [self.tableView reloadData];
-    }];
-    
-
-}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:{
@@ -444,6 +437,9 @@
         case 4:{
             ServerDescribeViewController *ServerDescribe=[[ServerDescribeViewController alloc]init];
             ServerDescribe.delegate=self;
+            ServerDescribe.name=_ServerDescription;
+            ServerDescribe.hour=_ServerHour;
+            ServerDescribe.person=_ServerPerson;
             [self.navigationController pushViewController:ServerDescribe animated:YES];
         }
             break;
@@ -479,6 +475,28 @@
     return hight(100);
   
 }
+- (void)pickerView:(ZHDatePickerView *)pickerView didSelectDateString:(NSString *)dateString
+{
+    NSString *dateStr=[NSString stringWithFormat:@"%@ 24:00前截止",dateString];
+    self.dateButton.text=dateStr;
+}
+
+-(void)switchAction:(UISwitch *)swith{
+    [UIView animateWithDuration:0.3 animations:^{
+        if([swith isOn])
+        {
+            numberRow = 12;
+        }else{
+            numberRow = 10;
+        }
+    } completion:^(BOOL finished) {
+        [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
+        [self.tableView reloadData];
+    }];
+    
+    
+}
+
 //产品详情
 -(void)ProductDetailClick:(UITapGestureRecognizer *)tap{
     [self.view endEditing:YES];
@@ -491,8 +509,22 @@
     if (textField.tag==10 || textField.tag==20) {
         textField.text=[NSString stringWithFormat:@"￥%@",textField.text];
     }
+   
 }
-
+#pragma mark -choosePhoto
+- (void)ChoosePhotoDelegateWithName:(NSArray *)DataArray{
+    _ImageArrayID=DataArray;
+    for (int i=0; i<_ImageArrayID.count; i++) {
+        if (i < _ImageArrayID.count-1) {
+            [_ImageString appendFormat:@"%@,",_ImageArrayID[i]];
+        }
+        else{
+            [_ImageString appendFormat:@"%@",_ImageArrayID[i]];
+        }
+    }
+    [self.tableView reloadData];
+    
+}
 #pragma mark -selectTypeWithName
 - (void)selectTypeWithName:(NSString *)name{
     _ProductType=name;
@@ -509,9 +541,32 @@
     _ServerDescription=name;
     _ServerHour=hour;
     _ServerPerson=person;
-    XQQLog(@"%@   %@   %@",_ServerDescription,_ServerHour,_ServerPerson);
+    NSMutableDictionary *custom=[NSMutableDictionary dictionary];
+    [custom setObject:_ServerDescription forKey:@"name"];
+    [custom setObject:@"" forKey:@"value"];
+    
+    
+    NSMutableDictionary *ServerHour=[NSMutableDictionary dictionary];
+      [ServerHour setObject:@"耗时" forKey:@"name"];
+    [ServerHour setObject:_ServerHour forKey:@"value"];
+  
+    
+    NSMutableDictionary *ServerPerson=[NSMutableDictionary dictionary];
+     [ServerPerson setObject:_ServerPerson forKey:@"name"];
+    [ServerPerson setObject:@"" forKey:@"value"];
+   
+    NSMutableArray *descArray=[NSMutableArray array];
+    [descArray addObject:custom];
+    [descArray addObject:ServerHour];
+    [descArray addObject:ServerPerson];
+    
+    SBJsonWriter *sbjson=[[SBJsonWriter alloc]init];
+    NSString *str=[sbjson stringWithObject:descArray];
+    _DescriptionArray=str;
+    
     [self.tableView reloadData];
 }
+
 #pragma mark -ApplyPersonDelegate
 -(void)ApplyPersonWithName:(NSString *)name{
     _ApplyPerson=name;
@@ -521,6 +576,39 @@
 - (void)AttentionStringWithName:(NSString *)name{
     _AttentionString=name;
     [self.tableView reloadData];
+}
+
+#pragma mark -发布产品
+- (void)SubmitClick:(UIButton *)sender{
+
+    XQQLog(@"array%@ %@ %@ %ld",_ProductPrice,_ProductshichangPrice,_serverNumber,_fileArray.count);
+    
+      MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+     hud.labelText = @"正在发布产品信息...";
+    [NetWorkManager IssueProduct:10
+                       productID:1
+                    productTitle:_TitleText.text
+                  productFuTitle:_TitleFuText.text
+                    productPrice:@"450"
+                   shichangPrice:@"650"
+                    serverNumber:@"99"
+                   shiyongPerson:_ApplyPerson
+                     precautions:_AttentionString
+                  productContent:_ProductDetail
+                     productDesc:_DescriptionArray
+                         ImageID:_ImageString
+                         limited:99
+                      limit_date:2017
+                         success:^(BaseResponse *response) {
+                             hud.labelText = @"产品发布成功";
+                             [hud hide:YES afterDelay:1.0];
+                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                 [self dismissViewControllerAnimated:YES completion:nil];
+                             });
+                         } failure:^(NSError *error) {
+                             hud.labelText = [NSString stringWithFormat:@"%@",error];
+                            [hud hide:YES afterDelay:1.0];
+                         }];
 }
 #pragma marl -懒加载
 -(UITableView *)tableView{

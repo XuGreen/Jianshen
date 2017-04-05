@@ -13,6 +13,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "TZImageManager.h"
 #import "TZGifPhotoPreviewController.h"
+#import "NetWorkManager+UploadImages.h"
 
 @interface ChoosePhotoView()<TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIAlertViewDelegate,UIScrollViewDelegate>{
     NSMutableArray *_selectedPhotos;
@@ -27,6 +28,8 @@
 @property(nonatomic,strong) UILabel   *ChoosrLabel;
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
 @property(nonatomic,strong) UIScrollView *scrollview;
+
+
 
 @end
 
@@ -60,6 +63,7 @@
     _ChoosrLabel.textAlignment = NSTextAlignmentCenter;
     _ChoosrLabel.textColor = [tools colorWithHex:0x999999];
     [_backgroundView addSubview:_ChoosrLabel];
+    
 
 }
 -(void) addImages:(NSMutableArray *)photoArray{
@@ -86,7 +90,9 @@
         UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singTap:)];
         [imageView addGestureRecognizer:tap1];
         imageView.image=[photoArray objectAtIndex:i];
+        
         [_scrollview addSubview:imageView];
+        
         UIImageView *delete=[[UIImageView alloc]initWithFrame:CGRectMake(imageView.xmg_width-wight(30), 0, wight(30), hight(30))];
         delete.userInteractionEnabled=YES;
         delete.tag=i;
@@ -94,15 +100,19 @@
         UITapGestureRecognizer *tap2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(deleteTap2:)];
         [delete addGestureRecognizer:tap2];
         [imageView addSubview:delete];
+
         if (i==0) {
-            UIButton *fengmain=[MyView TextButton:@"封面" bColor:[tools colorWithHex:0xFFb81F] tColor: [UIColor whiteColor] corner:0 rect:CGRectMake(0, imageView.xmg_height-hight(180)/5, wight(180), hight(180)/5)];
-            fengmain.alpha=0.8;
-            [imageView addSubview:fengmain];
+            UIView *fengmian=[MyView uiview:0 bColor:[tools colorWithHex:0xFFb81F]rect:CGRectMake(0, imageView.xmg_height-hight(180)/5, wight(180), hight(180)/5)];
+            fengmian.alpha=0.8;
+   
+            UILabel *fengLabel=[MyView label:@"封面" tColor: [UIColor whiteColor] font:[UIFont systemFontOfSize:14] rect:CGRectMake(0, 0, fengmian.xmg_width, fengmian.xmg_height)];
+            fengLabel.textAlignment=NSTextAlignmentCenter;
+            [fengmian addSubview:fengLabel];
+            [imageView addSubview:fengmian];
         }
-    }
-    
- 
-  
+     
+}
+
 }
 - (void)singTap:(UITapGestureRecognizer *)sender{
     UITapGestureRecognizer *singleTap=(UITapGestureRecognizer *)sender;
@@ -225,12 +235,35 @@
     _selectedPhotos=[NSMutableArray arrayWithArray:photos];
     _selectedAssets=[NSMutableArray arrayWithArray:assets];
     _isSelectOriginalPhoto=isSelectOriginalPhoto;
-  
+    
     if (self.backgroundView) {
         [self.backgroundView removeFromSuperview];
     }
     [self addImages:_selectedPhotos];
     [self printAssetsName:assets];
+        //上传图片
+        NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+        [dic setValue:@"10" forKey:@"uid"];
+        [dic setValue:@"product" forKey:@"table_name"];
+        
+        [NetWorkManager uploadImageWithOperations:dic
+                                   withImageArray: photos
+                                  withtargetWidth:640
+                                    withUrlString:@"http://192.168.1.187/index/attachment/upload"
+                                 withSuccessBlock:^(BaseResponse *response) {
+                                     NSDictionary *dict=(NSDictionary *)response;
+                                     NSArray *data=response.data;
+                                     XQQLog(@"data:%@  -----%@",data,dict);
+                                     [self.delegate ChoosePhotoDelegateWithName:data];
+                                 } withFailurBlock:^(NSError *error) {
+                                     NSDictionary *dict=(NSDictionary *)error.userInfo;
+                                     [MBProgressHUD showSucessNoImageText:dict[@"error"]];
+                                     
+                                 } withUpLoadProgress:^(float progress) {
+                                     XQQLog(@"%f",progress);
+                                   
+                                }];
+    
 }
 // 如果用户选择了一个gif图片，下面的handle会被执行
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingGifImage:(UIImage *)animatedImage sourceAssets:(id)asset {

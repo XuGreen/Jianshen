@@ -30,7 +30,7 @@
 @property(nonatomic,strong) NSString    *ProductDetail;//产品详情
 @property(nonatomic,strong) NSString    *ProductPrice;//产品价格
 @property(nonatomic,strong) NSString    *ProductshichangPrice;//产品市场价
-@property(nonatomic,strong) NSString    * serverNumber;//服务次数
+@property(nonatomic,strong) NSString    *serverNumber;//服务次数
 @property(nonatomic,strong) NSString    *ServerDescription;//服务描述
 @property(nonatomic,strong) NSString    *ServerHour;//耗时时间
 @property(nonatomic,strong) NSString    *ServerPerson;//服务描述
@@ -38,13 +38,21 @@
 @property(nonatomic,strong) NSString    *ApplyPerson;//适用人群
 @property(nonatomic,strong) NSString    *AttentionString;// 注意事项
 @property(nonatomic,strong) NSArray     *ImageArrayID;//适用人群
-@property(nonatomic,strong) NSString    *DescriptionArray;// 注意事项
+@property(nonatomic,strong) NSString    *DescriptionString;// 注意事项
+@property(nonatomic,strong) NSString    *ReservationString;//  预约时间
+@property(nonatomic,strong) NSMutableArray    *ReservationArray;//  预约时间
 @property(nonatomic,strong)NSMutableArray *fileArray;
 @property(nonatomic,strong) NSMutableString      *ImageString;
 
 @property (nonatomic, strong) UILabel       *showTipsLabel1;
 @property (nonatomic, strong) UILabel       *showTipsLabel2;
 @property (nonatomic, strong) UILabel       *showTipsLabel3;
+
+@property (nonatomic, strong)UILabel *productdetailLabel;
+@property (nonatomic, strong)UILabel *productTypeLabel;
+@property (nonatomic, strong)UITextField *Pricefield;
+@property (nonatomic, strong)UITextField *Pricefield2;
+@property (nonatomic, strong)UITextField *Serverfield;
 @end
 
 @implementation ProductLanunchViewController
@@ -54,9 +62,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _Datasouce=[NSArray arrayWithObjects:@"产品类型",@"价格",@"市场价",@"服务次数", @"服务描述",@"服务保障",@"可预约时间段",@"适用人群",@"注意事项",@"是否限购",@"",@"",nil];
+    _Datasouce=[NSArray arrayWithObjects:@"服务描述",@"服务保障",@"可预约时间段",@"适用人群",@"注意事项",@"是否限购",@"",@"",nil];
+    _ReservationArray=[NSMutableArray array];
     _ImageString=[[NSMutableString alloc]init];
-    numberRow = 10;
+    numberRow = 6;
     [self setNav];
     [self.view addSubview:self.tableView];
     [self CreateTopView];
@@ -68,21 +77,29 @@
     [self CreateTopView];
 }
 - (void)CreateTopView{
-    _TopView=[MyView uiview:0 bColor:COMMONRBGCOLOR rect:CGRectMake(0, 64, SCREENWIDTH, hight(580)+10)];
+    _TopView=[MyView uiview:0 bColor:COMMONRBGCOLOR rect:CGRectMake(0, 64, SCREENWIDTH, hight(980)+10)];
     [self.view addSubview:_TopView];
-    ChoosePhotoView *choosePhoto=[[ChoosePhotoView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(210))];
+    ChoosePhotoView *choosePhoto=[[ChoosePhotoView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(230))];
     choosePhoto.delegate=self;
     choosePhoto.vc=self;
     [_TopView addSubview:choosePhoto];
-    NSArray *titleArray=[NSArray arrayWithObjects:@"输入产品标题",@"输入产品副标题", @"产品详情",nil];
+    NSArray *titleArray=[NSArray arrayWithObjects:@"输入产品标题",@"输入产品副标题", @"产品详情",@"产品类型",@"价格",@"市场价",@"默认次数",nil];
     for (int i=0; i<titleArray.count; i++) {
        Headview=[[TouchUIView alloc]init];
         if (i==0) {
-            Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+10, SCREENWIDTH, hight(100));
+            Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom, SCREENWIDTH, hight(100));
         }else if(i==1){
-            Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(100)+10, SCREENWIDTH, hight(150));
+            Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(100), SCREENWIDTH, hight(150));
+        }else if(i==2){
+             Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(250), SCREENWIDTH, hight(100));
+        }else if (i==3){
+            Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(370), SCREENWIDTH, hight(100));
+        }else if (i==4){
+               Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(470), SCREENWIDTH, hight(100));
+        }else if (i==5){
+             Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(570), SCREENWIDTH, hight(100));
         }else{
-             Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(250)+10, SCREENWIDTH, hight(100));
+             Headview.frame=CGRectMake(0, choosePhoto.xmg_bottom+hight(670), SCREENWIDTH, hight(100));
         }
         Headview.backgroundColor=[UIColor whiteColor];
         Headview.dragEnable=YES;
@@ -119,99 +136,70 @@
             NSString *title2=[NSString stringWithFormat:@"%ld/50字",FutitleNumber];
             TitleFuLabel=[MyView label:title2 tColor:[tools colorWithHex:0x999999] font:[UIFont systemFontOfSize:14] rect:CGRectMake(SCREENWIDTH-wight(100)-15, hight(100), wight(150), 20)];
             [Headview addSubview:TitleFuLabel];
-        }else{
+        }else if(i==2){
             UILabel *ProductDetail=[MyView label:@"产品详情" tColor:[tools colorWithHex:0x333333] font:[UIFont systemFontOfSize:15] rect:CGRectMake(wight(30), 0, wight(150), hight(100))];
             [Headview addSubview:ProductDetail];
-            UILabel *productdetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(ProductDetail.xmg_right+10,0, wight(400), hight(100))];
-            productdetailLabel.font = [UIFont systemFontOfSize:15];
-            productdetailLabel.textAlignment = NSTextAlignmentLeft;
-            productdetailLabel.text=_ProductDetail;
-            productdetailLabel.tag=1001;
-            [Headview addSubview:productdetailLabel];
+            _productdetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(ProductDetail.xmg_right+10,0, wight(480), hight(100))];
+            _productdetailLabel.font = [UIFont systemFontOfSize:15];
+            _productdetailLabel.textAlignment = NSTextAlignmentRight;
+            [Headview addSubview:_productdetailLabel];
             UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH - wight(50), hight(38), wight(18), hight(30))];
             arrow.image = [UIImage imageNamed:@"right"];
             arrow.userInteractionEnabled=YES;
             UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ProductDetailClick:)];
             [arrow addGestureRecognizer:tap1];
             [Headview addSubview:arrow];
+            
+        }else if (i==3){
+            UILabel *ProductType=[MyView label:@"产品类型" tColor:[tools colorWithHex:0x333333] font:[UIFont systemFontOfSize:15] rect:CGRectMake(wight(30), 0, wight(150), hight(100))];
+            [Headview addSubview:ProductType];
+            _productTypeLabel = [[UILabel alloc]initWithFrame:CGRectMake(ProductType.xmg_right+10,0, wight(480), hight(100))];
+            _productTypeLabel.font = [UIFont systemFontOfSize:15];
+            _productTypeLabel.textAlignment = NSTextAlignmentRight;
+            [Headview addSubview:_productTypeLabel];
+            UIImageView *arrow1 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREENWIDTH - wight(50), hight(38), wight(18), hight(30))];
+            arrow1.image = [UIImage imageNamed:@"right"];
+            arrow1.userInteractionEnabled=YES;
+            UITapGestureRecognizer *tap2=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ProductTypeClick:)];
+            [arrow1 addGestureRecognizer:tap2];
+            [Headview addSubview:arrow1];
+        }else if(i==4){
+            UILabel *PriceLabel1=[MyView label:@"价格" tColor:[tools colorWithHex:0x333333] font:[UIFont systemFontOfSize:15] rect:CGRectMake(wight(30), 0, wight(150), hight(100))];
+            [Headview addSubview:PriceLabel1];
+            _Pricefield = [[UITextField alloc]initWithFrame:CGRectMake(SCREENWIDTH-wight(200)-15,hight(30), wight(200), hight(50))];
+            _Pricefield.delegate=self;
+            _Pricefield.placeholder=@"￥";
+            _Pricefield.font = [UIFont systemFontOfSize:15];
+            _Pricefield.textColor=[tools colorWithHex:0x333333];
+            _Pricefield.textAlignment = NSTextAlignmentRight;
+            [Headview addSubview:_Pricefield];
+            
+        }else if(i==5){
+            UILabel *PriceLabel2=[MyView label:@"市场价" tColor:[tools colorWithHex:0x333333] font:[UIFont systemFontOfSize:15] rect:CGRectMake(wight(30), 0, wight(150), hight(100))];
+            [Headview addSubview:PriceLabel2];
+            _Pricefield2 = [[UITextField alloc]initWithFrame:CGRectMake(SCREENWIDTH-wight(200)-15,hight(30), wight(200), hight(50))];
+            _Pricefield2.delegate=self;
+            _Pricefield2.placeholder=@"￥";
+            _Pricefield2.font = [UIFont systemFontOfSize:15];
+            _Pricefield2.textColor=[tools colorWithHex:0x333333];
+            _Pricefield2.textAlignment = NSTextAlignmentRight;
+            [Headview addSubview:_Pricefield2];
+        }else{
+             UILabel *ServerLabel=[MyView label:@"服务次数" tColor:[tools colorWithHex:0x333333] font:[UIFont systemFontOfSize:15] rect:CGRectMake(wight(30), 0, wight(150), hight(100))];
+             [Headview addSubview:ServerLabel];
+            _Serverfield = [[UITextField alloc]initWithFrame:CGRectMake( SCREENWIDTH-wight(200)-15,hight(30), wight(200), hight(50))];
+            _Serverfield.delegate=self;
+            _Serverfield.placeholder=@"默认次数为1次";
+            _Serverfield.font = [UIFont systemFontOfSize:15];
+            _Serverfield.textColor=[tools colorWithHex:0x333333];
+            _Serverfield.textAlignment = NSTextAlignmentRight;
+            [Headview addSubview:_Serverfield];
         }
         [Headview addSubview:[MyView addLineView:CGRectMake(10,Headview.xmg_height-1, SCREENWIDTH-10, 1) color:LINECOLOR]];
-          }
+    }
     self.tableView.tableHeaderView=_TopView;
 }
-#pragma mark - <UITextViewDelegate>
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    switch (textView.tag) {
-        case 100:{
-            if (text.length==0) {
-                return YES;
-            }
-            if ([textView.text length]+range.length>=30) {
-                return NO;
-            }
-        }
-            break;
-        case 200:{
-            if (text.length==0) {
-                return YES;
-            }
-            if ([textView.text length]+range.length>=50) {
-                return NO;
-            }
-        }
-            break;
-        default:
-            break;
-    }
-    return YES;
-}
--(void)textViewDidChange:(UITextView *)textView{
-    switch (textView.tag) {
-        case 100:{
-         
-            if ([textView.text isEqualToString:@""]) {
-                self.showTipsLabel1.hidden=NO;
-            }else{
-             
-                self.showTipsLabel1.hidden=YES;
-            }
-            TitleLabel.text=[NSString stringWithFormat:@"%lu/30字",[textView.text length]];
-        }
-            break;
-           
-        case 200:{
-            if ([textView.text isEqualToString:@""]) {
-                self.showTipsLabel2.hidden=NO;
-            }else{
-                self.showTipsLabel2.hidden=YES;
-            }
-            TitleFuLabel.text=[NSString stringWithFormat:@"%lu/50字",[textView.text length]];
-        }
-            break;
-        case 300:{
-            if ([textView.text isEqualToString:@""]) {
-                self.showTipsLabel3.hidden=NO;
-            }else{
-                self.showTipsLabel3.hidden=YES;
-            }
-        }
-            break;
-        default:
-            break;
-    }
-}
-#pragma mark-Bottom
-- (void)creataBottomView{
-    UIView *bottomView=[MyView uiview:0 bColor:[tools colorWithHex:0xFFB81F] rect:CGRectMake(0, SCREENHEIGHT-hight(98), SCREENWIDTH, hight(98))];
-    [self.view addSubview:bottomView];
-    _SubmitBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, bottomView.xmg_width, hight(98))];
-    [_SubmitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    _SubmitBtn.titleLabel.font=[UIFont systemFontOfSize:19];
-    [_SubmitBtn setTitleColor:[tools colorWithHex:0xFFFFFF] forState:UIControlStateNormal];
-    [_SubmitBtn addTarget:self action:@selector(SubmitClick:) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview:self.SubmitBtn];
 
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -248,111 +236,42 @@
         switch (indexPath.row) {
             case 0:{
                 field.enabled=NO;
-                field.frame=CGRectMake(cell.contentView.xmg_right-wight(350), 0, wight(400), hight(100));
-                field.text=_ProductType;
-            }
+                field.frame=CGRectMake(cell.contentView.xmg_right-wight(360),hight(28), wight(400), hight(50));
+                if (_ServerPerson || _ServerDescription || _ServerHour) {
+                    field.text=@"已编辑";
+                }
                 break;
             case 1:{
-                field.placeholder=@"￥";
-                field.font=[UIFont boldSystemFontOfSize:15];
-                field.tag=10;
-                arrow.hidden=YES;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                field.enabled=NO;
             }
                 break;
             case 2:{
-                field.placeholder=@"￥";
-                field.textColor=[tools colorWithHex:0x333333];
-                field.font=[UIFont boldSystemFontOfSize:15];
-                field.tag=20;
-                arrow.hidden=YES;
-                
-            }
-                break;
-            case 3:{
-                field.placeholder=@"默认次数为1";
-                field.tag=30;
-                arrow.hidden=YES;
-               
-            }
-                break;
-            case 4:{
-                field.enabled=NO;
-                if (_ServerPerson || _ServerDescription || _ServerHour) {
-                   UIView *serverView=[MyView uiview:0 bColor:[UIColor clearColor] rect:CGRectMake(cell.contentView.xmg_right-wight(490), 0, wight(500), hight(100))];
-                   [cell.contentView addSubview:serverView];
-                    CGFloat space=5;
-                    //耗时
-                    UIButton *button1=[[UIButton alloc]initWithFrame:CGRectMake(0, hight(30), wight(180), hight(40))];
-                    [button1 setTitleColor:[tools colorWithHex:0x999999] forState:UIControlStateNormal];
-                    button1.titleLabel.font=[UIFont systemFontOfSize:10];
-                    if (_ServerHour) {
-                        [button1 setImage:[UIImage imageNamed:@"time4"] forState:UIControlStateNormal];
-                        [button1 setTitle:[NSString stringWithFormat:@"耗时%@",_ServerHour] forState:UIControlStateNormal];
-                    }
-                    [button1 layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:space];
-                   
-                    //自定义
-                    UIButton *button2=[[UIButton alloc]initWithFrame:CGRectMake(button1.xmg_right+5, hight(26), wight(100), hight(50))];
-                    [button2 setTitleColor:[tools colorWithHex:0x999999] forState:UIControlStateNormal];
-                    button2.titleLabel.font=[UIFont systemFontOfSize:10];
-                    if ([_ServerPerson isEqualToString:@"女士"]) {
-                        [button2 setImage:[UIImage imageNamed:@"girl"] forState:UIControlStateNormal];
-                        [button2 setTitle:[NSString stringWithFormat:@"%@",_ServerPerson] forState:UIControlStateNormal];
-                    }else if ([_ServerPerson isEqualToString:@"男士"]){
-                        [button2 setImage:[UIImage imageNamed:@"boy"] forState:UIControlStateNormal];
-                        [button2 setTitle:[NSString stringWithFormat:@"%@",_ServerPerson] forState:UIControlStateNormal];
-                    }
-                    [button2 layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:space];
-                    
-                    //自定义
-                    UIButton *button3=[[UIButton alloc]init];
-                    if ([_ServerPerson isEqualToString:@"不限"]) {
-                        button3.frame=CGRectMake(button1.xmg_right+5, hight(30), wight(220), hight(40));
-                    }else{
-                        button3.frame=CGRectMake(button2.xmg_right+5, hight(30), wight(220), hight(40));
-                    }
-                    [button3 setTitleColor:[tools colorWithHex:0x999999] forState:UIControlStateNormal];
-                    button3.titleLabel.font=[UIFont systemFontOfSize:10];
-                    
-                    if (_ServerDescription){
-                        [button3 setImage:[UIImage imageNamed:@"general4"] forState:UIControlStateNormal];
-                        [button3 setTitle:[NSString stringWithFormat:@"%@",_ServerDescription] forState:UIControlStateNormal];
-                        
-                    }
-                    [button3 layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleLeft imageTitleSpace:space];
-                    [serverView addSubview:button1];
-                    [serverView addSubview:button2];
-                    [serverView addSubview:button3];
-            }
-
-            }
-                break;
-            case 5:{
-                field.enabled=NO;
-            }
-                break;
-            case 6:{
                 field.frame=CGRectMake(cell.contentView.xmg_right-wight(360),hight(28), wight(400), hight(50));
                 field.enabled=NO;
                 field.placeholder=@"默认早8:00-晚22:00";
                 field.textColor=[tools colorWithHex:0x333333];
                 field.font=[UIFont systemFontOfSize:15];
+                if (_ReservationArray != nil && ![_ReservationArray isKindOfClass:[NSNull class]] && _ReservationArray.count != 0) {
+                    field.text=@"已修改";
+                }
+
             }
                 break;
-            case 7:{
+            case 3:{
                 field.enabled=NO;
                 field.frame=CGRectMake(cell.contentView.xmg_right-wight(350), 0, wight(400), hight(100));
                 field.text=_ApplyPerson;
+                
             }
                 break;
-            case 8:{
+            case 4:{
                 field.enabled=NO;
                 field.frame=CGRectMake(cell.contentView.xmg_right-wight(350), 0, wight(400), hight(100));
                 field.text=_AttentionString;
+               
             }
                 break;
-            case 9:{
+            case 5:{
                 if (!switchOn) {
                     switchOn =  [[UISwitch alloc]initWithFrame:CGRectMake(SCREENWIDTH-wight(120), hight(20), wight(100), hight(60))];
                     switchOn.onTintColor=[tools colorWithHex:0xFFB81F];
@@ -367,7 +286,7 @@
                 field.enabled=NO;
             }
                 break;
-            case 10:{
+            case 6:{
                 UIView *layerView1=[MyView uiview:10 bColor:[UIColor whiteColor] rect:CGRectMake(15, 0, wight(690), hight(80))];
                 layerView1.layer.borderColor=[LINECOLOR CGColor];
                 layerView1.layer.borderWidth=1;
@@ -381,7 +300,7 @@
                 _showTipsLabel3.textColor = [tools colorWithHex:0x999999];
                 _showTipsLabel3.font = [UIFont systemFontOfSize:15];
                 _showTipsLabel3.text =@"默认为10份";
-               
+                
                 [layerView1 addSubview:xiangouNumber];
                 [layerView1 addSubview:ChoseNumberText];
                 [cell.contentView addSubview:layerView1];
@@ -391,7 +310,7 @@
                 field.enabled=NO;
             }
                 break;
-            case 11:{
+            case 7:{
                 UIView *layerView2=[MyView uiview:10 bColor:[UIColor whiteColor] rect:CGRectMake(15, 0, wight(690), hight(80))];
                 layerView2.layer.borderColor=[LINECOLOR CGColor];
                 layerView2.layer.borderWidth=1;
@@ -401,40 +320,28 @@
                 ChoseTimeLabel.textAlignment=NSTextAlignmentLeft;
                 UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPickViewerAction)];
                 [ChoseTimeLabel addGestureRecognizer:labelTapGestureRecognizer];
-                ChoseTimeLabel.userInteractionEnabled = YES; // 可以理解为设置label可被点击
+                ChoseTimeLabel.userInteractionEnabled = YES;
                 [layerView2 addSubview:xiangouTime];
                 [layerView2 addSubview:ChoseTimeLabel];
                 [cell.contentView addSubview:layerView2];
                 lineView.hidden=YES;
                 arrow.hidden=YES;
                 field.enabled=NO;
+
             }
-                break;
+            break;
             default:
-                break;
+            break;
         }
-    _fileArray=[NSMutableArray array];
-    [_fileArray addObject:field];
-    
+    }
     return cell;
 
 }
-- (void)showPickViewerAction{
-    ZHDatePickerView *pickerView = [[ZHDatePickerView alloc] initDatePickerWithDefaultDate:nil andDatePickerMode:UIDatePickerModeDate];
-    pickerView.delegate = self;
-    [pickerView show];
 
-}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:{
-            ProductTypeViewController *type=[[ProductTypeViewController alloc]init];
-            type.delegate=self;
-            [self.navigationController pushViewController:type animated:YES];
-        }
-            break;
-        case 4:{
             ServerDescribeViewController *ServerDescribe=[[ServerDescribeViewController alloc]init];
             ServerDescribe.delegate=self;
             ServerDescribe.name=_ServerDescription;
@@ -443,23 +350,24 @@
             [self.navigationController pushViewController:ServerDescribe animated:YES];
         }
             break;
-        case 5:{
+        case 1:{
             ProtectionViewController *Protection=[[ProtectionViewController alloc]init];
             [self.navigationController pushViewController:Protection animated:YES];
         }
             break;
-        case 6:{
+        case 2:{
             ReservationViewController *Reservation=[[ReservationViewController alloc]init];
+            Reservation.delegate=self;
             [self.navigationController pushViewController:Reservation animated:YES];
         }
             break;
-        case 7:{
+        case 3:{
             ApplyPersonViewController *ApplyPerson=[[ApplyPersonViewController alloc]init];
             ApplyPerson.delegate=self;
             [self.navigationController pushViewController:ApplyPerson animated:YES];
         }
             break;
-        case 8:{
+        case 4:{
             AttentionStringViewController *Attention=[[AttentionStringViewController alloc]init];
             Attention.delegate=self;
             [self.navigationController pushViewController:Attention animated:YES];
@@ -480,37 +388,112 @@
     NSString *dateStr=[NSString stringWithFormat:@"%@ 24:00前截止",dateString];
     self.dateButton.text=dateStr;
 }
-
+- (void)showPickViewerAction{
+    ZHDatePickerView *pickerView = [[ZHDatePickerView alloc] initDatePickerWithDefaultDate:nil andDatePickerMode:UIDatePickerModeDate];
+    pickerView.delegate = self;
+    [pickerView show];
+    
+}
+#pragma mark - <UITextViewDelegate>
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    switch (textView.tag) {
+        case 100:{
+            if (text.length==0) {
+                return YES;
+            }
+            if ([textView.text length]+range.length>=30) {
+                return NO;
+            }
+        }
+            break;
+        case 200:{
+            if (text.length==0) {
+                return YES;
+            }
+            if ([textView.text length]+range.length>=50) {
+                return NO;
+            }
+        }
+            break;
+        default:
+            break;
+    }
+    return YES;
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    switch (textView.tag) {
+        case 100:{
+            
+            if ([textView.text isEqualToString:@""]) {
+                self.showTipsLabel1.hidden=NO;
+            }else{
+                
+                self.showTipsLabel1.hidden=YES;
+            }
+            TitleLabel.text=[NSString stringWithFormat:@"%lu/30字",[textView.text length]];
+        }
+            break;
+            
+        case 200:{
+            if ([textView.text isEqualToString:@""]) {
+                self.showTipsLabel2.hidden=NO;
+            }else{
+                self.showTipsLabel2.hidden=YES;
+            }
+            TitleFuLabel.text=[NSString stringWithFormat:@"%lu/50字",[textView.text length]];
+        }
+            break;
+        case 300:{
+            if ([textView.text isEqualToString:@""]) {
+                self.showTipsLabel3.hidden=NO;
+            }else{
+                self.showTipsLabel3.hidden=YES;
+            }
+        }
+            break;
+        default:
+            break;
+    }
+}
+#pragma mark-Bottom
+- (void)creataBottomView{
+    UIView *bottomView=[MyView uiview:0 bColor:[tools colorWithHex:0xFFB81F] rect:CGRectMake(0, SCREENHEIGHT-hight(98), SCREENWIDTH, hight(98))];
+    [self.view addSubview:bottomView];
+    _SubmitBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, bottomView.xmg_width, hight(98))];
+    [_SubmitBtn setTitle:@"提交" forState:UIControlStateNormal];
+    _SubmitBtn.titleLabel.font=[UIFont systemFontOfSize:19];
+    [_SubmitBtn setTitleColor:[tools colorWithHex:0xFFFFFF] forState:UIControlStateNormal];
+    [_SubmitBtn addTarget:self action:@selector(SubmitClick:) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:self.SubmitBtn];
+    
+}
 -(void)switchAction:(UISwitch *)swith{
     [UIView animateWithDuration:0.3 animations:^{
         if([swith isOn])
         {
-            numberRow = 12;
+            numberRow = 8;
         }else{
-            numberRow = 10;
+            numberRow = 6;
         }
     } completion:^(BOOL finished) {
         [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
         [self.tableView reloadData];
     }];
-    
-    
 }
 
 //产品详情
--(void)ProductDetailClick:(UITapGestureRecognizer *)tap{
-    [self.view endEditing:YES];
+-(void)ProductDetailClick:(UITapGestureRecognizer *)tap1{
     ProductDetailViewController *detail=[[ProductDetailViewController alloc]init];
     detail.delegate=self;
     [self.navigationController pushViewController:detail animated:YES];
 }
- #pragma mark - <UITextFieldDelegate>
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField.tag==10 || textField.tag==20) {
-        textField.text=[NSString stringWithFormat:@"￥%@",textField.text];
-    }
-   
+//产品类型
+-(void)ProductTypeClick:(UITapGestureRecognizer *)tap2{
+    ProductTypeViewController *type=[[ProductTypeViewController alloc]init];
+    type.delegate=self;
+    [self.navigationController pushViewController:type animated:YES];
 }
+
 #pragma mark -choosePhoto
 - (void)ChoosePhotoDelegateWithName:(NSArray *)DataArray{
     _ImageArrayID=DataArray;
@@ -527,46 +510,28 @@
 }
 #pragma mark -selectTypeWithName
 - (void)selectTypeWithName:(NSString *)name{
-    _ProductType=name;
-    [self.tableView reloadData];
+    _productTypeLabel.text=name;
 }
 #pragma mark -InputProductDetailDelegate
 - (void)InputProductDetailWithName:(NSString *)name{
-    UILabel *nameLabel = (UILabel *)[Headview viewWithTag:1001];
-    nameLabel.text = name;
-    _ProductDetail=name;
+    _productdetailLabel.text=name;
 }
 #pragma mark -ServerDescribeDelegate
--(void)ServerDescribeWithName:(NSString *)name hour:(NSString *)hour person:(NSString *)person{
-    _ServerDescription=name;
-    _ServerHour=hour;
-    _ServerPerson=person;
-    NSMutableDictionary *custom=[NSMutableDictionary dictionary];
-    [custom setObject:_ServerDescription forKey:@"name"];
-    [custom setObject:@"" forKey:@"value"];
-    
-    
-    NSMutableDictionary *ServerHour=[NSMutableDictionary dictionary];
-      [ServerHour setObject:@"耗时" forKey:@"name"];
-    [ServerHour setObject:_ServerHour forKey:@"value"];
-  
-    
-    NSMutableDictionary *ServerPerson=[NSMutableDictionary dictionary];
-     [ServerPerson setObject:_ServerPerson forKey:@"name"];
-    [ServerPerson setObject:@"" forKey:@"value"];
-   
-    NSMutableArray *descArray=[NSMutableArray array];
-    [descArray addObject:custom];
-    [descArray addObject:ServerHour];
-    [descArray addObject:ServerPerson];
+-(void)ServerDescribeWithName:(NSMutableArray *)serverArray{
     
     SBJsonWriter *sbjson=[[SBJsonWriter alloc]init];
-    NSString *str=[sbjson stringWithObject:descArray];
-    _DescriptionArray=str;
-    
+    NSString *str=[sbjson stringWithObject:serverArray];
+    _DescriptionString=str;
     [self.tableView reloadData];
 }
-
+#pragma marl-
+- (void)ReservationWithArray:(NSMutableArray *)DateTimeArray{
+    SBJsonWriter *sbjson=[[SBJsonWriter alloc]init];
+    NSString *str=[sbjson stringWithObject:DateTimeArray];
+    _ReservationString=str;
+    _ReservationArray=DateTimeArray;
+     [self.tableView reloadData];
+}
 #pragma mark -ApplyPersonDelegate
 -(void)ApplyPersonWithName:(NSString *)name{
     _ApplyPerson=name;
@@ -580,25 +545,24 @@
 
 #pragma mark -发布产品
 - (void)SubmitClick:(UIButton *)sender{
-
-    XQQLog(@"array%@ %@ %@ %ld",_ProductPrice,_ProductshichangPrice,_serverNumber,_fileArray.count);
-    
       MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
      hud.labelText = @"正在发布产品信息...";
     [NetWorkManager IssueProduct:10
                        productID:1
                     productTitle:_TitleText.text
                   productFuTitle:_TitleFuText.text
-                    productPrice:@"450"
-                   shichangPrice:@"650"
-                    serverNumber:@"99"
+                    productPrice:_Pricefield.text
+                   shichangPrice:_Pricefield2.text
+                    serverNumber:_Serverfield.text
                    shiyongPerson:_ApplyPerson
                      precautions:_AttentionString
-                  productContent:_ProductDetail
-                     productDesc:_DescriptionArray
+                  productContent:_productdetailLabel.text
+                     productDesc:_DescriptionString
                          ImageID:_ImageString
                          limited:99
-                      limit_date:2017
+                      limit_date:@"2017-4-10"
+                    service_time:@"8:00-22:00"
+                     appointment:_ReservationString
                          success:^(BaseResponse *response) {
                              hud.labelText = @"产品发布成功";
                              [hud hide:YES afterDelay:1.0];

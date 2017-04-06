@@ -91,7 +91,9 @@ const int  Count = 1;
         productDesc:(NSString *)productDesc
             ImageID:(NSString *)ImageArrID
             limited:(NSInteger)limited
-         limit_date:(NSInteger)limit_date
+         limit_date:(NSString *)limit_date
+       service_time:(NSString *)service_time
+        appointment:(NSString *)appointment
             success:(requestSuccess)success
             failure:(requestFailure)failure{
     NSDictionary *param=@{@"uid":@(userID),
@@ -107,7 +109,9 @@ const int  Count = 1;
                           @"desc":productDesc,
                           @"att_id":ImageArrID,
                           @"limited":@(limited),
-                          @"limit_date":@(limit_date)};
+                          @"limit_date":limit_date,
+                          @"service_time":service_time,
+                          @"appointment":appointment};
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
     NSArray *keys = [dict allKeys];
     for (NSString  *key in keys) {
@@ -119,6 +123,10 @@ const int  Count = 1;
         }
     }
     [NetWorkManager POST:@"http://192.168.1.187/product" parameters:param success:success failure:failure];
+}
++(void)getProductArraysuccess:(requestSuccess)success
+                      failure:(requestFailure)failure{
+    [NetWorkManager GET:@"http://192.168.1.187/product" parameters:nil success:success failure:failure];
 }
 +(instancetype)sharInstance
 {

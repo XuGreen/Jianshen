@@ -7,6 +7,8 @@
 //
 
 #import "ProductTypeViewController.h"
+#import "TypeResponse.h"
+#import "ProductTypeModel.h"
 
 @interface ProductTypeViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView    *tableView;
@@ -22,6 +24,7 @@
     [self setNav];
     [self.view addSubview:self.tableView];
     _productType=[NSArray arrayWithObjects:@"极速减脂",@"增肌塑形",@"人马线", @"舞蹈瑜伽", @"产后恢复", @"运动康复", @"搏击", @"游泳", nil];
+    [self RequestTypeData];
 }
 -(void)setNav{
     self.view.backgroundColor=[UIColor whiteColor];
@@ -32,6 +35,16 @@
     [backButton addTarget:self action:@selector(action_onBackButton:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backItem;
+}
+- (void)RequestTypeData{
+    [NetWorkManager getProductArraysuccess:^(BaseResponse *response) {
+        NSMutableDictionary *dict=(NSMutableDictionary *)response.data;
+        TypeResponse *typeResponse=[[TypeResponse alloc]initWithDictionary:dict error:nil];
+        NSArray *modelArray=typeResponse.data;
+       
+    } failure:^(NSError *error) {
+        XQQLogFunc
+    }];
 }
 -(void)action_onBackButton:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];

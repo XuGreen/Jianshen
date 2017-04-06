@@ -10,9 +10,9 @@
 @protocol ServerDescribeDelegate <NSObject>
 
 @optional
-- (void)ServerDescribeWithName : (NSString *)name  hour:(NSString *)hour person:(NSString *)person;
+- (void)ServerDescribeWithName : (NSMutableArray *)serverArray ;
 @end
-@interface ServerDescribeViewController : BaseViewController
+@interface ServerDescribeViewController : UIViewController
 @property(nonatomic,strong)NSString *name;
 @property(nonatomic,strong)NSString *hour;
 @property(nonatomic,strong)NSString *person;

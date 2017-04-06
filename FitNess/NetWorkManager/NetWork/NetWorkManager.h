@@ -103,10 +103,14 @@ typedef void(^downloadProgress)(float progress);
                 productDesc:(NSString *)productDesc
             ImageID:(NSString *)ImageArrID
         limited:(NSInteger)limited
-            limit_date:(NSInteger)limit_date
+            limit_date:(NSString *)limit_date
+            service_time:(NSString *)service_time
+         appointment:(NSString *)appointment
               success:(requestSuccess)success
               failure:(requestFailure)failure;
-
+//获取产品类型
++(void)getProductArraysuccess:(requestSuccess)success
+          failure:(requestFailure)failure;
 #pragma mark - init
 /**
  *  单例方法

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DateModel.h"
 @protocol ReservationTimeDelegate <NSObject>
 
 @optional

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol ReservationDelegate <NSObject>
 
+@optional
+- (void)ReservationWithArray:(NSMutableArray *)DateTimeArray;
+
+@end
 @interface ReservationViewController : UIViewController
-
+@property(nonatomic,weak)id <ReservationDelegate>delegate;
 @end

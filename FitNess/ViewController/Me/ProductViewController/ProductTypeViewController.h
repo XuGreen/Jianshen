@@ -10,7 +10,6 @@
 
 @protocol SelectTypeDelegate <NSObject>
 
-@optional
 - (void)selectTypeWithName : (NSString *)name;
 @end
 @interface ProductTypeViewController : UIViewController

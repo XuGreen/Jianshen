@@ -8,17 +8,22 @@
 
 #import "ServerDescribeViewController.h"
 #import "HourNumerButton.h"
+#import "ServerDescrptionViewCell.h"
+#import "ServerDescribeModel.h"
 
-@interface ServerDescribeViewController ()<UITextFieldDelegate>{
+@interface ServerDescribeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSString *number;
     NSString *personType;
+    UIView *Addview;
 }
 @property (nonatomic, strong) UIView        *customView;
 @property (nonatomic, strong) UIView        *customView1;
 @property (nonatomic, strong) UIView        *customView2;
 @property (nonatomic, strong) UITextField    *inputView;
 @property(nonatomic,strong)HourNumerButton *numberButton;//添加数量
-
+@property(nonatomic,strong)UIButton *Addbutton;
+@property(nonatomic,strong)NSMutableArray *AddArray;
+@property(nonatomic,strong) UITableView    *tableView;
 
 @end
 
@@ -26,9 +31,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _AddArray=[NSMutableArray array];
+    ServerDescribeModel *requestModel = [[ServerDescribeModel alloc]init];
+    [_AddArray addObject:requestModel];
+   
+    
     [self setNav];
     [self CreateInputView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldEditChanged:)  name:@"UITextFieldTextDidChangeNotification" object:_inputView];
+    [self.view addSubview:self.tableView];
+    [self addView];
+ 
 }
 
 -(void)setNav{
@@ -49,25 +62,12 @@
     self.navigationItem.rightBarButtonItem = CompleteItem;
 }
 - (void)CreateInputView{
-    _customView=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, 10, SCREENWIDTH, hight(100))];
-    [containerView addSubview:self.customView];
-    UIImageView *addImage=[[UIImageView alloc]initWithFrame:CGRectMake(15, hight(27), wight(50), hight(50))];
-    addImage.image=[UIImage imageNamed:@"general"];
-    [self.customView addSubview:addImage];
-    
-    _inputView=[MyView Textfile:@"自定义" corner:0 rect:CGRectMake(addImage.xmg_right+5, hight(34), wight(400), hight(34))];
-    _inputView.font=[UIFont systemFontOfSize:15];
-    _inputView.textColor=[tools colorWithHex:0x999999];
-    _inputView.text=_name;
-    [self.customView addSubview:self.inputView];
-    
-    
+    UIView *topView=[MyView uiview:0 bColor:COMMONRBGCOLOR rect:CGRectMake(0, 0, SCREENWIDTH, hight(340))];
     _customView1=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, _customView.xmg_bottom+10, SCREENWIDTH, hight(100))];
-    [containerView addSubview:self.customView1];
+    [topView addSubview:_customView1];
     UIImageView *hourImage=[[UIImageView alloc]initWithFrame:CGRectMake(15, hight(27), wight(50), hight(50))];
     hourImage.image=[UIImage imageNamed:@"time4"];
     [self.customView1 addSubview:hourImage];
-    
     UILabel *hourLabel=[MyView label:@"耗时" tColor:[tools colorWithHex:0x333333] font:[UIFont systemFontOfSize:15] rect:CGRectMake(hourImage.xmg_right+5, hight(34), wight(100), hight(34))];
     [self.customView1 addSubview:hourLabel];
     _numberButton=[HourNumerButton numberButtonWithFrame:CGRectMake(SCREENWIDTH-wight(260)-15, hight(34), wight(260), hight(66))];
@@ -84,15 +84,11 @@
     };
     [self.customView1 addSubview:[MyView addLineView:CGRectMake(15, _customView1.xmg_height-1, SCREENWIDTH-30, 1) color:LINECOLOR]];
     
-    
     _customView2=[MyView uiview:0 bColor:[UIColor whiteColor] rect:CGRectMake(0, _customView1.xmg_bottom, SCREENWIDTH, hight(200))];
-    [containerView addSubview:self.customView2];
+    [topView addSubview:self.customView2];
     UIImageView *personImage=[[UIImageView alloc]initWithFrame:CGRectMake(15, hight(27), wight(50), hight(50))];
     personImage.image=[UIImage imageNamed:@"people"];
     [self.customView2 addSubview:personImage];
-    
-    
-    
     UILabel *personLabel=[MyView label:@"预约人" tColor:[tools colorWithHex:0x333333] font:[UIFont systemFontOfSize:15] rect:CGRectMake(personImage.xmg_right+5, hight(34), wight(100), hight(34))];
     [self.customView2 addSubview:personLabel];
     NSArray *title=[NSArray arrayWithObjects:@"女士",@"男士",@"不限", nil];
@@ -108,13 +104,82 @@
         [button layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsStyleRight imageTitleSpace:space];
         [button addTarget:self action:@selector(choosePerson:) forControlEvents:UIControlEventTouchUpInside];
     }
+    self.tableView.tableHeaderView=topView;
+}
+- (void)addView{
+    Addview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(100))];
+    Addview.backgroundColor=[UIColor  whiteColor];
+    self.tableView.tableFooterView=Addview;
+    UIButton *addButton=[[UIButton alloc]initWithFrame:CGRectMake(0,0,Addview.xmg_width,hight(100))];
+    [addButton setTitle:@"继续添加服务描述(最多4条)" forState:UIControlStateNormal];
+    [addButton setTitleColor:MAINCOLOR forState:UIControlStateNormal];
+    [addButton addTarget:self action:@selector(addButton:) forControlEvents:UIControlEventTouchUpInside];
+    addButton.titleLabel.font=[UIFont systemFontOfSize:15];
+    [Addview addSubview:addButton];
+}
+- (void)addButton:(UIButton *)sender{
+    // 插入单行(插入了一行cell)
+    ServerDescribeModel *model=[[ServerDescribeModel alloc]init];
+    [_AddArray addObject:model];
+    if(_AddArray.count>3){
+        [Addview removeFromSuperview];
+    }
+    [self.tableView reloadData];
+  
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (_AddArray.count==0) {
+        return 1;
+    }else{
+        return _AddArray.count;
+    }
+  
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ServerDescrptionViewCell *ServerCell=[ServerDescrptionViewCell ServerDescrptionViewCell:tableView];
+    ServerCell.selectionStyle =UITableViewCellSelectionStyleNone;
+    ServerCell.model=[_AddArray objectAtIndex:indexPath.row];
+    [ServerCell.deleatebutton addTarget:self action:@selector(DeleteClick:) forControlEvents:UIControlEventTouchUpInside];
+    ServerCell.deleatebutton.tag=indexPath.row;
+    return ServerCell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return hight(120);
+}
+- (void)DeleteClick:(UIButton *)sender{
+    if (self.AddArray.count>1) {
+        [self.AddArray removeObjectAtIndex:sender.tag];
+        [self.tableView reloadData];
+    }
+}
 -(void)action_onBackButton:(UIButton *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+      [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)CompleteButton:(UIButton *)sender{
-    [self.delegate ServerDescribeWithName:_inputView.text hour:number person:personType];
+    NSMutableArray *descArray=[NSMutableArray array];
+    for (int i=0; i<_AddArray.count; i++) {
+        ServerDescribeModel *model=[_AddArray objectAtIndex:i];
+        NSMutableDictionary *ProductDic=[[NSMutableDictionary alloc]init];
+        [ProductDic setObject:model.name forKey:@"name"];
+        [ProductDic setObject:@"自定义" forKey:@"value"];
+        [descArray addObject:ProductDic];
+    }
+    NSMutableDictionary *ServerHour=[NSMutableDictionary dictionary];
+    [ServerHour setObject:@"耗时" forKey:@"name"];
+    [ServerHour setObject:number forKey:@"value"];
+     [descArray addObject:ServerHour];
+    
+    NSMutableDictionary *ServerPerson=[NSMutableDictionary dictionary];
+    [ServerPerson setObject:personType forKey:@"name"];
+    [ServerPerson setObject:@"预约" forKey:@"value"];
+   [descArray addObject:ServerPerson];
+    
+    [self.delegate ServerDescribeWithName:descArray];
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)choosePerson:(UIButton *)sender{
@@ -162,5 +227,20 @@
             }
         }
     }
+}
+#pragma marl -懒加载
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-49) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.separatorInset=UIEdgeInsetsMake(hight(98), 15, 1, 15);
+        _tableView.backgroundColor=COMMONRBGCOLOR;
+        _tableView.tableFooterView = [[UIView alloc]init];
+    }
+    return _tableView;
 }
 @end

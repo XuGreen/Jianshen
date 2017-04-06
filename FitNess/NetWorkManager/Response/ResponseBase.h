@@ -10,4 +10,9 @@
 @interface ResponseBase : JSONModel
 
 
+/**
+ * 网络请求是否成功
+ */
+- (BOOL)isSuccess;
+
 @end

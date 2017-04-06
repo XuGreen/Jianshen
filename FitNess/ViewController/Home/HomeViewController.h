@@ -25,8 +25,9 @@
 #import "CouponViewController.h"//优惠活动
 #import "ShopViewController.h"//推荐店铺
 #import "GistViewController.h"//附近手艺人
+#import "CityListViewController.h"
 
-@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate>{
+@interface HomeViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate,CityListViewDelegate>{
   
     UIScrollView *containerView;//滚动视图
 }

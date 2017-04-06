@@ -7,12 +7,11 @@
 //
 
 #import "ProductTypeViewController.h"
-#import "TypeResponse.h"
-#import "ProductTypeModel.h"
+#import "PrductTypeModel.h"
 
 @interface ProductTypeViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView    *tableView;
-@property(nonatomic,strong)NSArray           *productType;
+@property(nonatomic,strong)NSMutableArray    *productType;
 @property(nonatomic,strong)UIButton        *selectBtn;
 @property( nonatomic,assign)NSIndexPath *selIndex;
 @end
@@ -21,10 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _productType=[NSMutableArray array];
     [self setNav];
     [self.view addSubview:self.tableView];
-    _productType=[NSArray arrayWithObjects:@"极速减脂",@"增肌塑形",@"人马线", @"舞蹈瑜伽", @"产后恢复", @"运动康复", @"搏击", @"游泳", nil];
     [self RequestTypeData];
+ 
 }
 -(void)setNav{
     self.view.backgroundColor=[UIColor whiteColor];
@@ -38,12 +38,19 @@
 }
 - (void)RequestTypeData{
     [NetWorkManager getProductArraysuccess:^(BaseResponse *response) {
+        
         NSMutableDictionary *dict=(NSMutableDictionary *)response.data;
-        TypeResponse *typeResponse=[[TypeResponse alloc]initWithDictionary:dict error:nil];
-        NSArray *modelArray=typeResponse.data;
-       
+        NSMutableArray *array=[NSMutableArray array];
+        for (NSMutableDictionary *typeDic in dict) {
+            PrductTypeModel *model=[[PrductTypeModel alloc]init];
+            model.typeId=[typeDic objectForKey:@"id"];
+            model.name=[typeDic objectForKey:@"name"];
+            [array addObject:model];
+        }
+        _productType=array;
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
-        XQQLogFunc
+        XQQLog(@"%@",error);
     }];
 }
 -(void)action_onBackButton:(UIButton *)sender{
@@ -61,16 +68,14 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
     }
-    
-    cell.textLabel.text=[_productType objectAtIndex:indexPath.row];
+    PrductTypeModel *model=[_productType objectAtIndex:indexPath.row];
+    cell.textLabel.text=model.name;
     UIButton *ClickBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH-wight(50)-15, hight(25), wight(50), hight(50))];
     [ClickBtn setImage:[UIImage imageNamed:@"select3"] forState:UIControlStateNormal];
-    
     self.selectBtn=ClickBtn;
     [cell.contentView addSubview:ClickBtn];
     if (_selIndex==indexPath) {
         self.selectBtn.hidden=NO;
-       
     }else{
         self.selectBtn.hidden=YES;
     }
@@ -84,7 +89,7 @@
     }
     //之前选中的，取消选择
     UITableViewCell *celled = [tableView cellForRowAtIndexPath:_selIndex];
-    self.selectBtn.hidden=NO;
+    self.selectBtn.hidden=YES;
     [celled.contentView addSubview:self.selectBtn];
     //记录当前选中的位置索引
     _selIndex = indexPath;
@@ -94,21 +99,18 @@
     [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     self.selectBtn.hidden=NO;
     [cell.contentView addSubview:self.selectBtn];
-    
-    [self.delegate selectTypeWithName:[_productType objectAtIndex:indexPath.row]];
+    PrductTypeModel *model=[_productType objectAtIndex:indexPath.row];
+    [self.delegate selectTypeWithName:model.name typeID:model.typeId];
     [self.navigationController popViewControllerAnimated:YES];
  
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return hight(100);
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 15;
-}
 #pragma marl -懒加载
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-49) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 15, SCREENWIDTH, SCREENHEIGHT-49) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;

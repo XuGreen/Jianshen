@@ -58,9 +58,9 @@
     [xiuxiView addSubview:xiuxiLabel];
     
     _Restbutton=[[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH-wight(60)-15, 10, wight(60), hight(60))];
-    _Restbutton.tag=1001;
+    _Restbutton.tag=300;
     [_Restbutton setImage:[UIImage imageNamed:@"cancel3"] forState:UIControlStateNormal];
-   [_Restbutton addTarget:self action:@selector(chooseClick:) forControlEvents:UIControlEventTouchUpInside];
+   [_Restbutton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [xiuxiView addSubview:_Restbutton];
     
     UILabel *titleLable = [[UILabel alloc] initWithFrame:CGRectMake(topView.bounds.size.width / 2.0 - 150.0 / 2.0, 0.0, 150.0, topView.bounds.size.height)];
@@ -233,9 +233,9 @@
 }
 - (void)onClick:(UIButton *)sender{
     if (sender.tag==100) {
+        _btnTag=100;
         [self removeFromSuperview];
-    }else{
-        
+    }else if(sender.tag==200){
         if (self.done) {
             if (!self.seletedhourStr1) {
                 self.seletedhourStr1=[self.hourdatas1 objectAtIndex:8];
@@ -252,8 +252,31 @@
             self.done(self.seletedhourStr1,self.seletedminStr1,self.seletedhourStr2,self.seletedminStr2);
             [self removeFromSuperview];
         }
-
+    }else{
+        _btnTag=300;
+        [UIView animateWithDuration:0.3 animations:^{
+            sender.selected = !_isChooseClicked ? NO : YES;
+            [_Restbutton setImage:[UIImage imageNamed:(!_isChooseClicked ? @"select3" : @"cancel3")]  forState:UIControlStateNormal];
+            if (_isChooseClicked==NO) {
+                if (self.done) {
+                    NSString *one=@"全";
+                    NSString *two=@"天";
+                    NSString *three=@"休";
+                    NSString *four=@"息";
+                    self.done(one,two,three,four);
+                    [self removeFromSuperview];
+                    
+                }
+            }else{
+                
+                XQQLogFunc
+            }
+        } completion:^(BOOL finished) {
+            _isChooseClicked = !_isChooseClicked;
+        }];
     }
 }
-
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:self];
+}
 @end

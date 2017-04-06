@@ -33,9 +33,6 @@
 @property (strong, nonatomic) NSMutableArray *timeArray5;
 @property (strong, nonatomic) NSMutableArray *timeArray6;
 @property (strong, nonatomic) NSMutableArray *timeArray7;
-@property (strong, nonatomic) NSMutableArray *AllTimeArray;
-
-
 @end
 
 @implementation ReservationViewController
@@ -185,13 +182,14 @@
     header=[[ServerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, hight(140))];
     UITapGestureRecognizer *tap1=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(updateTimeTap:)];
     [header.UpdateImageView addGestureRecognizer:tap1];
+ 
     self.tableView.tableHeaderView=header;
 }
 -(void)action_onBackButton:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)CompleteButton:(UIButton *)sender{
-    [self.delegate ReservationWithArray:_AllTimeArray];
+    [self.delegate ReservationWithArray:_AllTimeArray serverTime:header.TimeLabel.text];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)updateTimeTap:(UITapGestureRecognizer *)sender{
@@ -213,7 +211,6 @@
        ReservationCell.selectionStyle =UITableViewCellSelectionStyleNone;
        ReservationCell.dayLabel.text=[_dataSourceForWeek objectAtIndex:indexPath.row];
        ReservationCell.dateLabel.text=[_dataSourceForDay objectAtIndex:indexPath.row];
-
         return ReservationCell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

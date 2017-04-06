@@ -17,31 +17,36 @@
     NSInteger FutitleNumber;
     UILabel *TitleLabel;
     UILabel *TitleFuLabel;
+    
     TouchUIView *Headview;
 }
 @property(nonatomic,strong) UIView    *TopView;
 @property(nonatomic, strong) UITextView *TitleText;
 @property(nonatomic, strong) UITextView *TitleFuText;
+@property(nonatomic, strong) UITextView *ChoseNumberText;
 @property(nonatomic,strong) UITableView    *tableView;
 @property(nonatomic,strong) UIButton    *Button1;
 @property(nonatomic,strong) UIButton    *SubmitBtn;
 @property (nonatomic, strong) UILabel  *dateButton;//截止时间选择
 @property(nonatomic,strong) NSString    *ProductType;//产品类型
+@property(nonatomic,strong) NSString    *ProductTypeID;//产品类型ID
 @property(nonatomic,strong) NSString    *ProductDetail;//产品详情
 @property(nonatomic,strong) NSString    *ProductPrice;//产品价格
 @property(nonatomic,strong) NSString    *ProductshichangPrice;//产品市场价
 @property(nonatomic,strong) NSString    *serverNumber;//服务次数
-@property(nonatomic,strong) NSString    *ServerDescription;//服务描述
+@property(nonatomic,strong) NSMutableArray    *ServerDescription;//服务描述
 @property(nonatomic,strong) NSString    *ServerHour;//耗时时间
 @property(nonatomic,strong) NSString    *ServerPerson;//服务描述
+@property(nonatomic,assign) NSInteger   btnTag;//服务描述
 @property(nonatomic,strong) NSString    *ReservationTime;//预约时间
 @property(nonatomic,strong) NSString    *ApplyPerson;//适用人群
 @property(nonatomic,strong) NSString    *AttentionString;// 注意事项
 @property(nonatomic,strong) NSArray     *ImageArrayID;//适用人群
 @property(nonatomic,strong) NSString    *DescriptionString;// 注意事项
 @property(nonatomic,strong) NSString    *ReservationString;//  预约时间
+@property(nonatomic,strong) NSString    *ServerTime;//  预约时间
+@property(nonatomic,strong) NSString    *DateString;//  预约时间
 @property(nonatomic,strong) NSMutableArray    *ReservationArray;//  预约时间
-@property(nonatomic,strong)NSMutableArray *fileArray;
 @property(nonatomic,strong) NSMutableString      *ImageString;
 
 @property (nonatomic, strong) UILabel       *showTipsLabel1;
@@ -65,6 +70,7 @@
     _Datasouce=[NSArray arrayWithObjects:@"服务描述",@"服务保障",@"可预约时间段",@"适用人群",@"注意事项",@"是否限购",@"",@"",nil];
     _ReservationArray=[NSMutableArray array];
     _ImageString=[[NSMutableString alloc]init];
+    _ServerDescription=[NSMutableArray array];
     numberRow = 6;
     [self setNav];
     [self.view addSubview:self.tableView];
@@ -237,7 +243,7 @@
             case 0:{
                 field.enabled=NO;
                 field.frame=CGRectMake(cell.contentView.xmg_right-wight(360),hight(28), wight(400), hight(50));
-                if (_ServerPerson || _ServerDescription || _ServerHour) {
+                if (_ServerPerson  || _ServerHour || (_ServerDescription != nil && ![_ServerDescription isKindOfClass:[NSNull class]] && _ServerDescription.count != 0)) {
                     field.text=@"已编辑";
                 }
                 break;
@@ -291,18 +297,18 @@
                 layerView1.layer.borderColor=[LINECOLOR CGColor];
                 layerView1.layer.borderWidth=1;
                 UILabel  *xiangouNumber=[MyView label:@"限购数量" tColor:     [tools colorWithHex:0x666666] font: [UIFont systemFontOfSize:15] rect: CGRectMake(15, hight(25), wight(150), hight(34))];
-                UITextView *ChoseNumberText=[MyView textView:@"" hintColor:   [UIColor clearColor] bColor:   [UIColor clearColor] tColor:[tools colorWithHex:0x999999]  corner:0 rect:CGRectMake(xiangouNumber.xmg_right, hight(25), wight(180), hight(34)) ];
-                ChoseNumberText.delegate = self;
-                ChoseNumberText.tag=300;
-                ChoseNumberText.font=[UIFont systemFontOfSize:15];
-                ChoseNumberText.textAlignment=NSTextAlignmentLeft;
+                _ChoseNumberText=[MyView textView:@"" hintColor:   [UIColor clearColor] bColor:   [UIColor clearColor] tColor:[tools colorWithHex:0x999999]  corner:0 rect:CGRectMake(xiangouNumber.xmg_right, hight(25), wight(180), hight(34)) ];
+                _ChoseNumberText.delegate = self;
+                _ChoseNumberText.tag=300;
+                _ChoseNumberText.font=[UIFont systemFontOfSize:15];
+                _ChoseNumberText.textAlignment=NSTextAlignmentLeft;
                 _showTipsLabel3 = [[UILabel alloc]initWithFrame:CGRectMake(xiangouNumber.xmg_right+20, hight(25), wight(180), hight(34))];
                 _showTipsLabel3.textColor = [tools colorWithHex:0x999999];
                 _showTipsLabel3.font = [UIFont systemFontOfSize:15];
                 _showTipsLabel3.text =@"默认为10份";
                 
                 [layerView1 addSubview:xiangouNumber];
-                [layerView1 addSubview:ChoseNumberText];
+                [layerView1 addSubview:_ChoseNumberText];
                 [cell.contentView addSubview:layerView1];
                 [cell.contentView addSubview:_showTipsLabel3];
                 lineView.hidden=YES;
@@ -344,9 +350,10 @@
         case 0:{
             ServerDescribeViewController *ServerDescribe=[[ServerDescribeViewController alloc]init];
             ServerDescribe.delegate=self;
-            ServerDescribe.name=_ServerDescription;
+            ServerDescribe.nameArray=_ServerDescription;
             ServerDescribe.hour=_ServerHour;
             ServerDescribe.person=_ServerPerson;
+            ServerDescribe.btnTag=_btnTag;
             [self.navigationController pushViewController:ServerDescribe animated:YES];
         }
             break;
@@ -357,18 +364,21 @@
             break;
         case 2:{
             ReservationViewController *Reservation=[[ReservationViewController alloc]init];
+            Reservation.AllTimeArray=_ReservationArray;
             Reservation.delegate=self;
             [self.navigationController pushViewController:Reservation animated:YES];
         }
             break;
         case 3:{
             ApplyPersonViewController *ApplyPerson=[[ApplyPersonViewController alloc]init];
+            ApplyPerson.Detail=_ApplyPerson;
             ApplyPerson.delegate=self;
             [self.navigationController pushViewController:ApplyPerson animated:YES];
         }
             break;
         case 4:{
             AttentionStringViewController *Attention=[[AttentionStringViewController alloc]init];
+            Attention.Detail=_AttentionString;
             Attention.delegate=self;
             [self.navigationController pushViewController:Attention animated:YES];
         }
@@ -386,6 +396,7 @@
 - (void)pickerView:(ZHDatePickerView *)pickerView didSelectDateString:(NSString *)dateString
 {
     NSString *dateStr=[NSString stringWithFormat:@"%@ 24:00前截止",dateString];
+    _DateString=dateString;
     self.dateButton.text=dateStr;
 }
 - (void)showPickViewerAction{
@@ -484,6 +495,7 @@
 //产品详情
 -(void)ProductDetailClick:(UITapGestureRecognizer *)tap1{
     ProductDetailViewController *detail=[[ProductDetailViewController alloc]init];
+    detail.Detail=_productdetailLabel.text;
     detail.delegate=self;
     [self.navigationController pushViewController:detail animated:YES];
 }
@@ -509,27 +521,35 @@
     
 }
 #pragma mark -selectTypeWithName
-- (void)selectTypeWithName:(NSString *)name{
+- (void)selectTypeWithName:(NSString *)name typeID:(NSString *)typeId{
     _productTypeLabel.text=name;
+    _ProductTypeID=typeId;
+    
 }
 #pragma mark -InputProductDetailDelegate
 - (void)InputProductDetailWithName:(NSString *)name{
     _productdetailLabel.text=name;
 }
 #pragma mark -ServerDescribeDelegate
--(void)ServerDescribeWithName:(NSMutableArray *)serverArray{
+-(void)ServerDescribeWithName:(NSMutableArray *)serverArray hour:(NSString *)hour person:(NSString *)person nameArray:(NSMutableArray *)nameArray btnTag:(NSInteger)btnTag{
     
     SBJsonWriter *sbjson=[[SBJsonWriter alloc]init];
     NSString *str=[sbjson stringWithObject:serverArray];
     _DescriptionString=str;
+    _ServerHour=hour;
+    _ServerDescription=nameArray;
+    _ServerPerson=person;
+    _btnTag=btnTag;
     [self.tableView reloadData];
 }
 #pragma marl-
-- (void)ReservationWithArray:(NSMutableArray *)DateTimeArray{
+- (void)ReservationWithArray:(NSMutableArray *)DateTimeArray serverTime:(NSString *)serverTime{
     SBJsonWriter *sbjson=[[SBJsonWriter alloc]init];
     NSString *str=[sbjson stringWithObject:DateTimeArray];
     _ReservationString=str;
     _ReservationArray=DateTimeArray;
+    _ServerTime=serverTime;
+    
      [self.tableView reloadData];
 }
 #pragma mark -ApplyPersonDelegate
@@ -547,8 +567,10 @@
 - (void)SubmitClick:(UIButton *)sender{
       MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
      hud.labelText = @"正在发布产品信息...";
+    NSInteger productID=[_ProductTypeID integerValue];
+     NSInteger limited=[_ChoseNumberText.text integerValue];
     [NetWorkManager IssueProduct:10
-                       productID:1
+                       productID:productID
                     productTitle:_TitleText.text
                   productFuTitle:_TitleFuText.text
                     productPrice:_Pricefield.text
@@ -559,9 +581,9 @@
                   productContent:_productdetailLabel.text
                      productDesc:_DescriptionString
                          ImageID:_ImageString
-                         limited:99
-                      limit_date:@"2017-4-10"
-                    service_time:@"8:00-22:00"
+                         limited:limited
+                      limit_date:_DateString
+                    service_time:_ServerTime
                      appointment:_ReservationString
                          success:^(BaseResponse *response) {
                              hud.labelText = @"产品发布成功";

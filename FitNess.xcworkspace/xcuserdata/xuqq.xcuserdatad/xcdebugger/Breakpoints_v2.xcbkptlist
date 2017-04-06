@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FitNess/ViewController/Me/ProductViewController/ProductTypeViewController.m"
-            timestampString = "513081627.645155"
+            filePath = "FitNess/View/MeView/ProductView/UpdateTimeView.m"
+            timestampString = "513156421.023394"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-RequestTypeData"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-chooseClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

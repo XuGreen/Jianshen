@@ -12,8 +12,6 @@
 #import "ServerDescribeModel.h"
 
 @interface ServerDescribeViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>{
-    NSString *number;
-    NSString *personType;
     UIView *Addview;
 }
 @property (nonatomic, strong) UIView        *customView;
@@ -33,7 +31,7 @@
     [super viewDidLoad];
     _AddArray=[NSMutableArray array];
     ServerDescribeModel *requestModel = [[ServerDescribeModel alloc]init];
-    [_AddArray addObject:requestModel];
+    [_nameArray addObject:requestModel];
    
     
     [self setNav];
@@ -41,7 +39,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldEditChanged:)  name:@"UITextFieldTextDidChangeNotification" object:_inputView];
     [self.view addSubview:self.tableView];
     [self addView];
- 
+   XQQLog(@"%ld",_btnTag);
 }
 
 -(void)setNav{
@@ -80,7 +78,7 @@
     }
    [self.customView1 addSubview:self.numberButton];
     _numberButton.numberBlock=^(NSString *num){
-        number=num;
+        _hour=num;
     };
     [self.customView1 addSubview:[MyView addLineView:CGRectMake(15, _customView1.xmg_height-1, SCREENWIDTH-30, 1) color:LINECOLOR]];
     
@@ -120,8 +118,10 @@
 - (void)addButton:(UIButton *)sender{
     // 插入单行(插入了一行cell)
     ServerDescribeModel *model=[[ServerDescribeModel alloc]init];
-    [_AddArray addObject:model];
-    if(_AddArray.count>3){
+    if (![model.name isEqualToString:@""]) {
+           [_nameArray addObject:model];
+    }
+    if(_nameArray.count>3){
         [Addview removeFromSuperview];
     }
     [self.tableView reloadData];
@@ -131,19 +131,17 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (_AddArray.count==0) {
+    if (_nameArray.count==0) {
         return 1;
     }else{
-        return _AddArray.count;
+        return _nameArray.count;
     }
-  
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ServerDescrptionViewCell *ServerCell=[ServerDescrptionViewCell ServerDescrptionViewCell:tableView];
     ServerCell.selectionStyle =UITableViewCellSelectionStyleNone;
-    ServerCell.model=[_AddArray objectAtIndex:indexPath.row];
+    ServerCell.model=[_nameArray objectAtIndex:indexPath.row];
     [ServerCell.deleatebutton addTarget:self action:@selector(DeleteClick:) forControlEvents:UIControlEventTouchUpInside];
     ServerCell.deleatebutton.tag=indexPath.row;
     return ServerCell;
@@ -152,8 +150,8 @@
     return hight(120);
 }
 - (void)DeleteClick:(UIButton *)sender{
-    if (self.AddArray.count>1) {
-        [self.AddArray removeObjectAtIndex:sender.tag];
+    if (self.nameArray.count>1) {
+        [self.nameArray removeObjectAtIndex:sender.tag];
         [self.tableView reloadData];
     }
 }
@@ -162,8 +160,8 @@
 }
 -(void)CompleteButton:(UIButton *)sender{
     NSMutableArray *descArray=[NSMutableArray array];
-    for (int i=0; i<_AddArray.count; i++) {
-        ServerDescribeModel *model=[_AddArray objectAtIndex:i];
+    for (int i=0; i<_nameArray.count; i++) {
+        ServerDescribeModel *model=[_nameArray objectAtIndex:i];
         NSMutableDictionary *ProductDic=[[NSMutableDictionary alloc]init];
         [ProductDic setObject:model.name forKey:@"name"];
         [ProductDic setObject:@"自定义" forKey:@"value"];
@@ -171,29 +169,34 @@
     }
     NSMutableDictionary *ServerHour=[NSMutableDictionary dictionary];
     [ServerHour setObject:@"耗时" forKey:@"name"];
-    [ServerHour setObject:number forKey:@"value"];
+    [ServerHour setObject:_hour forKey:@"value"];
      [descArray addObject:ServerHour];
     
     NSMutableDictionary *ServerPerson=[NSMutableDictionary dictionary];
-    [ServerPerson setObject:personType forKey:@"name"];
+    [ServerPerson setObject:_person forKey:@"name"];
     [ServerPerson setObject:@"预约" forKey:@"value"];
    [descArray addObject:ServerPerson];
     
-    [self.delegate ServerDescribeWithName:descArray];
+    [self.delegate ServerDescribeWithName:descArray hour:_hour person:_person nameArray:_nameArray btnTag:_btnTag];
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)choosePerson:(UIButton *)sender{
     for (int i=10; i<13; i++) {
         UIButton *button=(UIButton *)[self.view viewWithTag:i];
+        
         if (button==sender) {
             button.selected=YES;
             [button setImage:[UIImage imageNamed:@"select3"] forState:UIControlStateNormal];
+      
             if (button.tag==10 ) {
-                personType=@"女士";
+                _person=@"女士";
+                _btnTag=10;
             } else if (button.tag==11){
-                personType=@"男士";
+                _person=@"男士";
+                _btnTag=11;
             } else{
-                  personType=@"不限";
+                _person=@"不限";
+                _btnTag=12;
             }
         }else
         {

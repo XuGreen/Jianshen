@@ -208,11 +208,26 @@
 //选择地区
 
 - (void)chooseCity:(UIButton *)sender{
-    ProjectViewController  *project=[[ProjectViewController alloc]init];
-   // ChoseAreaViewController *choseAreaVC=[[ChoseAreaViewController alloc]init];
-    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:project];
+//    ProjectViewController  *project=[[ProjectViewController alloc]init];
+//    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:project];
+//    [self presentViewController:nav animated:YES completion:nil];
+    CityListViewController *cityListVC = [[CityListViewController alloc]init];
+    cityListVC.delegate = self;
+    //热门城市列表
+    cityListVC.arrayHotCity = [NSMutableArray arrayWithObjects:@"北京",@"上海",@"广州",@"厦门",@"深圳",@"天津",@"长沙",@"郑州", nil];
+    //历史选择城市列表
+    cityListVC.arrayHistoricalCity = [NSMutableArray arrayWithObjects:@"北京",@"上海",@"广州",nil];
+    //定位城市列表
+    cityListVC.arrayLocatingCity = [NSMutableArray arrayWithObjects:@"北京",@"上海",@"广州",nil];
+    cityListVC.view.backgroundColor = [UIColor whiteColor];
+    NavViewController *nav=[[NavViewController alloc]initWithRootViewController:cityListVC];
     [self presentViewController:nav animated:YES completion:nil];
-
+}
+-(void)didClickedWithCityName:(NSString *)cityName{
+    XQQLog(@"cityname%@",cityName);
+}
+- (void)didSelectedWithAreaName:(NSString *)areaName{
+     XQQLog(@"areaName%@",areaName);
 }
 //搜索商家
 - (void)search:(UIButton *)sender{

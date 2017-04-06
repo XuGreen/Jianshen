@@ -27,6 +27,7 @@
 @property(nonatomic,strong)UILabel          *timeLabel1;
 @property(nonatomic,strong)UILabel          *restLabel1;
 @property(nonatomic,strong)NSString        *timeStr;
+@property(nonatomic,strong)NSString        *RestStr;
 //开始时间 -结束时间
 @property(nonatomic,strong)NSString        *StartimeStr;
 @property(nonatomic,strong)NSString        *EndtimeStr;
@@ -44,6 +45,7 @@
 @property(nonatomic, strong)NSMutableArray *labelarray6;
 @property(nonatomic, strong)NSMutableArray *labelarray7;
 
+@property(nonatomic, strong)NSMutableArray *Restarray1;
 @property(nonatomic,weak)id <ReservationTimeDelegate>delegate;
 
 + (instancetype)ReservationTimeViewCell:(UITableView *)tableView;

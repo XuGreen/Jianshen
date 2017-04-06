@@ -10,7 +10,7 @@
 
 @protocol SelectTypeDelegate <NSObject>
 
-- (void)selectTypeWithName : (NSString *)name;
+- (void)selectTypeWithName : (NSString *)name typeID:(NSString *)typeId;
 @end
 @interface ProductTypeViewController : UIViewController
 @property(nonatomic,weak)id <SelectTypeDelegate>delegate;

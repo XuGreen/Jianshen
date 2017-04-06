@@ -14,4 +14,5 @@
 @end
 @interface AttentionStringViewController : BaseViewController
 @property(nonatomic,weak)id <AttentionStringDelegate>delegate;
+@property(nonatomic,strong) NSString    *Detail;//  预约时间
 @end

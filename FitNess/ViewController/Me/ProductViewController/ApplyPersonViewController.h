@@ -14,4 +14,5 @@
 @end
 @interface ApplyPersonViewController : BaseViewController
 @property(nonatomic,weak)id <ApplyPersonDelegate>delegate;
+@property(nonatomic,strong) NSString    *Detail;//  预约时间
 @end

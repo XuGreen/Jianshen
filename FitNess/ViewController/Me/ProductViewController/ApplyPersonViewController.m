@@ -54,6 +54,7 @@
     _inputView.textColor = [tools colorWithHex:0x333333];
     _inputView.font = [UIFont systemFontOfSize:15];
     _inputView.delegate = self;
+    _inputView.text=_Detail;
     [self.dynamicInfoView addSubview:_inputView];
     [self.dynamicInfoView addSubview:self.showTipsLabel];
 }
@@ -81,7 +82,10 @@
         _showTipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(13, 13, SCREENWIDTH, 20)];
         _showTipsLabel.textColor = [tools colorWithHex:0x999999];
         _showTipsLabel.font = [UIFont systemFontOfSize:15];
-        _showTipsLabel.text = @"您的产品适用于什么人群呢？请描述一下吧...";
+        if (!_Detail) {
+                _showTipsLabel.text = @"您的产品适用于什么人群呢？请描述一下吧...";
+        }
+    
     }
     return _showTipsLabel;
 }

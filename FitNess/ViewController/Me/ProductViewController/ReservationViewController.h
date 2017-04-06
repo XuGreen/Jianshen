@@ -10,9 +10,10 @@
 @protocol ReservationDelegate <NSObject>
 
 @optional
-- (void)ReservationWithArray:(NSMutableArray *)DateTimeArray;
+- (void)ReservationWithArray:(NSMutableArray *)DateTimeArray serverTime:(NSString *)serverTime;
 
 @end
 @interface ReservationViewController : UIViewController
 @property(nonatomic,weak)id <ReservationDelegate>delegate;
+@property (strong, nonatomic) NSMutableArray *AllTimeArray;
 @end
